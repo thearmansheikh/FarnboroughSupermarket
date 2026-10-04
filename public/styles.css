@@ -220,6 +220,29 @@ body.theme-dark .promo-strip {
   border-color: var(--border);
 }
 
+.newsletter-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter-card::before {
+  content: "";
+  position: absolute;
+  inset: auto -50px -80px auto;
+  width: 220px;
+  height: 220px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.cta-badge {
+  letter-spacing: 0.2em;
+}
+
+body.theme-dark .newsletter-card {
+  border: 1px solid var(--border);
+}
+
 .stat-card {
   background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(237,248,240,0.75));
   border: 1px solid rgba(22, 90, 53, 0.08);
