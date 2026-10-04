@@ -69,8 +69,8 @@
     </header>
 
     <main>
-      <section class="bg-gradient-to-br from-brand-700 via-brand-600 to-brand-500 text-white">
-        <div class="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-20">
+      <section class="hero-shell bg-gradient-to-br from-brand-700 via-brand-600 to-brand-500 text-white">
+        <div class="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:py-20">
           <div class="flex flex-col justify-center">
             <div class="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-sm font-semibold text-white/90">
               <span class="h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
@@ -84,37 +84,41 @@
               <a href="shop.html" class="inline-flex items-center justify-center rounded-xl bg-gold px-5 py-3 text-base font-extrabold text-slate-900 transition hover:opacity-95">Shop fresh picks</a>
               <a href="contact.html" class="inline-flex items-center justify-center rounded-xl border border-white/25 bg-white/5 px-5 py-3 text-base font-extrabold text-white transition hover:bg-white/10">Get directions</a>
             </div>
+
+            <div class="mt-8 flex flex-wrap gap-4 text-sm font-semibold text-white/80">
+              <span class="rounded-full border border-white/15 bg-white/5 px-3 py-1.5">Fresh meat</span>
+              <span class="rounded-full border border-white/15 bg-white/5 px-3 py-1.5">Fruit & veg</span>
+              <span class="rounded-full border border-white/15 bg-white/5 px-3 py-1.5">World foods</span>
+            </div>
           </div>
 
-          <div class="relative">
-            <div class="gradient-ring absolute -inset-4 rounded-[2rem] bg-brand-50/10 blur-2xl"></div>
-            <div class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 p-5 shadow-soft backdrop-blur-sm">
-              <div class="mb-4 flex items-center justify-between gap-4 text-sm font-semibold text-white/90">
-                <span>Fresh local favourites</span>
-                <span class="rounded-full bg-emerald-400/20 px-2.5 py-1 text-xs text-emerald-100">In stock</span>
+          <div class="hero-visual relative">
+            <div class="hero-glow absolute -inset-4 rounded-[2.5rem] bg-brand-50/10 blur-3xl"></div>
+
+            <div class="hero-photo hero-photo-main">
+              <div class="hero-photo-tag top-5 left-5">Fresh produce</div>
+              <div class="hero-photo-tag bottom-5 right-5">Halal meat</div>
+            </div>
+
+            <div class="hero-mini-card card-left">
+              <span class="mini-icon">🥬</span>
+              <div>
+                <p class="mini-label">Today’s picks</p>
+                <strong>Fruit & veg</strong>
               </div>
-              <div class="grid gap-4 sm:grid-cols-2">
-                <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-                  <div class="text-3xl">🥩</div>
-                  <p class="mt-4 text-xl font-black">Fresh meat</p>
-                  <p class="mt-1 text-sm text-white/75">Lamb, chicken and beef</p>
-                </div>
-                <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-                  <div class="text-3xl">🥬</div>
-                  <p class="mt-4 text-xl font-black">Fruit & veg</p>
-                  <p class="mt-1 text-sm text-white/75">Fresh and seasonal</p>
-                </div>
-                <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-                  <div class="text-3xl">🍚</div>
-                  <p class="mt-4 text-xl font-black">Rice & grains</p>
-                  <p class="mt-1 text-sm text-white/75">Staples for every home</p>
-                </div>
-                <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-                  <div class="text-3xl">🌍</div>
-                  <p class="mt-4 text-xl font-black">World foods</p>
-                  <p class="mt-1 text-sm text-white/75">Tea, spices and jars</p>
-                </div>
+            </div>
+
+            <div class="hero-mini-card card-right">
+              <span class="mini-icon">🥩</span>
+              <div>
+                <p class="mini-label">Freshly cut</p>
+                <strong>Halal chicken</strong>
               </div>
+            </div>
+
+            <div class="hero-stat-badge">
+              <p>4.9/5</p>
+              <span>local shop rating</span>
             </div>
           </div>
         </div>
