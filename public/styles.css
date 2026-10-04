@@ -42,8 +42,24 @@ body {
   transition: background 0.2s ease, color 0.2s ease;
 }
 
+header a,
+header button,
+header .nav-toggle {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+header a:hover,
+header button:hover,
+header .nav-toggle:hover {
+  transform: translateY(-1px);
+}
+
 .bg-brand-soft {
   background: var(--brand-soft);
+}
+
+.promo-strip {
+  background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(237,248,240,0.7));
 }
 
 body.theme-dark {
@@ -197,6 +213,11 @@ body.theme-dark .card-hover:hover {
 
 body.theme-dark .mobile-menu {
   background: rgba(15, 23, 42, 0.96);
+}
+
+body.theme-dark .promo-strip {
+  background: linear-gradient(180deg, rgba(17,24,39,0.96), rgba(21,37,52,0.92));
+  border-color: var(--border);
 }
 
 .stat-card {
