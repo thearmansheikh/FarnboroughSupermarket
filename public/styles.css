@@ -464,6 +464,15 @@ body.theme-dark .card-hover:hover {
   padding: 0.2rem 0;
 }
 
+.honeypot {
+  position: absolute !important;
+  left: -10000px !important;
+  top: auto !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
 .cookie-notice {
   position: fixed;
   z-index: 60;

@@ -17,12 +17,6 @@
     root.classList.remove('dark');
     document.body.classList.remove('theme-dark', 'theme-light');
 
-    try {
-      localStorage.setItem('farnborough-theme', 'light');
-    } catch (error) {
-      // Ignore storage issues.
-    }
-
     document.querySelectorAll('[data-nav-toggle]').forEach((button) => {
       const menu = document.querySelector('[data-mobile-menu]');
       if (!menu) return;
@@ -43,7 +37,7 @@
     notice.innerHTML = `
       <div class="cookie-notice__content">
         <p class="cookie-notice__title">Your cookie choices</p>
-        <p class="cookie-notice__copy">We use essential browser storage for site preferences. We don't currently use analytics or advertising cookies. Choose whether to allow optional categories. <a href="privacy.html">Privacy details</a></p>
+        <p class="cookie-notice__copy">We use essential browser storage for site preferences. The map connects to Google only after you load it or allow the Maps category. <a href="privacy.html">Privacy details</a></p>
       </div>
       <div class="cookie-notice__actions">
         <button type="button" class="cookie-notice__button" data-cookie-accept-all>Accept all</button>
@@ -64,6 +58,10 @@
             <span><strong>Marketing</strong><small>Allow advertising cookies if added to the site.</small></span>
             <input type="checkbox" data-cookie-marketing />
           </label>
+          <label class="cookie-preferences__row">
+            <span><strong>Maps</strong><small>Allow the Google Maps embed to load automatically.</small></span>
+            <input type="checkbox" data-cookie-maps />
+          </label>
           <button type="button" class="cookie-notice__button" data-cookie-save>Save preferences</button>
         </div>
       </details>
@@ -74,30 +72,40 @@
     settingsButton.className = 'cookie-settings-trigger';
     settingsButton.textContent = 'Cookie settings';
     settingsButton.hidden = !consent;
-    settingsButton.addEventListener('click', () => {
+    function openCookieSettings() {
+      consent = readCookieConsent() || consent;
       notice.querySelector('[data-cookie-analytics]').checked = Boolean(consent && consent.analytics);
       notice.querySelector('[data-cookie-marketing]').checked = Boolean(consent && consent.marketing);
+      notice.querySelector('[data-cookie-maps]').checked = Boolean(consent && consent.maps);
+      notice.querySelector('.cookie-preferences').open = false;
       notice.hidden = false;
       settingsButton.hidden = true;
+    }
+
+    settingsButton.addEventListener('click', openCookieSettings);
+    document.querySelectorAll('[data-cookie-settings]').forEach((button) => {
+      button.addEventListener('click', openCookieSettings);
     });
 
-    function saveConsent(analytics, marketing) {
-      consent = { essential: true, analytics, marketing };
+    function saveConsent(analytics, marketing, maps) {
+      consent = { essential: true, analytics, marketing, maps };
       try {
         localStorage.setItem(cookieConsentKey, JSON.stringify(consent));
       } catch (error) {
         // Keep the current page usable when browser storage is unavailable.
       }
+      window.dispatchEvent(new CustomEvent('farnborough-cookie-consent-updated', { detail: consent }));
       notice.hidden = true;
       settingsButton.hidden = false;
     }
 
-    notice.querySelector('[data-cookie-accept-all]').addEventListener('click', () => saveConsent(true, true));
-    notice.querySelector('[data-cookie-reject]').addEventListener('click', () => saveConsent(false, false));
+    notice.querySelector('[data-cookie-accept-all]').addEventListener('click', () => saveConsent(true, true, true));
+    notice.querySelector('[data-cookie-reject]').addEventListener('click', () => saveConsent(false, false, false));
     notice.querySelector('[data-cookie-save]').addEventListener('click', () => {
       saveConsent(
         notice.querySelector('[data-cookie-analytics]').checked,
-        notice.querySelector('[data-cookie-marketing]').checked
+        notice.querySelector('[data-cookie-marketing]').checked,
+        notice.querySelector('[data-cookie-maps]').checked
       );
     });
 

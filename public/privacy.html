@@ -62,14 +62,78 @@
       <div class="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-soft sm:p-10">
         <p class="text-sm font-bold uppercase tracking-[0.24em] text-brand-500">Privacy</p>
         <h1 class="mt-4 text-4xl font-black tracking-tight text-slate-900">Privacy Policy</h1>
-        <div class="mt-8 space-y-6 text-slate-700">
-          <p>This website uses essential browser storage for site preferences and to remember your cookie choices. You can accept all, reject optional categories, or manage analytics and marketing preferences. The website does not currently load analytics or advertising tools, so those choices are saved as consent preferences but do not enable tracking tools.</p>
-          <p>When you submit an enquiry, we collect your name, email address and message so the shop can respond to you.</p>
-          <p>Enquiry forms are delivered by FormSubmit, a third-party form processing service. FormSubmit retains submission records in its archive for up to 30 days. See the <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer" class="font-bold text-brand-600">FormSubmit privacy policy</a> for details about its handling of submitted information.</p>
-          <p>We use your information to respond to your enquiry about our store, products, opening hours or directions. We do not sell or use your personal data for marketing.</p>
-          <p>We keep enquiry details only for as long as needed to respond and maintain accurate contact records. You can contact us to request an update or removal.</p>
-          <p>If you want to update or remove your information, please contact us directly by phone or email and we will do our best to help.</p>
-          <p>For any questions about your personal information, contact us at <a href="mailto:supermarketfarnborough@gmail.com" class="break-words font-bold text-brand-600">supermarketfarnborough@gmail.com</a> or call <a href="tel:01252940815" class="font-bold text-brand-600">01252 940815</a>.</p>
+        <div class="mt-8 space-y-8 text-slate-700">
+          <section>
+            <h2 class="text-xl font-black text-slate-900">Who we are</h2>
+            <!-- TODO: Confirm and replace {{LEGAL_NAME}} with the owner's legal or trading entity name before launch. -->
+            <p class="mt-3"><strong>{{LEGAL_NAME}}</strong>, trading as Farnborough Supermarket, is the data controller. Our address is 99 Eastmead, Farnborough GU14 7SA. Contact us at <a href="mailto:supermarketfarnborough@gmail.com" class="break-words font-bold text-brand-600">supermarketfarnborough@gmail.com</a> or <a href="tel:01252940815" class="font-bold text-brand-600">01252 940815</a>.</p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-black text-slate-900">What we collect</h2>
+            <p class="mt-3">If you send an enquiry, we collect your name, email address and message. We also store your cookie-category choices in your browser so we can remember them.</p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-black text-slate-900">Why we use your information</h2>
+            <p class="mt-3">We use enquiry details to respond to your questions about our shop, products, opening hours or directions. Our lawful basis is our legitimate interests in responding to customer enquiries. Optional analytics, marketing and automatic map loading are off unless you choose them. The map can also be loaded following your explicit click on “Load map”.</p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-black text-slate-900">Third-party services</h2>
+            <ul class="mt-3 list-disc space-y-2 pl-6">
+              <li>FormSubmit processes and delivers enquiry forms. It retains submissions in its archive for up to 30 days. Read the <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer" class="font-bold text-brand-600">FormSubmit privacy policy</a>.</li>
+              <li>Google Maps is contacted only after you allow the Maps category or select “Load map”. Google may then set its own cookies or storage. Read <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="font-bold text-brand-600">Google's privacy policy</a>.</li>
+              <li>Vercel hosts this website and processes technical request information needed to deliver it. Read <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" class="font-bold text-brand-600">Vercel's privacy policy</a>.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-black text-slate-900">How long we keep information</h2>
+            <!-- TODO: The owner must confirm the proposed 12-month retention period before launch. -->
+            <p class="mt-3">We propose deleting enquiry emails after 12 months. FormSubmit separately retains submitted records in its archive for up to 30 days. Cookie preferences remain in local browser storage until you change them or clear that storage.</p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-black text-slate-900">Your rights</h2>
+            <p class="mt-3">Subject to applicable law, you can ask to access, rectify or erase your personal data, restrict or object to processing, and request data portability. Contact us using the details above to exercise these rights.</p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-black text-slate-900">Complaints</h2>
+            <p class="mt-3">You have the right to complain to the <a href="https://ico.org.uk/" target="_blank" rel="noopener noreferrer" class="font-bold text-brand-600">Information Commissioner's Office</a> or call the ICO on 0303 123 1113.</p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-black text-slate-900">Cookies and browser storage</h2>
+            <p class="mt-3">We do not currently use analytics or advertising tools, and this site does not set first-party HTTP cookies. The following browser storage and third-party items may be used:</p>
+            <div class="mt-4 overflow-x-auto">
+              <table class="w-full min-w-[36rem] border-collapse text-left text-sm">
+                <thead>
+                  <tr class="border-b border-slate-200 text-slate-900">
+                    <th scope="col" class="px-3 py-2 font-bold">Name</th>
+                    <th scope="col" class="px-3 py-2 font-bold">Purpose</th>
+                    <th scope="col" class="px-3 py-2 font-bold">Duration</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-slate-200">
+                    <td class="px-3 py-3 font-mono">farnborough-cookie-consent-v2</td>
+                    <td class="px-3 py-3">Stores essential, analytics, marketing and Maps choices.</td>
+                    <td class="px-3 py-3">Until changed or cleared from the browser.</td>
+                  </tr>
+                  <tr class="border-b border-slate-200">
+                    <td class="px-3 py-3">Google Maps cookies/storage</td>
+                    <td class="px-3 py-3">Used by Google after the embedded map is allowed or explicitly loaded.</td>
+                    <td class="px-3 py-3">Set by Google; names and lifetimes may vary.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="mt-3">You can reopen your choices using “Cookie settings” in the footer. Rejecting optional categories does not block the direct “Open in Google Maps” link.</p>
+          </section>
+
+          <p class="border-t border-slate-200 pt-5 text-sm text-slate-500">Last updated: 6 October 2026.</p>
         </div>
       </div>
     </main>
@@ -103,6 +167,7 @@
           <div class="flex flex-wrap gap-4">
             <!-- TODO: Set FACEBOOK_URL to the verified business page URL before showing this link. -->
             <a href="{{FACEBOOK_URL}}" target="_blank" rel="noopener noreferrer" class="hover:text-white" hidden>Facebook</a>
+            <button type="button" data-cookie-settings class="hover:text-white">Cookie settings</button>
             <a href="privacy.html" class="hover:text-white" aria-current="page">Privacy</a>
           </div>
         </div>

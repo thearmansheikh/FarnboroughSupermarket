@@ -97,23 +97,28 @@
 
           <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-soft">
             <h2 class="text-2xl font-black text-slate-900">Send a quick enquiry</h2>
-            <form id="contact-form" action="https://formsubmit.co/supermarketfarnborough@gmail.com" method="POST" class="mt-6 space-y-4">
-              <input type="hidden" name="_subject" value="Website enquiry - Farnborough Supermarket" />
-              <div class="hidden" aria-hidden="true">
-                <label>Leave this field blank<input name="_honey" tabindex="-1" autocomplete="off" /></label>
+            <!-- TODO: Replace {{FORMSUBMIT_ALIAS}} with the verified hashed endpoint from FormSubmit. -->
+            <form id="contact-form" action="https://formsubmit.co/{{FORMSUBMIT_ALIAS}}" method="POST" class="mt-6 space-y-4">
+              <input type="hidden" name="_subject" value="New website enquiry" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_next" value="{{DOMAIN}}/thank-you" />
+              <div class="honeypot" aria-hidden="true">
+                <label for="enquiry-website">Leave this field blank</label>
+                <input id="enquiry-website" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
               </div>
               <div>
                 <label for="enquiry-name" class="mb-2 block text-sm font-semibold text-slate-700">Name</label>
-                <input id="enquiry-name" name="name" autocomplete="name" required class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 outline-none transition focus:border-brand-500 focus:bg-white" placeholder="Your name" />
+                <input id="enquiry-name" type="text" name="name" autocomplete="name" maxlength="100" required class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 outline-none transition focus:border-brand-500 focus:bg-white" placeholder="Your name" />
               </div>
               <div>
                 <label for="enquiry-email" class="mb-2 block text-sm font-semibold text-slate-700">Email</label>
-                <input id="enquiry-email" type="email" name="email" autocomplete="email" required class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 outline-none transition focus:border-brand-500 focus:bg-white" placeholder="you@example.com" />
+                <input id="enquiry-email" type="email" name="email" autocomplete="email" maxlength="254" required class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 outline-none transition focus:border-brand-500 focus:bg-white" placeholder="you@example.com" />
               </div>
               <div>
                 <label for="enquiry-message" class="mb-2 block text-sm font-semibold text-slate-700">Message</label>
-                <textarea id="enquiry-message" name="message" rows="5" required class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 outline-none transition focus:border-brand-500 focus:bg-white" placeholder="Tell us what you need..."></textarea>
+                <textarea id="enquiry-message" name="message" rows="5" maxlength="3000" required class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 outline-none transition focus:border-brand-500 focus:bg-white" placeholder="Tell us what you need..."></textarea>
               </div>
+              <p class="text-xs leading-5 text-slate-500">We use these details to respond to your enquiry. See our <a href="privacy.html" class="font-bold text-brand-600">privacy policy</a>.</p>
               <button type="submit" class="inline-flex items-center justify-center rounded-xl bg-brand-500 px-5 py-3 font-bold text-white transition hover:bg-brand-700">Send enquiry</button>
               <p id="contact-form-status" class="hidden rounded-xl border border-brand-100 bg-brand-50 p-3 text-sm text-slate-700" role="status" aria-live="polite"></p>
               <p class="text-xs leading-5 text-slate-500">Your message is sent to the shop by email. FormSubmit processes the submission to deliver it. You can also email <a href="mailto:supermarketfarnborough@gmail.com" class="font-bold text-brand-600">supermarketfarnborough@gmail.com</a> directly.</p>
@@ -125,17 +130,14 @@
           </div>
         </div>
 
-        <div class="mt-12 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-soft">
-          <iframe
-            title="Map to Farnborough Supermarket"
-            src="https://www.google.com/maps?q=99+Eastmead+Farnborough+GU14+7SA&output=embed"
-            width="100%"
-            height="420"
-            style="border:0;display:block;"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
+        <div id="store-map" class="mt-12 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-soft">
+          <div data-map-placeholder class="flex min-h-72 flex-col items-center justify-center gap-4 bg-brand-50 p-8 text-center sm:min-h-96">
+            <p class="text-xl font-black text-slate-900">Find Farnborough Supermarket</p>
+            <p class="max-w-lg text-slate-600">The embedded map connects to Google Maps. Load it only when you are ready to share data with Google.</p>
+            <button type="button" data-map-load class="rounded-xl bg-brand-500 px-5 py-3 font-bold text-white transition hover:bg-brand-700">Load map</button>
+            <p data-map-status class="hidden text-sm text-slate-600" role="status" aria-live="polite"></p>
+          </div>
+          <div data-map-frame class="hidden"></div>
         </div>
       </section>
     </main>
@@ -169,50 +171,14 @@
           <div class="flex flex-wrap gap-4">
             <!-- TODO: Set FACEBOOK_URL to the verified business page URL before showing this link. -->
             <a href="{{FACEBOOK_URL}}" target="_blank" rel="noopener noreferrer" class="hover:text-white" hidden>Facebook</a>
+            <button type="button" data-cookie-settings class="hover:text-white">Cookie settings</button>
             <a href="privacy.html" class="hover:text-white">Privacy</a>
           </div>
         </div>
       </div>
     </footer>
 
-    <script>
-      const contactForm = document.getElementById('contact-form');
-      const contactFormStatus = document.getElementById('contact-form-status');
-      const contactSubmitButton = contactForm.querySelector('[type="submit"]');
-
-      contactForm.addEventListener('submit', async function (event) {
-        event.preventDefault();
-        contactFormStatus.classList.remove('hidden');
-        contactFormStatus.textContent = 'Sending your enquiry...';
-        contactSubmitButton.disabled = true;
-        contactSubmitButton.textContent = 'Sending...';
-
-        try {
-          const formValues = Object.fromEntries(new FormData(contactForm).entries());
-          const response = await fetch('https://formsubmit.co/ajax/supermarketfarnborough@gmail.com', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Accept: 'application/json'
-            },
-            body: JSON.stringify(formValues)
-          });
-          const result = await response.json();
-
-          if (!response.ok || result.success === false || result.success === 'false') {
-            throw new Error(result.message || 'The enquiry could not be sent.');
-          }
-
-          contactForm.reset();
-          contactFormStatus.textContent = 'Thank you. Your enquiry has been submitted successfully.';
-        } catch (error) {
-          contactFormStatus.textContent = 'We could not send your enquiry just now. Please email supermarketfarnborough@gmail.com or call 01252 940815.';
-        } finally {
-          contactSubmitButton.disabled = false;
-          contactSubmitButton.textContent = 'Send enquiry';
-        }
-      });
-    </script>
+    <script src="contact.js"></script>
     <script src="theme.js"></script>
   </body>
 </html>
