@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="min-h-screen bg-[#f7f5f1] text-slate-800 antialiased">
+    <!-- SHARED: keep in sync -->
     <header class="sticky top-0 z-50 border-b border-brand-100 bg-white/80 backdrop-blur-md">
       <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
         <a href="index.html" class="flex min-w-0 items-center gap-3">
@@ -38,10 +39,9 @@
           <a href="index.html" class="hover:text-brand-500">Home</a>
           <a href="about.html" class="hover:text-brand-500">About</a>
           <a href="products.html" class="hover:text-brand-500">Products</a>
-          <a href="shop.html" class="hover:text-brand-500">Explore</a>
           <a href="offers.html" class="hover:text-brand-500">Offers</a>
           <a href="gallery.html" class="hover:text-brand-500">Gallery</a>
-          <a href="contact.html" class="text-brand-600">Contact</a>
+          <a href="contact.html" class="text-brand-600" aria-current="page">Contact</a>
         </nav>
         <div class="flex items-center gap-2">
           <button type="button" data-nav-toggle class="nav-toggle lg:hidden" aria-label="Toggle navigation" aria-expanded="false">☰</button>
@@ -52,10 +52,9 @@
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="products.html">Products</a>
-        <a href="shop.html">Explore</a>
         <a href="offers.html">Offers</a>
         <a href="gallery.html">Gallery</a>
-        <a href="contact.html" class="text-brand-600">Contact</a>
+        <a href="contact.html" class="text-brand-600" aria-current="page">Contact</a>
       </div>
     </header>
 
@@ -91,7 +90,7 @@
               </div>
               <div class="flex items-center justify-between gap-4 border-b border-slate-200 pb-3">
                 <span class="text-slate-500">Directions</span>
-                <a href="https://www.google.com/maps/search/?api=1&query=99+Eastmead+Farnborough+GU14+7SA" target="_blank" rel="noreferrer" class="font-bold text-brand-600">Open in Google Maps</a>
+                <a href="https://www.google.com/maps/search/?api=1&query=99+Eastmead+Farnborough+GU14+7SA" target="_blank" rel="noopener noreferrer" class="font-bold text-brand-600">Open in Google Maps</a>
               </div>
             </div>
           </div>
@@ -141,6 +140,7 @@
       </section>
     </main>
 
+    <!-- SHARED: keep in sync -->
     <footer class="bg-slate-900 text-slate-200">
       <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -167,7 +167,8 @@
         <div class="mt-8 flex flex-col gap-3 border-t border-white/10 pt-5 text-sm text-slate-300 sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 Farnborough Supermarket</p>
           <div class="flex flex-wrap gap-4">
-            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" class="hover:text-white">Facebook</a>
+            <!-- TODO: Set FACEBOOK_URL to the verified business page URL before showing this link. -->
+            <a href="{{FACEBOOK_URL}}" target="_blank" rel="noopener noreferrer" class="hover:text-white" hidden>Facebook</a>
             <a href="privacy.html" class="hover:text-white">Privacy</a>
           </div>
         </div>

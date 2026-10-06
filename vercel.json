@@ -2,5 +2,17 @@
   "version": 2,
   "outputDirectory": "public",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/shop",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/shop.html",
+      "destination": "/products",
+      "permanent": true
+    }
+  ]
 }
