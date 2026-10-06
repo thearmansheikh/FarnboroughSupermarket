@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Products | Farnborough Supermarket</title>
-    <meta name="description" content="Browse the range at Farnborough Supermarket, including halal meat, rice, tea, fruit, vegetable, olives, snacks and South-East Asian ingredients." />
+    <meta name="description" content="Browse the range at Farnborough Supermarket, including halal meat, rice, tea, fruit, vegetables, olives and South Asian ingredients." />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -31,28 +31,28 @@
     <header class="sticky top-0 z-50 border-b border-brand-100 bg-white/80 backdrop-blur-md">
       <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
         <a href="index.html" class="flex min-w-0 items-center gap-3">
-          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-lg font-black text-white">F</span>
+          <span class="brand-mark">FS</span>
           <span class="truncate text-lg font-extrabold tracking-tight text-brand-700">Farnborough Supermarket</span>
         </a>
-        <nav class="hidden items-center gap-7 text-sm font-semibold text-slate-600 md:flex">
+        <nav class="hidden items-center gap-7 text-sm font-semibold text-slate-600 lg:flex">
           <a href="index.html" class="hover:text-brand-500">Home</a>
           <a href="about.html" class="hover:text-brand-500">About</a>
           <a href="products.html" class="text-brand-600">Products</a>
-          <a href="shop.html" class="hover:text-brand-500">Shop</a>
+          <a href="shop.html" class="hover:text-brand-500">Explore</a>
           <a href="offers.html" class="hover:text-brand-500">Offers</a>
           <a href="gallery.html" class="hover:text-brand-500">Gallery</a>
           <a href="contact.html" class="hover:text-brand-500">Contact</a>
         </nav>
         <div class="flex items-center gap-2">
-          <button type="button" data-nav-toggle class="nav-toggle md:hidden" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+          <button type="button" data-nav-toggle class="nav-toggle lg:hidden" aria-label="Toggle navigation" aria-expanded="false">☰</button>
           <a href="tel:01252940815" class="inline-flex shrink-0 items-center rounded-full bg-brand-500 px-4 py-2 text-sm font-bold text-white shadow-soft transition hover:bg-brand-700">Call now</a>
         </div>
       </div>
-      <div data-mobile-menu class="mobile-menu hidden flex-col gap-3 px-4 py-4 text-sm font-semibold text-slate-600 md:hidden">
+      <div data-mobile-menu class="mobile-menu hidden flex-col gap-3 px-4 py-4 text-sm font-semibold text-slate-600 lg:hidden">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="products.html" class="text-brand-600">Products</a>
-        <a href="shop.html">Shop</a>
+        <a href="shop.html">Explore</a>
         <a href="offers.html">Offers</a>
         <a href="gallery.html">Gallery</a>
         <a href="contact.html">Contact</a>
@@ -61,63 +61,90 @@
 
     <main>
       <section class="bg-brand-700 text-white">
-        <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <p class="text-sm font-bold uppercase tracking-[0.2em] text-brand-100">Shop by category</p>
-          <h1 class="mt-3 text-4xl font-black tracking-tight sm:text-5xl">Everything you need for everyday life.</h1>
-          <p class="mt-5 max-w-2xl text-lg text-white/80">Our shelves are stocked with quality staples, fresh produce, halal meats, pantry goods and world foods for homes across Farnborough.</p>
+        <div class="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1fr_0.8fr] lg:items-center lg:px-8 lg:py-16">
+          <div>
+            <p class="text-sm font-bold uppercase tracking-[0.2em] text-brand-100">A flavour of our shelves</p>
+            <h1 class="mt-3 max-w-2xl text-4xl font-black tracking-tight sm:text-5xl">Good food. Familiar favourites. Plenty to discover.</h1>
+            <p class="mt-5 max-w-2xl text-lg text-white/80">Explore the range we bring together for Farnborough: fresh produce, halal meat, everyday staples and ingredients from around the world.</p>
+            <a href="contact.html" class="mt-7 inline-flex items-center rounded-xl bg-gold px-5 py-3 font-extrabold text-slate-900 transition hover:opacity-95">Visit or contact us</a>
+          </div>
+          <div class="grid grid-cols-2 gap-3 sm:gap-4" aria-label="A selection of our product categories">
+            <img src="./images/fruit.svg" alt="Fresh fruit selection" class="h-36 w-full rounded-2xl object-cover shadow-lg sm:h-48" />
+            <img src="./images/spices.svg" alt="Spices and world food ingredients" class="mt-8 h-36 w-full rounded-2xl object-cover shadow-lg sm:h-48" />
+            <img src="./images/meat.svg" alt="Fresh halal meat selection" class="-mt-8 h-36 w-full rounded-2xl object-cover shadow-lg sm:h-48" />
+            <img src="./images/rice.svg" alt="Rice and grains" class="h-36 w-full rounded-2xl object-cover shadow-lg sm:h-48" />
+          </div>
         </div>
       </section>
 
       <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <nav aria-label="Product categories" class="mb-8 flex flex-wrap gap-2">
+          <a href="#fresh-meat" class="rounded-full border border-brand-100 bg-white px-4 py-2 text-sm font-bold text-brand-700 transition hover:border-brand-500">Fresh halal meat</a>
+          <a href="#rice-grains" class="rounded-full border border-brand-100 bg-white px-4 py-2 text-sm font-bold text-brand-700 transition hover:border-brand-500">Rice & grains</a>
+          <a href="#tea-dry-fruits" class="rounded-full border border-brand-100 bg-white px-4 py-2 text-sm font-bold text-brand-700 transition hover:border-brand-500">Tea & dry fruits</a>
+          <a href="#olives-pickles" class="rounded-full border border-brand-100 bg-white px-4 py-2 text-sm font-bold text-brand-700 transition hover:border-brand-500">Olives & pickles</a>
+          <a href="#fresh-produce" class="rounded-full border border-brand-100 bg-white px-4 py-2 text-sm font-bold text-brand-700 transition hover:border-brand-500">Fresh produce</a>
+          <a href="#world-foods" class="rounded-full border border-brand-100 bg-white px-4 py-2 text-sm font-bold text-brand-700 transition hover:border-brand-500">World foods</a>
+        </nav>
         <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          <article class="card-hover overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft">
-            <img src="./images/meat.svg" alt="Fresh halal meat" class="h-48 w-full object-cover" loading="lazy" />
+          <article id="fresh-meat" class="card-hover overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft">
+            <img src="./images/meat.svg" alt="Fresh halal meat" class="h-56 w-full object-cover" loading="lazy" />
             <div class="p-6">
               <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-3xl">🥩</div>
               <h2 class="text-2xl font-black text-slate-900">Fresh halal meat</h2>
               <p class="mt-3 text-slate-600">Lamb, chicken, beef and fresh cuts for family meals and special dishes.</p>
             </div>
           </article>
-          <article class="card-hover overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft">
-            <img src="./images/rice.svg" alt="Rice and grains" class="h-48 w-full object-cover" loading="lazy" />
+          <article id="rice-grains" class="card-hover overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft">
+            <img src="./images/rice.svg" alt="Rice and grains" class="h-56 w-full object-cover" loading="lazy" />
             <div class="p-6">
               <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-3xl">🍚</div>
               <h2 class="text-2xl font-black text-slate-900">Rice & grains</h2>
               <p class="mt-3 text-slate-600">Golden Sella, jasmine, long grain, semolina and long-life essentials.</p>
             </div>
           </article>
-          <article class="card-hover overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft">
-            <img src="./images/tea.svg" alt="Tea and dry fruits" class="h-48 w-full object-cover" loading="lazy" />
+          <article id="tea-dry-fruits" class="card-hover overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft">
+            <img src="./images/tea.svg" alt="Tea and dry fruits" class="h-56 w-full object-cover" loading="lazy" />
             <div class="p-6">
               <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-3xl">🫖</div>
               <h2 class="text-2xl font-black text-slate-900">Tea & dry fruits</h2>
               <p class="mt-3 text-slate-600">Tea, nuts, dates and snacks for everyday routines and family favourites.</p>
             </div>
           </article>
-          <article class="card-hover overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft">
-            <img src="./images/olives.svg" alt="Olives and pickles" class="h-48 w-full object-cover" loading="lazy" />
+          <article id="olives-pickles" class="card-hover overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft">
+            <img src="./images/olives.svg" alt="Olives and pickles" class="h-56 w-full object-cover" loading="lazy" />
             <div class="p-6">
               <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-3xl">🫒</div>
               <h2 class="text-2xl font-black text-slate-900">Olives & pickles</h2>
               <p class="mt-3 text-slate-600">Jars, olives, peppers and preserved favourites for the cupboard.</p>
             </div>
           </article>
-          <article class="card-hover overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft">
-            <img src="./images/fruit.svg" alt="Fresh produce" class="h-48 w-full object-cover" loading="lazy" />
+          <article id="fresh-produce" class="card-hover overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft">
+            <img src="./images/fruit.svg" alt="Fresh produce" class="h-56 w-full object-cover" loading="lazy" />
             <div class="p-6">
               <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-3xl">🥭</div>
               <h2 class="text-2xl font-black text-slate-900">Fresh produce</h2>
               <p class="mt-3 text-slate-600">Fruit, vegetables and herbs that keep daily meals simple and healthy.</p>
             </div>
           </article>
-          <article class="card-hover overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft">
-            <img src="./images/spices.svg" alt="World foods" class="h-48 w-full object-cover" loading="lazy" />
+          <article id="world-foods" class="card-hover overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft">
+            <img src="./images/spices.svg" alt="World foods" class="h-56 w-full object-cover" loading="lazy" />
             <div class="p-6">
               <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-3xl">🌶️</div>
               <h2 class="text-2xl font-black text-slate-900">World foods</h2>
               <p class="mt-3 text-slate-600">Spices, sauces, beans, seasonings and trusted ingredients from across the globe.</p>
             </div>
           </article>
+        </div>
+      </section>
+
+      <section class="bg-brand-700 text-white">
+        <div class="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-10 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+          <div>
+            <p class="text-sm font-bold uppercase tracking-[0.18em] text-brand-100">Come and explore</p>
+            <h2 class="mt-2 text-2xl font-black">See something you like? Find it in store.</h2>
+          </div>
+          <a href="contact.html" class="inline-flex w-fit items-center rounded-xl bg-gold px-5 py-3 font-extrabold text-slate-900 transition hover:opacity-95">Get in touch</a>
         </div>
       </section>
 
@@ -158,8 +185,12 @@
     <footer class="bg-slate-900 text-slate-200">
       <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-8 text-sm sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
         <p>© 2026 Farnborough Supermarket</p>
-        <p>Fresh food, world flavours and everyday essentials</p>
+        <div class="flex gap-4">
+          <a href="contact.html" class="hover:text-white">Contact</a>
+          <a href="privacy.html" class="hover:text-white">Privacy</a>
+        </div>
       </div>
     </footer>
+    <script src="theme.js"></script>
   </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact | Farnborough Supermarket</title>
-    <meta name="description" content="Contact Farnborough Supermarket to ask about ingredients, opening hours, directions and fresh food stock." />
+    <meta name="description" content="Contact Farnborough Supermarket to ask about stock, opening hours or directions to the shop in Farnborough." />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -31,28 +31,28 @@
     <header class="sticky top-0 z-50 border-b border-brand-100 bg-white/80 backdrop-blur-md">
       <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
         <a href="index.html" class="flex min-w-0 items-center gap-3">
-          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-lg font-black text-white">F</span>
+          <span class="brand-mark">FS</span>
           <span class="truncate text-lg font-extrabold tracking-tight text-brand-700">Farnborough Supermarket</span>
         </a>
-        <nav class="hidden items-center gap-7 text-sm font-semibold text-slate-600 md:flex">
+        <nav class="hidden items-center gap-7 text-sm font-semibold text-slate-600 lg:flex">
           <a href="index.html" class="hover:text-brand-500">Home</a>
           <a href="about.html" class="hover:text-brand-500">About</a>
           <a href="products.html" class="hover:text-brand-500">Products</a>
-          <a href="shop.html" class="hover:text-brand-500">Shop</a>
+          <a href="shop.html" class="hover:text-brand-500">Explore</a>
           <a href="offers.html" class="hover:text-brand-500">Offers</a>
           <a href="gallery.html" class="hover:text-brand-500">Gallery</a>
           <a href="contact.html" class="text-brand-600">Contact</a>
         </nav>
         <div class="flex items-center gap-2">
-          <button type="button" data-nav-toggle class="nav-toggle md:hidden" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+          <button type="button" data-nav-toggle class="nav-toggle lg:hidden" aria-label="Toggle navigation" aria-expanded="false">☰</button>
           <a href="tel:01252940815" class="inline-flex shrink-0 items-center rounded-full bg-brand-500 px-4 py-2 text-sm font-bold text-white shadow-soft transition hover:bg-brand-700">Call now</a>
         </div>
       </div>
-      <div data-mobile-menu class="mobile-menu hidden flex-col gap-3 px-4 py-4 text-sm font-semibold text-slate-600 md:hidden">
+      <div data-mobile-menu class="mobile-menu hidden flex-col gap-3 px-4 py-4 text-sm font-semibold text-slate-600 lg:hidden">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="products.html">Products</a>
-        <a href="shop.html">Shop</a>
+        <a href="shop.html">Explore</a>
         <a href="offers.html">Offers</a>
         <a href="gallery.html">Gallery</a>
         <a href="contact.html" class="text-brand-600">Contact</a>
@@ -63,7 +63,7 @@
       <section class="bg-brand-700 text-white">
         <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <p class="text-sm font-bold uppercase tracking-[0.2em] text-brand-100">Contact us</p>
-          <h1 class="mt-3 text-4xl font-black tracking-tight sm:text-5xl">Visit us in store or give us a call.</h1>
+          <h1 class="mt-3 text-4xl font-black tracking-tight sm:text-5xl">Visit us in store or ask a quick question.</h1>
         </div>
       </section>
 
@@ -74,7 +74,7 @@
             <div class="mt-6 space-y-5 text-slate-700">
               <p class="text-lg font-semibold text-slate-900">Farnborough Supermarket</p>
               <p>99 Eastmead<br />Farnborough GU14 7SA</p>
-              <p>Opposite Iceland and near Kingsmead bus stop.</p>
+              <p>Local shopping area with nearby parking and straightforward access. Please call ahead if you need specific accessibility support.</p>
             </div>
             <div class="mt-8 space-y-5">
               <div class="flex items-center justify-between gap-4 border-b border-slate-200 pb-3">
@@ -87,38 +87,101 @@
               </div>
               <div class="flex items-center justify-between gap-4 border-b border-slate-200 pb-3">
                 <span class="text-slate-500">Opening hours</span>
-                <span class="font-bold text-slate-700">6am – 10pm</span>
+                <span class="font-bold text-slate-700">Mon–Sun, 6am – 10pm</span>
+              </div>
+              <div class="flex items-center justify-between gap-4 border-b border-slate-200 pb-3">
+                <span class="text-slate-500">Directions</span>
+                <a href="https://www.google.com/maps/search/?api=1&query=99+Eastmead+Farnborough+GU14+7SA" target="_blank" rel="noreferrer" class="font-bold text-brand-600">Open in Google Maps</a>
               </div>
             </div>
           </div>
 
           <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-soft">
             <h2 class="text-2xl font-black text-slate-900">Send a quick enquiry</h2>
-            <form class="mt-6 space-y-4">
+            <form id="contact-form" class="mt-6 space-y-4">
               <div>
                 <label class="mb-2 block text-sm font-semibold text-slate-700">Name</label>
-                <input class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 outline-none transition focus:border-brand-500 focus:bg-white" placeholder="Your name" />
+                <input name="name" required class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 outline-none transition focus:border-brand-500 focus:bg-white" placeholder="Your name" />
               </div>
               <div>
                 <label class="mb-2 block text-sm font-semibold text-slate-700">Email</label>
-                <input class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 outline-none transition focus:border-brand-500 focus:bg-white" placeholder="you@example.com" />
+                <input type="email" name="email" required class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 outline-none transition focus:border-brand-500 focus:bg-white" placeholder="you@example.com" />
               </div>
               <div>
                 <label class="mb-2 block text-sm font-semibold text-slate-700">Message</label>
-                <textarea rows="5" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 outline-none transition focus:border-brand-500 focus:bg-white" placeholder="Tell us what you need..."></textarea>
+                <textarea name="message" rows="5" required class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 outline-none transition focus:border-brand-500 focus:bg-white" placeholder="Tell us what you need..."></textarea>
               </div>
-              <button type="button" class="inline-flex items-center justify-center rounded-xl bg-brand-500 px-5 py-3 font-bold text-white transition hover:bg-brand-700">Submit enquiry</button>
+              <button type="submit" class="inline-flex items-center justify-center rounded-xl bg-brand-500 px-5 py-3 font-bold text-white transition hover:bg-brand-700">Submit enquiry</button>
+              <p class="text-xs leading-5 text-slate-500">This form opens your email app and sends the message to the shop email address. We only use the details you provide to respond to your enquiry.</p>
             </form>
+            <div class="mt-6 rounded-2xl border border-brand-100 bg-brand-50 p-4 text-sm text-slate-700">
+              <p class="font-bold text-brand-700">Privacy notice</p>
+              <p class="mt-2">We collect your name and email only to reply to your enquiry. We do not sell or share your personal data. See our <a href="privacy.html" class="font-bold text-brand-600">privacy policy</a> for more information.</p>
+            </div>
           </div>
+        </div>
+
+        <div class="mt-12 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-soft">
+          <iframe
+            title="Map to Farnborough Supermarket"
+            src="https://www.google.com/maps?q=99+Eastmead+Farnborough+GU14+7SA&output=embed"
+            width="100%"
+            height="420"
+            style="border:0;display:block;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </section>
     </main>
 
     <footer class="bg-slate-900 text-slate-200">
-      <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-8 text-sm sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-        <p>© 2026 Farnborough Supermarket</p>
-        <p>Fresh food, world flavours and everyday essentials</p>
+      <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <div class="mb-4 flex items-center gap-3">
+              <span class="brand-mark">FS</span>
+              <span class="font-black text-white">Farnborough Supermarket</span>
+            </div>
+            <p class="text-sm leading-6 text-slate-300">A local supermarket for fresh produce, halal meat and everyday family essentials.</p>
+          </div>
+          <div>
+            <h3 class="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-slate-300">Visit us</h3>
+            <p class="text-sm leading-6 text-slate-300">99 Eastmead<br />Farnborough GU14 7SA</p>
+          </div>
+          <div>
+            <h3 class="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-slate-300">Contact</h3>
+            <p class="text-sm leading-6 text-slate-300"><a href="tel:01252940815" class="hover:text-white">01252 940815</a><br /><a href="mailto:supermarketfarnborough@gmail.com" class="hover:text-white">supermarketfarnborough@gmail.com</a></p>
+          </div>
+          <div>
+            <h3 class="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-slate-300">Hours</h3>
+            <p class="text-sm leading-6 text-slate-300">Mon–Sun<br />6:00am – 10:00pm</p>
+          </div>
+        </div>
+        <div class="mt-8 flex flex-col gap-3 border-t border-white/10 pt-5 text-sm text-slate-300 sm:flex-row sm:items-center sm:justify-between">
+          <p>© 2026 Farnborough Supermarket</p>
+          <div class="flex flex-wrap gap-4">
+            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" class="hover:text-white">Facebook</a>
+            <a href="privacy.html" class="hover:text-white">Privacy</a>
+          </div>
+        </div>
       </div>
     </footer>
+
+    <script>
+      document.getElementById('contact-form').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const formData = new FormData(form);
+        const name = (formData.get('name') || '').toString().trim();
+        const email = (formData.get('email') || '').toString().trim();
+        const message = (formData.get('message') || '').toString().trim();
+        const subject = encodeURIComponent('Website enquiry from ' + name);
+        const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
+        window.location.href = 'mailto:supermarketfarnborough@gmail.com?subject=' + subject + '&body=' + body;
+      });
+    </script>
+    <script src="theme.js"></script>
   </body>
 </html>

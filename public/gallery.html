@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gallery | Farnborough Supermarket</title>
-    <meta name="description" content="Take a look inside Farnborough Supermarket and explore the range of produce, world foods and everyday essentials." />
+    <meta name="description" content="Take a look at the colour and variety of products available at Farnborough Supermarket." />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -32,28 +32,28 @@
     <header class="sticky top-0 z-50 border-b border-brand-100 bg-white/80 backdrop-blur-md">
       <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
         <a href="index.html" class="flex min-w-0 items-center gap-3">
-          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 text-lg font-black text-white">F</span>
+          <span class="brand-mark">FS</span>
           <span class="truncate text-lg font-extrabold tracking-tight text-brand-700">Farnborough Supermarket</span>
         </a>
-        <nav class="hidden items-center gap-7 text-sm font-semibold text-slate-600 md:flex">
+        <nav class="hidden items-center gap-7 text-sm font-semibold text-slate-600 lg:flex">
           <a href="index.html" class="hover:text-brand-500">Home</a>
           <a href="about.html" class="hover:text-brand-500">About</a>
           <a href="products.html" class="hover:text-brand-500">Products</a>
-          <a href="shop.html" class="hover:text-brand-500">Shop</a>
+          <a href="shop.html" class="hover:text-brand-500">Explore</a>
           <a href="offers.html" class="hover:text-brand-500">Offers</a>
           <a href="gallery.html" class="text-brand-600">Gallery</a>
           <a href="contact.html" class="hover:text-brand-500">Contact</a>
         </nav>
         <div class="flex items-center gap-2">
-          <button type="button" data-nav-toggle class="nav-toggle md:hidden" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+          <button type="button" data-nav-toggle class="nav-toggle lg:hidden" aria-label="Toggle navigation" aria-expanded="false">☰</button>
           <a href="tel:01252940815" class="inline-flex shrink-0 items-center rounded-full bg-brand-500 px-4 py-2 text-sm font-bold text-white shadow-soft transition hover:bg-brand-700">Call now</a>
         </div>
       </div>
-      <div data-mobile-menu class="mobile-menu hidden flex-col gap-3 px-4 py-4 text-sm font-semibold text-slate-600 md:hidden">
+      <div data-mobile-menu class="mobile-menu hidden flex-col gap-3 px-4 py-4 text-sm font-semibold text-slate-600 lg:hidden">
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="products.html">Products</a>
-        <a href="shop.html">Shop</a>
+        <a href="shop.html">Explore</a>
         <a href="offers.html">Offers</a>
         <a href="gallery.html" class="text-brand-600">Gallery</a>
         <a href="contact.html">Contact</a>
@@ -62,60 +62,61 @@
 
     <main>
       <section class="bg-gradient-to-br from-brand-700 via-brand-600 to-brand-500 text-white">
-        <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <p class="text-sm font-bold uppercase tracking-[0.2em] text-brand-100">Inside the shop</p>
-          <h1 class="mt-3 max-w-3xl text-4xl font-black tracking-tight sm:text-5xl">A closer look at the warm, vibrant aisles that make Farnborough Supermarket feel like home.</h1>
+        <div class="mx-auto grid max-w-7xl gap-8 px-4 py-14 sm:px-6 md:grid-cols-[1fr_auto] md:items-end lg:px-8">
+          <div>
+            <p class="text-sm font-bold uppercase tracking-[0.2em] text-brand-100">A look around</p>
+            <h1 class="mt-3 max-w-3xl text-4xl font-black tracking-tight sm:text-5xl">A little colour for the everyday shop.</h1>
+            <p class="mt-5 max-w-2xl text-lg text-white/80">From fresh produce to pantry favourites, take a look at some of the variety waiting on our shelves.</p>
+          </div>
+          <a href="contact.html" class="inline-flex w-fit items-center rounded-xl bg-gold px-5 py-3 font-extrabold text-slate-900 transition hover:opacity-95">Plan a visit</a>
         </div>
       </section>
 
       <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div class="mb-8 flex flex-col gap-4 rounded-[2rem] border border-brand-100 bg-white p-6 shadow-soft md:flex-row md:items-center md:justify-between">
+        <div class="mb-8 flex flex-col gap-4 border-b border-brand-100 pb-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <p class="text-sm font-bold uppercase tracking-[0.22em] text-brand-600">Shop visit</p>
+            <p class="text-sm font-bold uppercase tracking-[0.22em] text-brand-600">The range</p>
             <h2 class="mt-2 text-2xl font-black text-slate-900 sm:text-3xl">Fresh, colourful and full of character</h2>
+            <p class="mt-3 max-w-2xl text-slate-600">A selection of the ingredients and categories our customers come in for every day.</p>
           </div>
-          <div class="flex flex-wrap gap-3 text-sm font-semibold text-slate-600">
-            <span class="rounded-full bg-brand-50 px-3 py-1.5">Fresh produce</span>
-            <span class="rounded-full bg-brand-50 px-3 py-1.5">Meat counter</span>
-            <span class="rounded-full bg-brand-50 px-3 py-1.5">World foods</span>
-          </div>
+          <a href="products.html" class="font-bold text-brand-600 hover:text-brand-700">Explore product categories →</a>
         </div>
 
-        <div class="grid gap-5 md:grid-cols-12">
+        <div class="grid gap-4 md:grid-cols-12 md:gap-5">
           <figure class="gallery-card gallery-card--large md:col-span-7">
-            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=80" alt="Inside the supermarket shelves and fresh produce" />
+            <img src="./images/fruit.svg" alt="Fresh fruit and vegetables" />
             <figcaption class="gallery-overlay">
-              <span>Store interior</span>
+              <span>Fruit & veg</span>
               <strong>Fresh produce and daily essentials</strong>
             </figcaption>
           </figure>
 
           <figure class="gallery-card md:col-span-5">
-            <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?auto=format&fit=crop&w=900&q=80" alt="Fresh meat counter in the supermarket" />
+            <img src="./images/meat.svg" alt="Fresh halal meat" />
             <figcaption class="gallery-overlay">
-              <span>Meat counter</span>
-              <strong>Halal fresh cuts</strong>
+              <span>Halal meat</span>
+              <strong>Fresh counter picks</strong>
             </figcaption>
           </figure>
 
           <figure class="gallery-card md:col-span-4">
-            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80" alt="Fruit and vegetable display" />
+            <img src="./images/veg.svg" alt="Fresh greens and vegetables" />
             <figcaption class="gallery-overlay">
-              <span>Fruit & veg</span>
+              <span>Greens</span>
               <strong>Colourful and seasonal</strong>
             </figcaption>
           </figure>
 
           <figure class="gallery-card md:col-span-4">
-            <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=900&q=80" alt="Packed supermarket shelves" />
+            <img src="./images/rice.svg" alt="Rice and grains" />
             <figcaption class="gallery-overlay">
-              <span>Aisles</span>
-              <strong>Everyday favourites</strong>
+              <span>Rice & grains</span>
+              <strong>Everyday cooking staples</strong>
             </figcaption>
           </figure>
 
           <figure class="gallery-card md:col-span-4">
-            <img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&w=900&q=80" alt="World food and grocery shelf" />
+            <img src="./images/spices.svg" alt="World foods and spices" />
             <figcaption class="gallery-overlay">
               <span>World foods</span>
               <strong>Spices, grains and pantry staples</strong>
@@ -123,10 +124,10 @@
           </figure>
 
           <figure class="gallery-card md:col-span-12">
-            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1400&q=80" alt="Supermarket shop front at night" />
+            <img src="./images/tea.svg" alt="Tea, nuts and dry fruits" />
             <figcaption class="gallery-overlay">
-              <span>Front of shop</span>
-              <strong>Welcoming, bright and easy to find</strong>
+              <span>Tea & snacks</span>
+              <strong>Daily favourites and pantry essentials</strong>
             </figcaption>
           </figure>
         </div>
@@ -136,8 +137,12 @@
     <footer class="bg-slate-900 text-slate-200">
       <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-8 text-sm sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
         <p>© 2026 Farnborough Supermarket</p>
-        <p>Fresh food, world flavours and everyday essentials</p>
+        <div class="flex gap-4">
+          <a href="contact.html" class="hover:text-white">Contact</a>
+          <a href="privacy.html" class="hover:text-white">Privacy</a>
+        </div>
       </div>
     </footer>
+    <script src="theme.js"></script>
   </body>
 </html>
