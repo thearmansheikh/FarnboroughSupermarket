@@ -18,18 +18,19 @@
     return parts[0] * 60 + parts[1];
   }
 
+  // UK time without the browser time-zone formatter (slow to build on phones). British Summer Time runs from
+  // 01:00 UTC on the last Sunday of March to 01:00 UTC on the last Sunday of October.
+  function lastSundayUtc(year, month) {
+    const lastDay = new Date(Date.UTC(year, month + 1, 0));
+    return Date.UTC(year, month, lastDay.getUTCDate() - lastDay.getUTCDay(), 1);
+  }
+
   function now() {
-    const parts = new Intl.DateTimeFormat('en-GB', {
-      timeZone: 'Europe/London',
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      hourCycle: 'h23',
-    }).formatToParts(new Date());
-    const get = (type) => parts.find((part) => part.type === type).value;
-    return { date: get('year') + '-' + get('month') + '-' + get('day'), minutes: Number(get('hour')) * 60 + Number(get('minute')) };
+    const timestamp = Date.now();
+    const year = new Date(timestamp).getUTCFullYear();
+    const summer = timestamp >= lastSundayUtc(year, 2) && timestamp < lastSundayUtc(year, 9);
+    const london = new Date(timestamp + (summer ? 3600000 : 0));
+    return { date: london.toISOString().slice(0, 10), minutes: london.getUTCHours() * 60 + london.getUTCMinutes() };
   }
 
   function update() {

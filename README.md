@@ -13,9 +13,10 @@ This project presents a modern grocery brand focused on:
 ## Tech stack
 
 - HTML5
-- Tailwind CSS 3, compiled at build time (no CDN)
-- Vanilla JavaScript
-- Node.js local server and build script
+- Tailwind CSS 3, compiled at build time (no CDN), merged and minified into one stylesheet
+- Vanilla JavaScript (under 10 KB in total)
+- A small Node build (scripts/) with sharp for images and esbuild for minifying
+- Playwright, axe-core, Lighthouse, html-validate and linkinator for the checks
 
 ## Project structure
 

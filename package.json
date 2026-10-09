@@ -7,15 +7,24 @@
     "dev": "node scripts/dev-server.mjs",
     "start": "node scripts/dev-server.mjs",
     "build": "node scripts/build.mjs",
-    "photos": "node scripts/images.mjs",
+    "test": "node --test",
+    "validate": "node scripts/build.mjs && html-validate \"dist/*.html\"",
+    "links": "node scripts/check-links.mjs",
     "a11y": "node scripts/a11y.mjs",
-    "icons": "node scripts/make-icons.mjs",
+    "e2e": "node --test --test-concurrency=1 tests/e2e/site.e2e.mjs",
+    "lighthouse": "node scripts/lighthouse.mjs",
+    "check": "node scripts/check.mjs",
+    "photos": "node scripts/images.mjs",
     "og": "node scripts/make-og-image.mjs",
-    "test": "node --test"
+    "icons": "node scripts/make-icons.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
+    "chrome-launcher": "^1.2.2",
     "esbuild": "^0.28.2",
+    "html-validate": "^11.4.0",
+    "lighthouse": "^12.8.2",
+    "linkinator": "^8.1.0",
     "playwright": "^1.64.0",
     "sharp": "^0.35.5",
     "tailwindcss": "^3.4.17"

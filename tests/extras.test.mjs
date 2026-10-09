@@ -100,3 +100,12 @@ test('print styles hide the page chrome and the form', () => {
 
   for (const selector of ['header', 'footer', '.cookie-notice', '.action-bar', '#store-map', '#contact-form']) assert.ok(print.includes(selector), selector);
 });
+
+test('client scripts compute UK time without Intl, which blocks the main thread on phones', () => {
+  for (const file of ['status.js', 'offers.js']) {
+    const source = fs.readFileSync(path.join(rootDir, 'public', file), 'utf8');
+
+    assert.doesNotMatch(source, /Intl/, file);
+    assert.doesNotMatch(source, /toLocale/, file);
+  }
+});

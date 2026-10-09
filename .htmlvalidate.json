@@ -1,0 +1,16 @@
+{
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "void-style": "off",
+    "tel-non-breaking": "off",
+    "no-inline-style": "error",
+    "attribute-boolean-style": "off",
+    "attribute-empty-style": "off",
+    "no-trailing-whitespace": "off",
+    "prefer-native-element": ["error", { "exclude": ["region"] }],
+    "long-title": ["error", { "maxlength": 70 }],
+    "no-redundant-role": "error",
+    "wcag/h30": "error",
+    "wcag/h32": "error"
+  }
+}
