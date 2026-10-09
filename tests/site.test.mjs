@@ -200,7 +200,7 @@ test('the CSP lets the contact form post to FormSubmit and be redirected back to
 
   // Chrome applies form-action to the redirect FormSubmit sends back to /thank-you, so 'self' is required.
   assert.match(formAction, /'self'/);
-  assert.match(formAction, /https://formsubmit.co/);
+  assert.ok(formAction.includes('https://formsubmit.co'));
 });
 
 test('no file named like a server entry point exists where Vercel would pick it up', () => {
