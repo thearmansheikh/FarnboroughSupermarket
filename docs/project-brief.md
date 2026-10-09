@@ -35,7 +35,7 @@ Farnborough residents need a clear, modern and trustworthy place to discover a l
 - Online ordering and payment processing
 - Inventory tracking or customer account management
 - Multi-location support
-- Full ecommerce checkout workflow beyond the demo experience
+- Any checkout or basket flow
 
 ## 7. Success metrics
 
@@ -46,4 +46,4 @@ Farnborough residents need a clear, modern and trustworthy place to discover a l
 
 ## 8. Notes
 
-The business is positioned as a neighbourhood supermarket with strong fresh food and family essentials focus. The current experience is best considered a marketing and storefront website rather than a full ecommerce platform.
+The business is positioned as a neighbourhood supermarket with strong fresh food and family essentials focus. The current experience is best considered a marketing and storefront website rather than an ecommerce platform.

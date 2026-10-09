@@ -2,26 +2,29 @@
 
 ## Functional requirements
 - The homepage must clearly communicate the supermarket brand, local positioning and main value proposition.
-- The site must include key pages for About, Products, Shop/Explore, Gallery, Contact and a local store information flow.
+- The site must include Home, About, Products, Offers, Gallery, Contact and Privacy pages.
 - Visitors must be able to find the address, phone number, opening hours and directions quickly.
-- The product experience must showcase categories such as fresh produce, halal meat, rice, tea, spices and pantry staples.
-- A basic purchase journey should be represented through browse-and-visit flows without requiring a real payment system.
+- The Products page must showcase categories such as fresh produce, halal meat, rice, tea, spices and pantry staples, without prices or stock claims.
+- The Offers page must show only owner-supplied, date-limited offers from `public/data/offers.json`, and fall back to "ask in store" when there are none.
+- Visitors must be able to send an enquiry through the contact form, which is delivered by email through FormSubmit.
+- The site must not take orders or payments.
+- Optional third-party content (the Google Maps embed) must only load after the visitor consents.
 
 ## Non-functional requirements
-- The site must load quickly and remain lightweight for a static storefront.
+- The site must load quickly and remain lightweight for a static website.
 - The design should be responsive and usable across mobile, tablet and desktop layouts.
-- Content should be readable, accessible and legible with strong contrast and clear hierarchy.
+- Content should be readable and accessible, with strong contrast and clear hierarchy.
 - The design should feel trustworthy, welcoming and local rather than generic or overly corporate.
 - Pages should be easy to update when product ranges or promotional messaging change.
+- Every claim on the site must be confirmed by the owner.
 
 ## Constraints
-- The site is a static front-end project with a simple Node.js server.
-- There is no requirement for a managed database or full commerce backend at this stage.
+- The site is static, built by `npm run build` into `dist/` and hosted on Vercel.
+- There is no database or backend.
+- Launch values (domain, legal name, FormSubmit alias, Facebook URL, halal certifier) come from environment variables, not from the page source.
 - The project must remain cost-effective and easy to run locally.
-- Content should reflect a realistic neighbourhood supermarket rather than an abstract concept.
 
 ## Assumptions
 - The supermarket is a local, family-focused business serving the Farnborough community.
-- Product categories and messaging can be updated without major redesign work.
-- The site is intended to support awareness, local discovery and customer contact rather than full online ordering.
-- The business may later expand with a real ecommerce layer or CMS integration, but this phase stays static and lightweight.
+- The site supports awareness, local discovery and customer contact rather than online ordering.
+- The owner supplies photos, offers and business details.
