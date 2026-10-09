@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-GB">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#165a35" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <!-- @include head-common -->
     <title>Privacy | Farnborough Supermarket</title>
     <meta name="description" content="Privacy information for Farnborough Supermarket website enquiries and contact details." />
     <link rel="canonical" href="{{DOMAIN}}/privacy" />
@@ -15,66 +9,23 @@
     <meta property="og:description" content="How Farnborough Supermarket handles enquiries, browser storage and third-party services." />
     <meta property="og:url" content="{{DOMAIN}}/privacy" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="{{DOMAIN}}/images/og-image.jpg" />
-    <meta property="og:locale" content="en_GB" />
-    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Privacy Policy | Farnborough Supermarket" />
     <meta name="twitter:description" content="How Farnborough Supermarket handles enquiries, browser storage and third-party services." />
-    <meta name="twitter:image" content="{{DOMAIN}}/images/og-image.jpg" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            boxShadow: { soft: '0 18px 38px rgba(22, 90, 53, 0.12)' },
-            colors: {
-              brand: {
-                50: '#edf8f0',
-                100: '#dfeee4',
-                500: '#165a35',
-                600: '#124d2e',
-                700: '#0d3b22',
-                800: '#102b22'
-              }
-            }
-          }
-        }
-      };
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{DOMAIN}}/" },
+          { "@type": "ListItem", "position": 2, "name": "Privacy", "item": "{{DOMAIN}}/privacy" }
+        ]
+      }
     </script>
-    <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="min-h-screen bg-[#f7f5f1] text-slate-800 antialiased">
-    <!-- SHARED: keep in sync -->
-    <header class="sticky top-0 z-50 border-b border-brand-100 bg-white/80 backdrop-blur-md">
-      <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
-        <a href="/" class="flex min-w-0 items-center gap-3">
-          <span class="brand-mark">FS</span>
-          <span class="truncate text-lg font-extrabold tracking-tight text-brand-700">Farnborough Supermarket</span>
-        </a>
-        <nav class="hidden items-center gap-7 text-sm font-semibold text-slate-600 lg:flex">
-          <a href="/" class="hover:text-brand-500">Home</a>
-          <a href="/about" class="hover:text-brand-500">About</a>
-          <a href="/products" class="hover:text-brand-500">Products</a>
-          <a href="/offers" class="hover:text-brand-500">Offers</a>
-          <a href="/gallery" class="hover:text-brand-500">Gallery</a>
-          <a href="/contact" class="hover:text-brand-500">Contact</a>
-        </nav>
-        <div class="flex items-center gap-2">
-          <button type="button" data-nav-toggle class="nav-toggle lg:hidden" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-          <a href="tel:01252940815" class="inline-flex shrink-0 items-center rounded-full bg-brand-500 px-4 py-2 text-sm font-bold text-white shadow-soft transition hover:bg-brand-700">Call now</a>
-        </div>
-      </div>
-      <div data-mobile-menu class="mobile-menu hidden flex-col gap-3 px-4 py-4 text-sm font-semibold text-slate-600 lg:hidden">
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/products">Products</a>
-        <a href="/offers">Offers</a>
-        <a href="/gallery">Gallery</a>
-        <a href="/contact">Contact</a>
-      </div>
-    </header>
+    <!-- @include header -->
 
-    <main class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+    <main id="main" class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
       <div class="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-soft sm:p-10">
         <p class="text-sm font-bold uppercase tracking-[0.24em] text-brand-500">Privacy</p>
         <h1 class="mt-4 text-4xl font-black tracking-tight text-slate-900">Privacy Policy</h1>
@@ -153,46 +104,7 @@
         </div>
       </div>
     </main>
-
-    <!-- SHARED: keep in sync -->
-    <footer class="bg-slate-900 text-slate-200">
-      <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <div class="mb-4 flex items-center gap-3">
-              <span class="brand-mark">FS</span>
-              <span class="font-black text-white">Farnborough Supermarket</span>
-            </div>
-            <p class="text-sm leading-6 text-slate-300">A local supermarket for fresh produce, halal meat and everyday family essentials.</p>
-          </div>
-          <div>
-            <h3 class="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-slate-300">Visit us</h3>
-            <p class="text-sm leading-6 text-slate-300">99 Eastmead<br />Farnborough GU14 7SA</p>
-          </div>
-          <div>
-            <h3 class="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-slate-300">Contact</h3>
-            <p class="text-sm leading-6 text-slate-300"><a href="tel:01252940815" class="hover:text-white">01252 940815</a><br /><a href="mailto:supermarketfarnborough@gmail.com" class="hover:text-white">supermarketfarnborough@gmail.com</a></p>
-          </div>
-          <div>
-            <h3 class="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-slate-300">Hours</h3>
-            <p class="text-sm leading-6 text-slate-300">Mon–Sun<br />6:00am – 10:00pm</p>
-          </div>
-        </div>
-        <div class="mt-8 flex flex-col gap-3 border-t border-white/10 pt-5 text-sm text-slate-300 sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 Farnborough Supermarket</p>
-          <div class="flex flex-wrap gap-4">
-            <a href="https://www.facebook.com/share/1JGNKZoFTJ/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Open Farnborough Supermarket on Facebook" class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-white transition hover:border-[#1877f2] hover:bg-[#1877f2] hover:text-white">
-              <svg aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4 fill-current" focusable="false">
-                <path d="M13.5 22v-8h2.7l.4-3.2h-3.1V7.6c0-.9.3-1.6 1.6-1.6H16V3.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V10.8H7v3.2h2.3v8h4.2z"/>
-              </svg>
-              Facebook
-            </a>
-            <button type="button" data-cookie-settings class="hover:text-white">Cookie settings</button>
-            <a href="/privacy" class="hover:text-white" aria-current="page">Privacy</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <script src="theme.js"></script>
+    <!-- @include footer -->
+    <script src="/theme.js"></script>
   </body>
 </html>

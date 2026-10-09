@@ -1,5 +1,4 @@
 (function () {
-  const root = document.documentElement;
   const cookieConsentKey = 'farnborough-cookie-consent-v2';
 
   function readCookieConsent() {
@@ -13,25 +12,29 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
-    root.dataset.theme = 'light';
-    root.classList.remove('dark');
-    document.body.classList.remove('theme-dark', 'theme-light');
-
     document.querySelectorAll('[data-nav-toggle]').forEach((button) => {
       const menu = document.querySelector('[data-mobile-menu]');
       if (!menu) return;
 
-      button.addEventListener('click', () => {
-        const isVisible = !menu.classList.contains('hidden');
-        menu.classList.toggle('hidden', isVisible);
-        menu.classList.toggle('flex', !isVisible);
-        button.setAttribute('aria-expanded', String(!isVisible));
+      function setMenuOpen(open) {
+        menu.classList.toggle('hidden', !open);
+        menu.classList.toggle('flex', open);
+        button.setAttribute('aria-expanded', String(open));
+      }
+
+      button.addEventListener('click', () => setMenuOpen(menu.classList.contains('hidden')));
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !menu.classList.contains('hidden')) {
+          setMenuOpen(false);
+          button.focus();
+        }
       });
     });
 
     let consent = readCookieConsent();
     const notice = document.createElement('aside');
     notice.className = 'cookie-notice';
+    notice.setAttribute('role', 'region');
     notice.setAttribute('aria-label', 'Cookie preferences');
     notice.hidden = Boolean(consent);
     notice.innerHTML = `
@@ -80,6 +83,7 @@
       notice.querySelector('.cookie-preferences').open = false;
       notice.hidden = false;
       settingsButton.hidden = true;
+      notice.querySelector('[data-cookie-accept-all]').focus();
     }
 
     settingsButton.addEventListener('click', openCookieSettings);

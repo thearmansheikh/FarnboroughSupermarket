@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-GB">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#165a35" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <!-- @include head-common -->
     <title>Farnborough Supermarket | Fresh food for everyday life</title>
     <meta name="description" content="Farnborough Supermarket is a local shop for fresh produce, halal meat, rice, tea, pantry staples and world food essentials in Farnborough." />
     <link rel="canonical" href="{{DOMAIN}}/" />
@@ -15,104 +9,13 @@
     <meta property="og:description" content="Fresh produce, halal meat, rice, tea and world food essentials in Farnborough." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{DOMAIN}}/" />
-    <meta property="og:image" content="{{DOMAIN}}/images/og-image.jpg" />
-    <meta property="og:locale" content="en_GB" />
-    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Farnborough Supermarket | Fresh food for everyday life" />
     <meta name="twitter:description" content="Fresh produce, halal meat, rice, tea and world food essentials in Farnborough." />
-    <meta name="twitter:image" content="{{DOMAIN}}/images/og-image.jpg" />
-    <!-- TODO: Add the verified Facebook page URL to sameAs after the owner supplies it. -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "GroceryStore",
-        "name": "Farnborough Supermarket",
-        "url": "{{DOMAIN}}",
-        "telephone": "+441252940815",
-        "email": "supermarketfarnborough@gmail.com",
-        "image": "{{DOMAIN}}/images/og-image.jpg",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "99 Eastmead",
-          "addressLocality": "Farnborough",
-          "postalCode": "GU14 7SA",
-          "addressCountry": "GB"
-        },
-        "openingHoursSpecification": [{
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-          "opens": "06:00",
-          "closes": "22:00"
-        }]
-      }
-    </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            boxShadow: { soft: '0 18px 38px rgba(22, 90, 53, 0.12)' },
-            colors: {
-              brand: {
-                50: '#edf8f0',
-                100: '#dfeee4',
-                500: '#165a35',
-                600: '#124d2e',
-                700: '#0d3b22',
-                800: '#102b22'
-              },
-              gold: '#f4c767'
-            }
-          }
-        }
-      };
-    </script>
-    <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="min-h-screen bg-[#f7f5f1] text-slate-800 antialiased">
-    <!-- SHARED: keep in sync -->
-    <header class="sticky top-0 z-50 border-b border-brand-100 bg-white/80 backdrop-blur-md">
-      <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
-        <a href="/" class="flex min-w-0 items-center gap-3">
-          <span class="brand-mark">FS</span>
-          <span class="truncate text-lg font-extrabold tracking-tight text-brand-700">Farnborough Supermarket</span>
-        </a>
-        <nav class="hidden items-center gap-7 text-sm font-semibold text-slate-600 lg:flex">
-          <a href="/" class="text-brand-600" aria-current="page">Home</a>
-          <a href="/about" class="hover:text-brand-500">About</a>
-          <a href="/products" class="hover:text-brand-500">Products</a>
-          <a href="/offers" class="hover:text-brand-500">Offers</a>
-          <a href="/gallery" class="hover:text-brand-500">Gallery</a>
-          <a href="/contact" class="hover:text-brand-500">Contact</a>
-        </nav>
-        <div class="flex items-center gap-2">
-          <a href="https://www.facebook.com/share/1JGNKZoFTJ/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Open Farnborough Supermarket on Facebook" class="hidden items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-2 text-sm font-bold text-brand-700 transition hover:border-[#1877f2] hover:bg-[#1877f2] hover:text-white sm:inline-flex">
-            <svg aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4 fill-current" focusable="false">
-              <path d="M13.5 22v-8h2.7l.4-3.2h-3.1V7.6c0-.9.3-1.6 1.6-1.6H16V3.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V10.8H7v3.2h2.3v8h4.2z"/>
-            </svg>
-            Facebook
-          </a>
-          <button type="button" data-nav-toggle class="nav-toggle lg:hidden" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-          <a href="tel:01252940815" class="inline-flex shrink-0 items-center rounded-full bg-brand-500 px-4 py-2 text-sm font-bold text-white shadow-soft transition hover:bg-brand-700">Call now</a>
-        </div>
-      </div>
-      <div data-mobile-menu class="mobile-menu hidden flex-col gap-3 px-4 py-4 text-sm font-semibold text-slate-600 lg:hidden">
-        <a href="/" class="text-brand-600" aria-current="page">Home</a>
-        <a href="/about">About</a>
-        <a href="/products">Products</a>
-        <a href="/offers">Offers</a>
-        <a href="/gallery">Gallery</a>
-        <a href="/contact">Contact</a>
-        <a href="https://www.facebook.com/share/1JGNKZoFTJ/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 pt-2 text-brand-700">
-          <svg aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4 fill-current" focusable="false">
-            <path d="M13.5 22v-8h2.7l.4-3.2h-3.1V7.6c0-.9.3-1.6 1.6-1.6H16V3.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V10.8H7v3.2h2.3v8h4.2z"/>
-          </svg>
-          Facebook
-        </a>
-      </div>
-    </header>
+    <!-- @include header -->
 
-    <main>
+    <main id="main">
       <section class="hero-shell bg-gradient-to-br from-brand-700 via-brand-600 to-brand-500 text-white">
         <div class="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-20">
           <div class="flex flex-col justify-center">
@@ -141,7 +44,7 @@
             <div class="photo-stack">
               <div class="photo-main photo-one">
                 <div class="hero-photo-tag top-5 left-5">Fresh produce</div>
-                <div class="hero-photo-tag bottom-5 right-5">Halal meat</div>
+                
               </div>
               <div class="photo-card photo-two">
                 <div class="photo-label">Fruit & veg</div>
@@ -160,14 +63,14 @@
             <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-2xl">🥬</span>
             <div>
               <p class="text-xs font-bold uppercase tracking-[0.16em] text-brand-500">Fresh produce</p>
-              <p class="mt-1 text-sm font-semibold text-slate-700">Fruit, veg and herbs selected daily</p>
+              <p class="mt-1 text-sm font-semibold text-slate-700">Fruit, veg and herbs for everyday cooking</p>
             </div>
           </div>
           <div class="flex items-center gap-3 rounded-2xl bg-brand-50 p-3">
             <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-2xl">🥩</span>
             <div>
               <p class="text-xs font-bold uppercase tracking-[0.16em] text-brand-500">Halal counter</p>
-              <p class="mt-1 text-sm font-semibold text-slate-700">Friendly service and fresh cuts</p>
+              <p class="mt-1 text-sm font-semibold text-slate-700">Fresh halal meat for family meals</p>
             </div>
           </div>
           <div class="flex items-center gap-3 rounded-2xl bg-brand-50 p-3">
@@ -184,20 +87,20 @@
         <div class="photo-showcase grid gap-4 md:grid-cols-3">
           <article class="photo-card-stand photo-card-1">
             <div class="photo-card-overlay">
-              <span>Inside the shop</span>
-              <strong>Fresh aisles</strong>
+              <span>Greens</span>
+              <strong>Fresh vegetables</strong>
             </div>
           </article>
           <article class="photo-card-stand photo-card-2">
             <div class="photo-card-overlay">
-              <span>Produce wall</span>
-              <strong>Colourful choices</strong>
+              <span>Tea</span>
+              <strong>Tea and dry fruits</strong>
             </div>
           </article>
           <article class="photo-card-stand photo-card-3">
             <div class="photo-card-overlay">
-              <span>Daily essentials</span>
-              <strong>Family favourites</strong>
+              <span>Pantry</span>
+              <strong>Olives and pickles</strong>
             </div>
           </article>
         </div>
@@ -205,18 +108,18 @@
 
       <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div class="mb-10">
-          <p class="text-sm font-bold uppercase tracking-[0.2em] text-brand-500">Why locals choose us</p>
+          <h2 class="text-sm font-bold uppercase tracking-[0.2em] text-brand-500">Why locals choose us</h2>
         </div>
         <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           <article class="card-hover rounded-3xl border border-slate-200 bg-white p-6 shadow-soft">
             <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-2xl">🥬</div>
             <h3 class="text-xl font-black text-slate-900">Fresh produce</h3>
-            <p class="mt-2 text-slate-600">Fruit, veg and herbs selected for busy family routines.</p>
+            <p class="mt-2 text-slate-600">Fruit, veg and herbs for everyday family cooking.</p>
           </article>
           <article class="card-hover rounded-3xl border border-slate-200 bg-white p-6 shadow-soft">
             <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-2xl">🥩</div>
             <h3 class="text-xl font-black text-slate-900">Halal meat</h3>
-            <p class="mt-2 text-slate-600">Fresh cuts and trusted quality from the store counter.</p>
+            <p class="mt-2 text-slate-600">Fresh cuts for family meals and everyday cooking.</p>
           </article>
           <article class="card-hover rounded-3xl border border-slate-200 bg-white p-6 shadow-soft">
             <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-2xl">🌍</div>
@@ -245,7 +148,7 @@
             <article class="card-hover rounded-3xl border border-brand-100 bg-white p-6 shadow-soft">
               <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-3xl">🥩</div>
               <h3 class="text-2xl font-black text-slate-900">Fresh halal meat</h3>
-              <p class="mt-3 text-slate-600">Cuts for family meals, grill nights and hearty home cooking.</p>
+              <p class="mt-3 text-slate-600">Fresh meat for family meals and home cooking.</p>
             </article>
             <article class="card-hover rounded-3xl border border-brand-100 bg-white p-6 shadow-soft">
               <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-3xl">🍚</div>
@@ -266,46 +169,7 @@
         </div>
       </section>
     </main>
-
-    <!-- SHARED: keep in sync -->
-    <footer class="bg-slate-900 text-slate-200">
-      <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <div class="mb-4 flex items-center gap-3">
-              <span class="brand-mark">FS</span>
-              <span class="font-black text-white">Farnborough Supermarket</span>
-            </div>
-            <p class="text-sm leading-6 text-slate-300">A local supermarket for fresh produce, halal meat and everyday family essentials.</p>
-          </div>
-          <div>
-            <h3 class="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-slate-300">Visit us</h3>
-            <p class="text-sm leading-6 text-slate-300">99 Eastmead<br />Farnborough GU14 7SA</p>
-          </div>
-          <div>
-            <h3 class="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-slate-300">Contact</h3>
-            <p class="text-sm leading-6 text-slate-300"><a href="tel:01252940815" class="hover:text-white">01252 940815</a><br /><a href="mailto:supermarketfarnborough@gmail.com" class="hover:text-white">supermarketfarnborough@gmail.com</a></p>
-          </div>
-          <div>
-            <h3 class="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-slate-300">Hours</h3>
-            <p class="text-sm leading-6 text-slate-300">Mon–Sun<br />6:00am – 10:00pm</p>
-          </div>
-        </div>
-        <div class="mt-8 flex flex-col gap-3 border-t border-white/10 pt-5 text-sm text-slate-300 sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 Farnborough Supermarket</p>
-          <div class="flex flex-wrap gap-4">
-            <a href="https://www.facebook.com/share/1JGNKZoFTJ/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Open Farnborough Supermarket on Facebook" class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-white transition hover:border-[#1877f2] hover:bg-[#1877f2] hover:text-white">
-              <svg aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4 fill-current" focusable="false">
-                <path d="M13.5 22v-8h2.7l.4-3.2h-3.1V7.6c0-.9.3-1.6 1.6-1.6H16V3.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V10.8H7v3.2h2.3v8h4.2z"/>
-              </svg>
-              Facebook
-            </a>
-            <button type="button" data-cookie-settings class="hover:text-white">Cookie settings</button>
-            <a href="/privacy" class="hover:text-white">Privacy</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <script src="theme.js"></script>
+    <!-- @include footer -->
+    <script src="/theme.js"></script>
   </body>
 </html>

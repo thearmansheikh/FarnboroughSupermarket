@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   try {
-    const response = await fetch('data/offers.json');
+    const response = await fetch('/data/offers.json');
     if (!response.ok) throw new Error('Offers could not be loaded.');
     const offers = await response.json();
     if (!Array.isArray(offers)) throw new Error('Offers data must be a list.');
