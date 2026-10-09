@@ -4,19 +4,26 @@ Written 9 October 2026 after a full review of the site. It replaces the generic 
 
 **Goal:** a trustworthy, fast, showcase-only website for the shop at 99 Eastmead that is ready to go live on a custom domain.
 
-## Status (9 October 2026)
+## Status (9 October 2026): road to 9.5–10/10
 
 | Phase | State |
 |-------|-------|
-| 0. Land what exists | Done |
-| 1. Honest content | Code done: stock photos removed, unverified claims cut or softened. Real photos and owner sign-off still needed ([launch-todos.md](launch-todos.md)) |
-| 2. Engineering cleanup | Done: Tailwind compiled at build time (18 KB), shared header/footer/head, dead CSS removed, security headers, 15 tests |
-| 3. Local SEO | Done in code: structured data on all pages, breadcrumbs, generated sitemap with dates. Google Business Profile is an owner task ([local-seo.md](local-seo.md)) |
-| 4. Accessibility and QA | Done: skip link, focus styles, keyboard menu, heading order fixed. Lighthouse 98–100 in all four categories on every page (local run); browser check found no console, CSP or overflow problems and the form flow works |
-| 5. Go live | Owner tasks, with a step-by-step guide: [go-live-checklist.md](go-live-checklist.md) |
-| 6. After launch | Guides ready: [OFFERS_GUIDE.md](../OFFERS_GUIDE.md). Analytics is still a decision for the owner |
+| 0. Audit | Done. Found that the live inner pages were serving raw templates (Vercel "Node" preset); fixed and verified |
+| 1. Config and build | Done: `site.config.json`, one-file-per-page build, shared layout, canonical/og:url per page, build fails on any `{{placeholder}}` |
+| 2. Launch blockers | Done: offers rendered at build time from validated JSON (no customer-facing error), privacy wording, clean Facebook URL |
+| 3. Real photography | Pipeline done (EXIF-free AVIF/WebP at 480–1600, `<picture>`, hero preload, accessible lightbox, og-image script). **Needs the owner's photos** in `assets/photos-source/` ([assets/README.md](../assets/README.md)); illustrations show until then |
+| 4. Contact form | Done: plain POST to FormSubmit (works without JS), hidden honeypot, inline validation, equal CSP. **Needs `FORMSUBMIT_ALIAS`**; until then the page shows call/email instead of a form that cannot send |
+| 5. Local SEO | Done: titles <= 60 and descriptions <= 155, GroceryStore + breadcrumbs + FAQPage JSON-LD, sitemap with lastmod, full icon set and manifest, branded 404. Needs owner-confirmed FAQ facts (parking, cards, certifier) and map coordinates |
+| 6. Security and caching | Done: strict CSP (no inline script/style), COOP and friends, content-hashed CSS/JS cached a year, HTML always revalidated. HSTS is sent by Vercel and is added with the custom domain |
+| 7. Performance | Done: Lighthouse mobile 97–100 locally and 98–100 on the live URL. One 6 KB gzipped stylesheet, 8 KB of JavaScript, system fonts |
+| 8. Accessibility | Done: axe-core WCAG 2.2 AA, 0 violations in 44 scans; focus-trapped menu, equal Accept/Reject, emoji hidden from screen readers |
+| 9. Delight features | Done: live open/closed badge, special-hours banner, phone action bar, sticky category chips, About story data, print styles. Needs owner content: story text, optional WhatsApp number, brands list |
+| 10. Automated QA | Done: `npm run check` (66 unit tests, html-validate, links, axe, 12 browser tests, Lighthouse budgets) and a GitHub Action |
+| 11. Domain launch | Owner task. Everything is prepared: [domain-switch.md](domain-switch.md) |
 
-Known gap: `npm audit` reports issues in Tailwind's build-time dependencies. Nothing from them ships to visitors (`npm audit --omit=dev` is clean).
+Known gap: `npm audit` reports issues in build-time tools (Lighthouse, Tailwind, linkinator). Nothing from them ships to visitors (`npm audit --omit=dev` is clean).
+
+The older notes below record the state before this pass and are kept for reference.
 
 ## Where we were before this pass
 

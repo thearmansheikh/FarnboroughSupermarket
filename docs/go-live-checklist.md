@@ -1,5 +1,7 @@
 # Go-live checklist
 
+The domain switch itself is written out step by step in [domain-switch.md](domain-switch.md). This list is the wider checklist.
+
 Work through this in order. Owner-only values are listed in [launch-todos.md](launch-todos.md).
 
 ## 1. Domain and hosting
