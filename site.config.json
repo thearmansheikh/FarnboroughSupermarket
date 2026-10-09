@@ -1,0 +1,25 @@
+{
+  "name": "Farnborough Supermarket",
+  "siteUrl": "https://farnborough-supermarket.vercel.app",
+  "address": {
+    "street": "99 Eastmead",
+    "town": "Farnborough",
+    "postcode": "GU14 7SA",
+    "country": "GB"
+  },
+  "phone": "01252 940815",
+  "email": "supermarketfarnborough@gmail.com",
+  "hours": {
+    "days": "Mon–Sun",
+    "opens": "07:00",
+    "closes": "22:00",
+    "timezone": "Europe/London"
+  },
+  "facebookUrl": "https://www.facebook.com/share/1JGNKZoFTJ/",
+  "legalName": "",
+  "formsubmitAlias": "",
+  "googleReviewsUrl": "",
+  "whatsappNumber": "",
+  "halalCertifier": "",
+  "privacyUpdated": "2026-10-06"
+}

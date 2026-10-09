@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./public/**/*.{html,js}', './src/partials/**/*.html'],
+  content: ['./src/**/*.html', './public/**/*.js'],
   theme: {
     extend: {
       boxShadow: { soft: '0 18px 38px rgba(22, 90, 53, 0.12)' },

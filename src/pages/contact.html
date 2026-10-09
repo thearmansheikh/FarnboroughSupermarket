@@ -1,31 +1,11 @@
-<!DOCTYPE html>
-<html lang="en-GB">
-  <head>
-    <!-- @include head-common -->
-    <title>Contact, Opening Hours &amp; Directions | Farnborough Supermarket</title>
-    <meta name="description" content="Find Farnborough Supermarket at 99 Eastmead, Farnborough GU14 7SA. Open daily 7am to 10pm. Call 01252 940815, send an enquiry or get directions." />
-    <link rel="canonical" href="{{DOMAIN}}/contact" />
-    <meta property="og:title" content="Contact, Opening Hours &amp; Directions | Farnborough Supermarket" />
-    <meta property="og:description" content="Contact Farnborough Supermarket or get directions to 99 Eastmead, Farnborough." />
-    <meta property="og:url" content="{{DOMAIN}}/contact" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:title" content="Contact, Opening Hours &amp; Directions | Farnborough Supermarket" />
-    <meta name="twitter:description" content="Contact Farnborough Supermarket or get directions to 99 Eastmead, Farnborough." />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{DOMAIN}}/" },
-          { "@type": "ListItem", "position": 2, "name": "Contact", "item": "{{DOMAIN}}/contact" }
-        ]
-      }
-    </script>
-  </head>
-  <body class="min-h-screen bg-[#f7f5f1] text-slate-800 antialiased">
-    <!-- @include header -->
-
-    <main id="main">
+---
+title: Contact, Opening Hours & Directions | Farnborough Supermarket
+description: Find Farnborough Supermarket at {{ADDRESS_ONE_LINE}}. Open daily {{HOURS_SHORT}}. Call {{PHONE_DISPLAY}}, send an enquiry or get directions.
+ogDescription: Contact Farnborough Supermarket or get directions to {{ADDRESS_LINE1}}, {{TOWN}}.
+breadcrumb: Contact
+scripts: contact.js
+---
+<main id="main">
       <section class="bg-brand-700 text-white">
         <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <p class="text-sm font-bold uppercase tracking-[0.2em] text-brand-100">Contact us</p>
@@ -39,36 +19,35 @@
             <h2 class="text-2xl font-black text-slate-900">Store details</h2>
             <div class="mt-6 space-y-5 text-slate-700">
               <p class="text-lg font-semibold text-slate-900">Farnborough Supermarket</p>
-              <p>99 Eastmead<br />Farnborough GU14 7SA</p>
+              <p>{{ADDRESS_LINE1}}<br />{{ADDRESS_LINE2}}</p>
               <p>Please call ahead if you need specific accessibility support.</p>
             </div>
             <div class="mt-8 space-y-5">
               <div class="flex items-center justify-between gap-4 border-b border-slate-200 pb-3">
                 <span class="text-slate-500">Phone</span>
-                <a href="tel:01252940815" class="font-bold text-brand-600">01252 940815</a>
+                <a href="tel:{{PHONE_TEL}}" class="font-bold text-brand-600">{{PHONE_DISPLAY}}</a>
               </div>
               <div class="flex items-center justify-between gap-4 border-b border-slate-200 pb-3">
                 <span class="text-slate-500">Email</span>
-                <a href="mailto:supermarketfarnborough@gmail.com" class="font-bold text-brand-600 break-all">supermarketfarnborough@gmail.com</a>
+                <a href="mailto:{{EMAIL}}" class="font-bold text-brand-600 break-all">{{EMAIL}}</a>
               </div>
               <div class="flex items-center justify-between gap-4 border-b border-slate-200 pb-3">
                 <span class="text-slate-500">Opening hours</span>
-                <span class="font-bold text-slate-700">Mon–Sun, 7am – 10pm</span>
+                <span class="font-bold text-slate-700">{{HOURS_DAYS}}, {{HOURS_DASH}}</span>
               </div>
               <div class="flex items-center justify-between gap-4 border-b border-slate-200 pb-3">
                 <span class="text-slate-500">Directions</span>
-                <a href="https://www.google.com/maps/search/?api=1&query=99+Eastmead+Farnborough+GU14+7SA" target="_blank" rel="noopener noreferrer" class="font-bold text-brand-600">Open in Google Maps</a>
+                <a href="{{MAPS_SEARCH_URL}}" target="_blank" rel="noopener noreferrer" class="font-bold text-brand-600">Open in Google Maps</a>
               </div>
             </div>
           </div>
 
           <div class="rounded-3xl border border-slate-200 bg-white p-8 shadow-soft">
             <h2 class="text-2xl font-black text-slate-900">Send a quick enquiry</h2>
-            <!-- TODO: Replace {{FORMSUBMIT_ALIAS}} with the verified hashed endpoint from FormSubmit. -->
-            <form id="contact-form" action="https://formsubmit.co/{{FORMSUBMIT_ALIAS}}" method="POST" class="mt-6 space-y-4">
+            <form id="contact-form" data-fallback="Please email {{EMAIL}} or call {{PHONE_DISPLAY}}." action="https://formsubmit.co/{{FORMSUBMIT_ALIAS}}" method="POST" class="mt-6 space-y-4">
               <input type="hidden" name="_subject" value="New website enquiry" />
               <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_next" value="{{DOMAIN}}/thank-you" />
+              <input type="hidden" name="_next" value="{{SITE_URL}}/thank-you" />
               <div class="honeypot" aria-hidden="true">
                 <label for="enquiry-website">Leave this field blank</label>
                 <input id="enquiry-website" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
@@ -88,7 +67,7 @@
               <p class="text-xs leading-5 text-slate-500">We use these details to respond to your enquiry. See our <a href="/privacy" class="font-bold text-brand-600">privacy policy</a>.</p>
               <button type="submit" class="inline-flex items-center justify-center rounded-xl bg-brand-500 px-5 py-3 font-bold text-white transition hover:bg-brand-700">Send enquiry</button>
               <p id="contact-form-status" class="hidden rounded-xl border border-brand-100 bg-brand-50 p-3 text-sm text-slate-700" role="status" aria-live="polite"></p>
-              <p class="text-xs leading-5 text-slate-500">Your message is sent to the shop by email. FormSubmit processes the submission to deliver it. You can also email <a href="mailto:supermarketfarnborough@gmail.com" class="font-bold text-brand-600">supermarketfarnborough@gmail.com</a> directly.</p>
+              <p class="text-xs leading-5 text-slate-500">Your message is sent to the shop by email. FormSubmit processes the submission to deliver it. You can also email <a href="mailto:{{EMAIL}}" class="font-bold text-brand-600">{{EMAIL}}</a> directly.</p>
             </form>
             <div class="mt-6 rounded-2xl border border-brand-100 bg-brand-50 p-4 text-sm text-slate-700">
               <p class="font-bold text-brand-700">Privacy notice</p>
@@ -104,13 +83,7 @@
             <button type="button" data-map-load class="rounded-xl bg-brand-500 px-5 py-3 font-bold text-white transition hover:bg-brand-700">Load map</button>
             <p data-map-status class="hidden text-sm text-slate-600" role="status" aria-live="polite"></p>
           </div>
-          <div data-map-frame class="hidden"></div>
+          <div data-map-frame data-map-src="{{MAPS_EMBED_URL}}" class="hidden"></div>
         </div>
       </section>
     </main>
-    <!-- @include footer -->
-
-    <script src="/contact.js"></script>
-    <script src="/theme.js"></script>
-  </body>
-</html>

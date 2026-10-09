@@ -16,7 +16,7 @@ if (contactForm) {
     try {
       const action = contactForm.getAttribute('action');
       const endpointPrefix = 'https://formsubmit.co/';
-      if (!action || !action.startsWith(endpointPrefix) || action === endpointPrefix || action.includes('{{')) {
+      if (!action || !action.startsWith(endpointPrefix) || action === endpointPrefix || /[{}]/.test(action)) {
         throw new Error('The FormSubmit alias has not been configured.');
       }
 
@@ -38,7 +38,7 @@ if (contactForm) {
 
       window.location.assign('/thank-you');
     } catch (error) {
-      status.textContent = 'We could not send your enquiry just now. Please email supermarketfarnborough@gmail.com or call 01252 940815.';
+      status.textContent = `We could not send your enquiry just now. ${contactForm.dataset.fallback || ''}`.trim();
       submitButton.disabled = false;
       submitButton.textContent = 'Send enquiry';
     }
@@ -51,7 +51,7 @@ if (contactForm) {
   const mapLoadButton = document.querySelector('[data-map-load]');
   const mapStatus = document.querySelector('[data-map-status]');
   const consentKey = 'farnborough-cookie-consent-v2';
-  const mapUrl = 'https://www.google.com/maps?q=99+Eastmead+Farnborough+GU14+7SA&output=embed';
+  const mapUrl = mapFrameContainer ? mapFrameContainer.dataset.mapSrc : '';
 
   if (!mapPlaceholder || !mapFrameContainer || !mapLoadButton) return;
 

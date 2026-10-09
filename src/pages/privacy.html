@@ -1,39 +1,18 @@
-<!DOCTYPE html>
-<html lang="en-GB">
-  <head>
-    <!-- @include head-common -->
-    <title>Privacy | Farnborough Supermarket</title>
-    <meta name="description" content="Privacy information for Farnborough Supermarket website enquiries and contact details." />
-    <link rel="canonical" href="{{DOMAIN}}/privacy" />
-    <meta property="og:title" content="Privacy Policy | Farnborough Supermarket" />
-    <meta property="og:description" content="How Farnborough Supermarket handles enquiries, browser storage and third-party services." />
-    <meta property="og:url" content="{{DOMAIN}}/privacy" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:title" content="Privacy Policy | Farnborough Supermarket" />
-    <meta name="twitter:description" content="How Farnborough Supermarket handles enquiries, browser storage and third-party services." />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{DOMAIN}}/" },
-          { "@type": "ListItem", "position": 2, "name": "Privacy", "item": "{{DOMAIN}}/privacy" }
-        ]
-      }
-    </script>
-  </head>
-  <body class="min-h-screen bg-[#f7f5f1] text-slate-800 antialiased">
-    <!-- @include header -->
-
-    <main id="main" class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+---
+title: Privacy | Farnborough Supermarket
+description: Privacy information for Farnborough Supermarket website enquiries and contact details.
+ogTitle: Privacy Policy | Farnborough Supermarket
+ogDescription: How Farnborough Supermarket handles enquiries, browser storage and third-party services.
+breadcrumb: Privacy
+---
+<main id="main" class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
       <div class="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-soft sm:p-10">
         <p class="text-sm font-bold uppercase tracking-[0.24em] text-brand-500">Privacy</p>
         <h1 class="mt-4 text-4xl font-black tracking-tight text-slate-900">Privacy Policy</h1>
         <div class="mt-8 space-y-8 text-slate-700">
           <section>
             <h2 class="text-xl font-black text-slate-900">Who we are</h2>
-            <!-- TODO: Confirm and replace {{LEGAL_NAME}} with the owner's legal or trading entity name before launch. -->
-            <p class="mt-3"><strong>{{LEGAL_NAME}}</strong>, trading as Farnborough Supermarket, is the data controller. Our address is 99 Eastmead, Farnborough GU14 7SA. Contact us at <a href="mailto:supermarketfarnborough@gmail.com" class="break-words font-bold text-brand-600">supermarketfarnborough@gmail.com</a> or <a href="tel:01252940815" class="font-bold text-brand-600">01252 940815</a>.</p>
+            <p class="mt-3"><strong>{{LEGAL_ENTITY}}</strong> is the data controller. Our address is {{ADDRESS_ONE_LINE}}. Contact us at <a href="mailto:{{EMAIL}}" class="break-words font-bold text-brand-600">{{EMAIL}}</a> or <a href="tel:{{PHONE_TEL}}" class="font-bold text-brand-600">{{PHONE_DISPLAY}}</a>.</p>
           </section>
 
           <section>
@@ -57,7 +36,6 @@
 
           <section>
             <h2 class="text-xl font-black text-slate-900">How long we keep information</h2>
-            <!-- TODO: The owner must confirm the proposed 12-month retention period before launch. -->
             <p class="mt-3">We propose deleting enquiry emails after 12 months. FormSubmit separately retains submitted records in its archive for up to 30 days. Cookie preferences remain in local browser storage until you change them or clear that storage.</p>
           </section>
 
@@ -100,11 +78,7 @@
             <p class="mt-3">You can reopen your choices using “Cookie settings” in the footer. Rejecting optional categories does not block the direct “Open in Google Maps” link.</p>
           </section>
 
-          <p class="border-t border-slate-200 pt-5 text-sm text-slate-500">Last updated: 6 October 2026.</p>
+          <p class="border-t border-slate-200 pt-5 text-sm text-slate-500">Last updated: {{PRIVACY_UPDATED}}.</p>
         </div>
       </div>
     </main>
-    <!-- @include footer -->
-    <script src="/theme.js"></script>
-  </body>
-</html>

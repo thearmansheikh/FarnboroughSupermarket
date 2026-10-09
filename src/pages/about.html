@@ -1,31 +1,11 @@
-<!DOCTYPE html>
-<html lang="en-GB">
-  <head>
-    <!-- @include head-common -->
-    <title>About | Farnborough Supermarket</title>
-    <meta name="description" content="Learn more about Farnborough Supermarket, our values, and why local families choose us for fresh produce and world foods." />
-    <link rel="canonical" href="{{DOMAIN}}/about" />
-    <meta property="og:title" content="About Farnborough Supermarket" />
-    <meta property="og:description" content="Learn about our local supermarket, values, fresh produce and world foods." />
-    <meta property="og:url" content="{{DOMAIN}}/about" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:title" content="About Farnborough Supermarket" />
-    <meta name="twitter:description" content="Learn about our local supermarket, values, fresh produce and world foods." />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{DOMAIN}}/" },
-          { "@type": "ListItem", "position": 2, "name": "About", "item": "{{DOMAIN}}/about" }
-        ]
-      }
-    </script>
-  </head>
-  <body class="min-h-screen text-slate-800 antialiased">
-    <!-- @include header -->
-
-    <main id="main">
+---
+title: About | Farnborough Supermarket
+description: Learn more about Farnborough Supermarket, our values, and why local families choose us for fresh produce and world foods.
+ogTitle: About Farnborough Supermarket
+ogDescription: Learn about our local supermarket, values, fresh produce and world foods.
+breadcrumb: About
+---
+<main id="main">
       <section class="bg-brand-700 text-white">
         <div class="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-20">
           <div>
@@ -56,7 +36,7 @@
               <div class="rounded-2xl bg-white/10 p-5">
                 <div class="text-3xl">📍</div>
                 <p class="mt-4 text-2xl font-black">Local shop</p>
-                <p class="mt-2 text-sm text-white/75">99 Eastmead, Farnborough, open every day.</p>
+                <p class="mt-2 text-sm text-white/75">{{ADDRESS_LINE1}}, {{TOWN}}, open every day.</p>
               </div>
             </div>
           </div>
@@ -74,11 +54,11 @@
           <div class="rounded-3xl border border-brand-100 bg-white p-8 shadow-soft">
             <div class="grid gap-6 sm:grid-cols-2">
               <div class="rounded-2xl bg-brand-50 p-5">
-                <p class="text-4xl font-black text-brand-700">7am</p>
+                <p class="text-4xl font-black text-brand-700">{{OPENS_LABEL}}</p>
                 <p class="mt-2 text-sm text-slate-600">Early open for busy mornings</p>
               </div>
               <div class="rounded-2xl bg-brand-50 p-5">
-                <p class="text-4xl font-black text-brand-700">10pm</p>
+                <p class="text-4xl font-black text-brand-700">{{CLOSES_LABEL}}</p>
                 <p class="mt-2 text-sm text-slate-600">Late hours for convenience</p>
               </div>
               <div class="rounded-2xl bg-brand-50 p-5">
@@ -117,7 +97,3 @@
         </div>
       </section>
     </main>
-    <!-- @include footer -->
-    <script src="/theme.js"></script>
-  </body>
-</html>

@@ -19,17 +19,20 @@ This project presents a modern grocery brand focused on:
 
 ## Project structure
 
-- `public/` — pages, scripts, styles, offer data and image assets
-- `src/partials/` — shared head tags, header and footer included in every page
-- `src/server.js` — local development server (clean URLs, redirects, 404 page)
-- `src/build.js` — builds the deployable site into `dist/`
+- `site.config.json` — business facts (name, address, phone, email, hours, links) used everywhere
+- `src/pages/` — one file per page: front matter (title, description, ...) plus the page content
+- `src/partials/` — shared layout, head, header and footer
+- `public/` — assets copied as-is: styles, scripts, images, icons, `robots.txt`, offer data
+- `scripts/build.mjs` — builds the deployable site into `dist/`; fails if any `{{placeholder}}` is left
+- `scripts/dev-server.mjs` — local server for `dist/` with the same redirects and headers as Vercel
 - `tests/` — automated checks
 - `docs/` — plan, launch checklists and guides
 
 ## Run locally
 
 ```bash
-npm start
+npm install
+npm run dev
 ```
 
 Then open:
@@ -38,19 +41,26 @@ Then open:
 
 Other commands: `npm test` runs the automated checks, and `npm run build` writes the deployable site to `dist/`. Guides: [updating offers](docs/updating-offers.md), [go-live checklist](docs/go-live-checklist.md), [local SEO](docs/local-seo.md).
 
-## Launch configuration
+## Changing business details
 
-The site reads production values from environment variables. Copy [.env.example](.env.example) to a local environment file such as `.env` and fill in the owner-confirmed values before deployment:
+Edit [site.config.json](site.config.json) (address, phone, email, opening hours, Facebook link) and rebuild. Every page, the footer, the structured data for Google and the sitemap update together. Never type these details into a page by hand.
 
-- `SITE_URL` — the final HTTPS origin, for example `https://www.farnboroughsupermarket.com`
-- `LEGAL_NAME` — the legal or trading entity name for privacy wording
-- `FORMSUBMIT_ALIAS` — the FormSubmit hashed endpoint
-- `FACEBOOK_URL` — verified business page URL
-- `HALAL_CERTIFIER` — optional certifier name, if confirmed
+Some values are set in the Vercel project settings (Settings → Environment Variables) and override the file: `SITE_URL`, `LEGAL_NAME`, `FACEBOOK_URL`, `FORMSUBMIT_ALIAS`, `GOOGLE_REVIEWS_URL`, `WHATSAPP_NUMBER`, `HALAL_CERTIFIER`. See [.env.example](.env.example). `npm run build` lists which owner values are still empty. Tracking parameters (such as `?mibextid=`) are stripped from link values automatically.
 
-The local server substitutes these values into pages as it serves them. For deployment, `npm run build` writes the substituted site to `dist/`, which Vercel builds and serves automatically. Set the same variables in the Vercel project settings; if `SITE_URL` is missing, the build falls back to Vercel's production hostname.
+## Page front matter
 
-The local server does not read `.env` files by itself. To use one locally, run `node --env-file=.env src/server.js`.
+Each file in `src/pages/` starts with a block like:
+
+```
+---
+title: About | Farnborough Supermarket
+description: One or two sentences for search results.
+breadcrumb: About
+scripts: contact.js
+---
+```
+
+`robots: noindex,follow` keeps a page out of search and the sitemap. Canonical and Open Graph URLs, the active menu link and the structured data are generated for you.
 
 ## Pages included
 

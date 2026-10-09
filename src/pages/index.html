@@ -1,27 +1,15 @@
-<!DOCTYPE html>
-<html lang="en-GB">
-  <head>
-    <!-- @include head-common -->
-    <title>Farnborough Supermarket | Halal Meat, Fresh Produce &amp; World Foods</title>
-    <meta name="description" content="Local supermarket at 99 Eastmead, Farnborough GU14 7SA. Fresh halal meat, fruit and veg, rice, tea, spices and world food essentials. Open daily 7am to 10pm." />
-    <link rel="canonical" href="{{DOMAIN}}/" />
-    <meta property="og:title" content="Farnborough Supermarket | Halal Meat, Fresh Produce &amp; World Foods" />
-    <meta property="og:description" content="Halal meat, fresh produce, rice, tea and world foods at 99 Eastmead, Farnborough." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="{{DOMAIN}}/" />
-    <meta name="twitter:title" content="Farnborough Supermarket | Halal Meat, Fresh Produce &amp; World Foods" />
-    <meta name="twitter:description" content="Halal meat, fresh produce, rice, tea and world foods at 99 Eastmead, Farnborough." />
-  </head>
-  <body class="min-h-screen bg-[#f7f5f1] text-slate-800 antialiased">
-    <!-- @include header -->
-
-    <main id="main">
+---
+title: Farnborough Supermarket | Halal Meat, Fresh Produce & World Foods
+description: Local supermarket at {{ADDRESS_ONE_LINE}}. Fresh halal meat, fruit and veg, rice, tea, spices and world food essentials. Open daily {{HOURS_SHORT}}.
+ogDescription: Halal meat, fresh produce, rice, tea and world foods at {{ADDRESS_LINE1}}, {{TOWN}}.
+---
+<main id="main">
       <section class="hero-shell bg-gradient-to-br from-brand-700 via-brand-600 to-brand-500 text-white">
         <div class="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-20">
           <div class="flex flex-col justify-center">
             <div class="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-sm font-semibold text-white/90">
               <span class="h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
-              Open daily, 7am to 10pm
+              Open daily, {{HOURS_SHORT}}
             </div>
             <h1 class="text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">Fresh food for everyday life in Farnborough.</h1>
             <p class="mt-5 max-w-xl text-lg leading-relaxed text-white/80">
@@ -29,9 +17,9 @@
             </p>
             <div class="mt-8 flex flex-wrap gap-4">
               <a href="/products" class="inline-flex items-center justify-center rounded-xl bg-gold px-5 py-3 text-base font-extrabold text-slate-900 transition hover:opacity-95">Explore the range</a>
-                <a href="https://www.google.com/maps/dir/?api=1&destination=Farnborough+Supermarket%2C+99+Eastmead%2C+Farnborough+GU14+7SA" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Farnborough Supermarket, 99 Eastmead, Farnborough GU14 7SA" class="inline-flex items-center justify-center rounded-xl border border-white/25 bg-white/5 px-5 py-3 text-base font-extrabold text-white transition hover:bg-white/10">Get directions</a>
+                <a href="{{MAPS_DIRECTIONS_URL}}" target="_blank" rel="noopener noreferrer" aria-label="Get directions to Farnborough Supermarket, {{ADDRESS_ONE_LINE}}" class="inline-flex items-center justify-center rounded-xl border border-white/25 bg-white/5 px-5 py-3 text-base font-extrabold text-white transition hover:bg-white/10">Get directions</a>
             </div>
-            <p class="mt-4 text-sm font-medium text-white/80">99 Eastmead, Farnborough GU14 7SA</p>
+            <p class="mt-4 text-sm font-medium text-white/80">{{ADDRESS_ONE_LINE}}</p>
             <div class="mt-8 flex flex-wrap gap-4 text-sm font-semibold text-white/80">
               <span class="rounded-full border border-white/15 bg-white/5 px-3 py-1.5">Fresh meat</span>
               <span class="rounded-full border border-white/15 bg-white/5 px-3 py-1.5">Fruit & veg</span>
@@ -169,7 +157,3 @@
         </div>
       </section>
     </main>
-    <!-- @include footer -->
-    <script src="/theme.js"></script>
-  </body>
-</html>

@@ -1,31 +1,10 @@
-<!DOCTYPE html>
-<html lang="en-GB">
-  <head>
-    <!-- @include head-common -->
-    <title>Products: Halal Meat, Rice, Tea &amp; Spices | Farnborough Supermarket</title>
-    <meta name="description" content="Browse the range at Farnborough Supermarket, including halal meat, rice and grains, tea and dry fruits, olives and pickles, fruit and vegetables, spices and world foods." />
-    <link rel="canonical" href="{{DOMAIN}}/products" />
-    <meta property="og:title" content="Products: Halal Meat, Rice, Tea &amp; Spices | Farnborough Supermarket" />
-    <meta property="og:description" content="Explore fresh produce, halal meat, rice, tea, pantry staples and world foods." />
-    <meta property="og:url" content="{{DOMAIN}}/products" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:title" content="Products: Halal Meat, Rice, Tea &amp; Spices | Farnborough Supermarket" />
-    <meta name="twitter:description" content="Explore fresh produce, halal meat, rice, tea, pantry staples and world foods." />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{DOMAIN}}/" },
-          { "@type": "ListItem", "position": 2, "name": "Products", "item": "{{DOMAIN}}/products" }
-        ]
-      }
-    </script>
-  </head>
-  <body class="min-h-screen bg-[#f7f5f1] text-slate-800 antialiased">
-    <!-- @include header -->
-
-    <main id="main">
+---
+title: Products: Halal Meat, Rice, Tea & Spices | Farnborough Supermarket
+description: Browse the range at Farnborough Supermarket, including halal meat, rice and grains, tea and dry fruits, olives and pickles, fruit and vegetables, spices and world foods.
+ogDescription: Explore fresh produce, halal meat, rice, tea, pantry staples and world foods.
+breadcrumb: Products
+---
+<main id="main">
       <section class="bg-brand-700 text-white">
         <div class="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1fr_0.8fr] lg:items-center lg:px-8 lg:py-16">
           <div>
@@ -33,7 +12,6 @@
             <h1 class="mt-3 max-w-2xl text-4xl font-black tracking-tight sm:text-5xl">Good food. Familiar favourites. Plenty to discover.</h1>
             <p class="mt-5 max-w-2xl text-lg text-white/80">Explore the range we bring together for Farnborough: fresh produce, halal meat, everyday staples and ingredients from around the world.</p>
             <p class="mt-3 text-sm font-semibold text-white/80">Prices vary by product and availability. Ask in store for today's prices.</p>
-            <!-- TODO: Confirm {{HALAL_CERTIFIER}} with the owner before naming a certifying body. -->
             <a href="/contact" class="mt-7 inline-flex items-center rounded-xl bg-gold px-5 py-3 font-extrabold text-slate-900 transition hover:opacity-95">Visit or contact us</a>
           </div>
           <div class="grid grid-cols-2 gap-3 sm:gap-4" aria-label="A selection of our product categories">
@@ -46,14 +24,14 @@
       </section>
 
       <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <nav aria-label="Product categories" class="mb-8 flex flex-wrap gap-2">
+        <div role="group" aria-label="Product categories" class="mb-8 flex flex-wrap gap-2">
           <a href="#fresh-meat" class="rounded-full border border-brand-100 bg-white px-4 py-2 text-sm font-bold text-brand-700 transition hover:border-brand-500">Fresh halal meat</a>
           <a href="#rice-grains" class="rounded-full border border-brand-100 bg-white px-4 py-2 text-sm font-bold text-brand-700 transition hover:border-brand-500">Rice & grains</a>
           <a href="#tea-dry-fruits" class="rounded-full border border-brand-100 bg-white px-4 py-2 text-sm font-bold text-brand-700 transition hover:border-brand-500">Tea & dry fruits</a>
           <a href="#olives-pickles" class="rounded-full border border-brand-100 bg-white px-4 py-2 text-sm font-bold text-brand-700 transition hover:border-brand-500">Olives & pickles</a>
           <a href="#fresh-produce" class="rounded-full border border-brand-100 bg-white px-4 py-2 text-sm font-bold text-brand-700 transition hover:border-brand-500">Fresh produce</a>
           <a href="#world-foods" class="rounded-full border border-brand-100 bg-white px-4 py-2 text-sm font-bold text-brand-700 transition hover:border-brand-500">World foods</a>
-        </nav>
+        </div>
         <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           <article id="fresh-meat" class="card-hover overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft">
             <img src="/images/meat.svg" alt="Fresh halal meat" class="h-56 w-full object-cover" loading="lazy" />
@@ -61,7 +39,6 @@
               <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-3xl">🥩</div>
               <h2 class="text-2xl font-black text-slate-900">Fresh halal meat</h2>
               <p class="mt-3 text-slate-600">Fresh halal meat for family meals and special dishes.</p>
-              <!-- TODO: Replace {{HALAL_CERTIFIER}} with the verified certifier name if the owner confirms one. -->
               <p class="mt-3 text-sm text-slate-600">Please ask in store for current product and certification details.</p>
             </div>
           </article>
@@ -118,7 +95,3 @@
         </div>
       </section>
     </main>
-    <!-- @include footer -->
-    <script src="/theme.js"></script>
-  </body>
-</html>

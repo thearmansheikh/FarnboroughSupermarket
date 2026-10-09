@@ -4,13 +4,16 @@
   "private": true,
   "description": "Showcase website for Farnborough Supermarket.",
   "scripts": {
-    "start": "npm run css && node scripts/dev-server.js",
-    "dev": "npm run css && node scripts/dev-server.js",
-    "css": "node src/build.js --css-only",
-    "build": "node src/build.js",
+    "dev": "node scripts/dev-server.mjs",
+    "start": "node scripts/dev-server.mjs",
+    "build": "node scripts/build.mjs",
     "test": "node --test"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.17"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20.11"
   }
 }
