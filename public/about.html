@@ -3,8 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#165a35" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <title>About | Farnborough Supermarket</title>
     <meta name="description" content="Learn more about Farnborough Supermarket, our values, and why local families choose us for fresh produce and world foods." />
+    <link rel="canonical" href="{{DOMAIN}}/about" />
+    <meta property="og:title" content="About Farnborough Supermarket" />
+    <meta property="og:description" content="Learn about our local supermarket, values, fresh produce and world foods." />
+    <meta property="og:url" content="{{DOMAIN}}/about" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="{{DOMAIN}}/images/og-image.jpg" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="About Farnborough Supermarket" />
+    <meta name="twitter:description" content="Learn about our local supermarket, values, fresh produce and world foods." />
+    <meta name="twitter:image" content="{{DOMAIN}}/images/og-image.jpg" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -31,17 +47,17 @@
     <!-- SHARED: keep in sync -->
     <header class="sticky top-0 z-50 border-b border-brand-100 bg-white/80 backdrop-blur-md">
       <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
-        <a href="index.html" class="flex min-w-0 items-center gap-3">
+        <a href="/" class="flex min-w-0 items-center gap-3">
           <span class="brand-mark">FS</span>
           <span class="truncate text-lg font-extrabold tracking-tight text-brand-700">Farnborough Supermarket</span>
         </a>
         <nav class="hidden items-center gap-7 text-sm font-semibold text-slate-600 lg:flex">
-          <a href="index.html" class="hover:text-brand-500">Home</a>
-          <a href="about.html" class="text-brand-600" aria-current="page">About</a>
-          <a href="products.html" class="hover:text-brand-500">Products</a>
-          <a href="offers.html" class="hover:text-brand-500">Offers</a>
-          <a href="gallery.html" class="hover:text-brand-500">Gallery</a>
-          <a href="contact.html" class="hover:text-brand-500">Contact</a>
+          <a href="/" class="hover:text-brand-500">Home</a>
+          <a href="/about" class="text-brand-600" aria-current="page">About</a>
+          <a href="/products" class="hover:text-brand-500">Products</a>
+          <a href="/offers" class="hover:text-brand-500">Offers</a>
+          <a href="/gallery" class="hover:text-brand-500">Gallery</a>
+          <a href="/contact" class="hover:text-brand-500">Contact</a>
         </nav>
         <div class="flex items-center gap-2">
           <button type="button" data-nav-toggle class="nav-toggle lg:hidden" aria-label="Toggle navigation" aria-expanded="false">☰</button>
@@ -49,12 +65,12 @@
         </div>
       </div>
       <div data-mobile-menu class="mobile-menu hidden flex-col gap-3 px-4 py-4 text-sm font-semibold text-slate-600 lg:hidden">
-        <a href="index.html">Home</a>
-        <a href="about.html" class="text-brand-600">About</a>
-        <a href="products.html">Products</a>
-        <a href="offers.html">Offers</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="contact.html">Contact</a>
+        <a href="/">Home</a>
+        <a href="/about" class="text-brand-600">About</a>
+        <a href="/products">Products</a>
+        <a href="/offers">Offers</a>
+        <a href="/gallery">Gallery</a>
+        <a href="/contact">Contact</a>
       </div>
     </header>
 
@@ -178,10 +194,14 @@
         <div class="mt-8 flex flex-col gap-3 border-t border-white/10 pt-5 text-sm text-slate-300 sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 Farnborough Supermarket</p>
           <div class="flex flex-wrap gap-4">
-            <!-- TODO: Set FACEBOOK_URL to the verified business page URL before showing this link. -->
-            <a href="{{FACEBOOK_URL}}" target="_blank" rel="noopener noreferrer" class="hover:text-white" hidden>Facebook</a>
+            <a href="https://www.facebook.com/share/1JGNKZoFTJ/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Open Farnborough Supermarket on Facebook" class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-white transition hover:border-[#1877f2] hover:bg-[#1877f2] hover:text-white">
+              <svg aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4 fill-current" focusable="false">
+                <path d="M13.5 22v-8h2.7l.4-3.2h-3.1V7.6c0-.9.3-1.6 1.6-1.6H16V3.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3V10.8H7v3.2h2.3v8h4.2z"/>
+              </svg>
+              Facebook
+            </a>
             <button type="button" data-cookie-settings class="hover:text-white">Cookie settings</button>
-            <a href="privacy.html" class="hover:text-white">Privacy</a>
+            <a href="/privacy" class="hover:text-white">Privacy</a>
           </div>
         </div>
       </div>

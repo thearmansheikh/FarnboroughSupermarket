@@ -37,7 +37,7 @@
     notice.innerHTML = `
       <div class="cookie-notice__content">
         <p class="cookie-notice__title">Your cookie choices</p>
-        <p class="cookie-notice__copy">We use essential browser storage for site preferences. The map connects to Google only after you load it or allow the Maps category. <a href="privacy.html">Privacy details</a></p>
+        <p class="cookie-notice__copy">We use essential browser storage for site preferences. The map connects to Google only after you load it or allow the Maps category. <a href="/privacy">Privacy details</a></p>
       </div>
       <div class="cookie-notice__actions">
         <button type="button" class="cookie-notice__button" data-cookie-accept-all>Accept all</button>

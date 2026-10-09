@@ -1,0 +1,16 @@
+{
+  "name": "Farnborough Supermarket",
+  "short_name": "Farnborough",
+  "description": "Fresh produce, halal meat and world food essentials in Farnborough.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f5f1",
+  "theme_color": "#165a35",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

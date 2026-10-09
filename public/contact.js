@@ -16,7 +16,7 @@ if (contactForm) {
     try {
       const action = contactForm.getAttribute('action');
       const endpointPrefix = 'https://formsubmit.co/';
-      if (!action.startsWith(endpointPrefix) || action.includes('{{')) {
+      if (!action || !action.startsWith(endpointPrefix) || action === endpointPrefix || action.includes('{{')) {
         throw new Error('The FormSubmit alias has not been configured.');
       }
 
@@ -36,7 +36,7 @@ if (contactForm) {
         throw new Error(result.message || 'The enquiry could not be sent.');
       }
 
-      window.location.assign('thank-you.html');
+      window.location.assign('/thank-you');
     } catch (error) {
       status.textContent = 'We could not send your enquiry just now. Please email supermarketfarnborough@gmail.com or call 01252 940815.';
       submitButton.disabled = false;
