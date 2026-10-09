@@ -90,11 +90,11 @@ function pageTokens(page, config) {
 }
 
 // Renders one page (front matter + body) into a complete HTML document.
-export function renderPage(page, config, partialsDir) {
+export function renderPage(page, config, partialsDir, extraTokens = {}) {
   const layout = fs.readFileSync(path.join(partialsDir, 'layout.html'), 'utf8').replace(/\r\n/g, '\n');
   let html = applyIncludes(layout.replace('{{@content}}', () => page.body.trim()), partialsDir);
 
-  const special = pageTokens(page, config);
+  const special = { ...pageTokens(page, config), ...extraTokens };
   html = html.replace(/\{\{(@\w+)\}\}/g, (match, key) => (key in special ? special[key] : match));
   html = applyNavState(html, pagePathFor(page.fileName));
 

@@ -14,7 +14,7 @@ Written 9 October 2026 after a full review of the site. It replaces the generic 
 | 3. Local SEO | Done in code: structured data on all pages, breadcrumbs, generated sitemap with dates. Google Business Profile is an owner task ([local-seo.md](local-seo.md)) |
 | 4. Accessibility and QA | Done: skip link, focus styles, keyboard menu, heading order fixed. Lighthouse 98–100 in all four categories on every page (local run); browser check found no console, CSP or overflow problems and the form flow works |
 | 5. Go live | Owner tasks, with a step-by-step guide: [go-live-checklist.md](go-live-checklist.md) |
-| 6. After launch | Guides ready: [updating-offers.md](updating-offers.md). Analytics is still a decision for the owner |
+| 6. After launch | Guides ready: [OFFERS_GUIDE.md](../OFFERS_GUIDE.md). Analytics is still a decision for the owner |
 
 Known gap: `npm audit` reports issues in Tailwind's build-time dependencies. Nothing from them ships to visitors (`npm audit --omit=dev` is clean).
 

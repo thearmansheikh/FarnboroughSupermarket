@@ -47,7 +47,7 @@ Post these from the owner account, then answer them as the business:
 
 - "Fresh in this week": a photo of the produce display.
 - "Open every day, 7am to 10pm": a shopfront photo.
-- A dated offer, only when the owner has a genuine one (also add it to the website; see [updating-offers.md](updating-offers.md)).
+- A dated offer, only when the owner has a genuine one (also add it to the website; see [OFFERS_GUIDE.md](../OFFERS_GUIDE.md)).
 - A seasonal item or festival greeting, with a photo from the shop.
 
 ## 7. Asking for reviews

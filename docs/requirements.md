@@ -5,7 +5,7 @@
 - The site must include Home, About, Products, Offers, Gallery, Contact and Privacy pages.
 - Visitors must be able to find the address, phone number, opening hours and directions quickly.
 - The Products page must showcase categories such as fresh produce, halal meat, rice, tea, spices and pantry staples, without prices or stock claims.
-- The Offers page must show only owner-supplied, date-limited offers from `public/data/offers.json`, and fall back to "ask in store" when there are none.
+- The Offers page must show only owner-supplied, date-limited offers from `data/offers.json`, and fall back to "ask in store" when there are none.
 - Visitors must be able to send an enquiry through the contact form, which is delivered by email through FormSubmit.
 - The site must not take orders or payments.
 - Optional third-party content (the Google Maps embed) must only load after the visitor consents.
