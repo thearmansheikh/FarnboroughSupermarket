@@ -228,7 +228,7 @@ test('no page loads third-party scripts, fonts or images, and every image has al
     for (const [tag] of html.matchAll(/<img\b[^>]*>/g)) assert.match(tag, /\balt="[^"]+"/, `${page}: ${tag.slice(0, 60)}`);
   }
 
-  assert.doesNotMatch(readAsset('styles', '.css'), /unsplash|https?:\/\//);
+  assert.doesNotMatch(readAsset('site', '.css'), /unsplash|https?:\/\//);
 });
 
 test('the products page keeps its category chips out of the nav landmark', () => {
@@ -294,7 +294,7 @@ test('HTML is always revalidated while fingerprinted assets and photos cache for
 test('CSS and JS are content-fingerprinted and every page points at the hashed file', () => {
   const names = assetFiles();
 
-  for (const base of ['tailwind.css', 'styles.css', 'theme.js', 'contact.js', 'offers.js', 'gallery.js']) {
+  for (const base of ['site.css', 'theme.js', 'contact.js', 'offers.js', 'gallery.js']) {
     const [name, ext] = [base.replace(/\.[^.]+$/, ''), path.extname(base)];
     assert.ok(names.some((file) => new RegExp(`^${name}\\.[0-9a-f]{10}\\${ext}$`).test(file)), `${base} fingerprinted`);
     assert.ok(!fs.existsSync(path.join(outDir, base)), `${base} left unhashed`);
@@ -302,8 +302,31 @@ test('CSS and JS are content-fingerprinted and every page points at the hashed f
 
   for (const page of pages) {
     const html = read(page);
-    assert.doesNotMatch(html, /"\/(tailwind|styles)\.css"|"\/(theme|contact|offers|gallery)\.js"/, `${page} references an unhashed asset`);
+    assert.doesNotMatch(html, /"\/site\.css"|"\/(theme|contact|offers|gallery)\.js"/, `${page} references an unhashed asset`);
     for (const [, href] of html.matchAll(/(?:href|src)="(\/assets\/[^"]+)"/g)) assert.ok(fs.existsSync(path.join(outDir, href)), `${page}: ${href}`);
+  }
+});
+
+test('there is one stylesheet, scripts are deferred and the total JavaScript is under 30 KB', () => {
+  const js = assetFiles().filter((file) => file.endsWith('.js'));
+  const bytes = js.reduce((sum, file) => sum + fs.statSync(path.join(outDir, 'assets', file)).size, 0);
+
+  assert.ok(bytes < 30 * 1024, `JS is ${bytes} bytes`);
+  assert.equal(assetFiles().filter((file) => file.endsWith('.css')).length, 1);
+
+  for (const page of pages) {
+    const html = read(page);
+    assert.equal((html.match(/<link rel="stylesheet"/g) || []).length, 1, `${page} stylesheets`);
+    for (const [tag] of html.matchAll(/<script src="[^"]+"[^>]*>/g)) assert.match(tag, / defer>$/, `${page}: ${tag}`);
+  }
+});
+
+test('pages are minified: no comments and no whitespace runs between tags', () => {
+  for (const page of pages) {
+    const html = read(page).replace(/<script[\s\S]*?<\/script>/g, '<script></script>');
+    assert.doesNotMatch(html, /<!--/, `${page} comment`);
+    assert.doesNotMatch(html, />\s{2,}</, `${page} whitespace`);
+    assert.doesNotMatch(html, /\n/, `${page} newline`);
   }
 });
 

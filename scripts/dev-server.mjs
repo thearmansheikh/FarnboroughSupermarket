@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import http from 'node:http';
 import path from 'node:path';
+import { gzipSync } from 'node:zlib';
 import { build } from './build.mjs';
 import { loadConfig, rootDir } from './lib/config.mjs';
 
@@ -90,12 +91,19 @@ const server = http.createServer((req, res) => {
   }
 
   const send = (file, data, status) => {
+    const type = mimeTypes[path.extname(file).toLowerCase()] || 'application/octet-stream';
+    const compressible = /^(text\/|application\/(javascript|json|xml|manifest))|svg/.test(type);
+    const gzip = compressible && /\bgzip\b/.test(req.headers['accept-encoding'] || '');
+
     res.writeHead(status, {
       ...headers,
-      'Content-Type': mimeTypes[path.extname(file).toLowerCase()] || 'application/octet-stream',
-      'Cache-Control': 'no-cache',
+      'Content-Type': type,
+      // PRODUCTION_LIKE=1 keeps the cache headers from vercel.json (used for performance checks).
+      ...(process.env.PRODUCTION_LIKE ? {} : { 'Cache-Control': 'no-cache' }),
+      ...(compressible ? { Vary: 'Accept-Encoding' } : {}),
+      ...(gzip ? { 'Content-Encoding': 'gzip' } : {}),
     });
-    res.end(data);
+    res.end(gzip ? gzipSync(data) : data);
   };
 
   fs.readFile(filePath, (error, data) => {

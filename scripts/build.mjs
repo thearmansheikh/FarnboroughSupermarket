@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { loadConfig, missingOwnerValues, rootDir as projectRoot } from './lib/config.mjs';
 import { faqHtml, loadFaq } from './lib/faq.mjs';
 import { offerTokens } from './lib/offers.mjs';
+import { optimizeOutput } from './lib/optimize.mjs';
 import { loadPhotos } from './lib/photos.mjs';
 import { loadPages, sitemapXml } from './lib/pages.mjs';
 import { renderPage, renderText } from './lib/render.mjs';
@@ -61,7 +62,7 @@ export function assertNoPlaceholders(outDir) {
   if (problems.length) throw new Error(`Unresolved placeholders in build output:\n  ${problems.join('\n  ')}`);
 }
 
-const FINGERPRINTED = ['tailwind.css', 'styles.css', 'theme.js', 'contact.js', 'offers.js', 'gallery.js'];
+const FINGERPRINTED = ['site.css', 'theme.js', 'contact.js', 'offers.js', 'gallery.js'];
 
 // Renames CSS/JS to /assets/<name>.<content hash>.<ext> and updates every page, so the files can be cached
 // for a year: a changed file gets a new name and visitors never see a stale copy.
@@ -114,6 +115,7 @@ export function build({ rootDir = projectRoot, outDir = path.join(rootDir, 'dist
   fs.writeFileSync(path.join(outDir, 'sitemap.xml'), sitemapXml(pages, config, rootDir));
   if (css) compileCss(rootDir, path.join(outDir, 'tailwind.css'));
 
+  optimizeOutput(outDir);
   fingerprintAssets(outDir);
   assertNoPlaceholders(outDir);
   return { config, pages };

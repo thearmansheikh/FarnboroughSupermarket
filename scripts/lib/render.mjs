@@ -76,7 +76,7 @@ function pageTokens(page, config, photos, faq) {
 
   const scripts = (meta.scripts ? meta.scripts.split(',').map((name) => name.trim()).filter(Boolean) : [])
     .concat('theme.js')
-    .map((name) => `<script src="/${name}"></script>`)
+    .map((name) => `<script src="/${name}" defer></script>`)
     .join('\n    ');
 
   return {
