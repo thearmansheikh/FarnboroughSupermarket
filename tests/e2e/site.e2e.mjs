@@ -129,8 +129,12 @@ test('the map loads only after a click, and never before consent', async () => {
     assert.equal(googleRequests.length, 0, 'Google contacted before consent');
     assert.equal(await page.locator('[data-map-frame] iframe').count(), 0);
 
+    // The iframe is lazy-loaded, so bring it into view and wait for the browser to actually request it.
+    const requested = page.waitForRequest((request) => request.url().includes('google.com/maps'), { timeout: 20000 });
     await page.click('[data-map-load]');
     await page.waitForSelector('[data-map-frame] iframe');
+    await page.locator('[data-map-frame]').scrollIntoViewIfNeeded();
+    await requested;
     assert.ok(googleRequests.some((url) => url.includes('/maps')), 'map requested after the click');
   });
 });
