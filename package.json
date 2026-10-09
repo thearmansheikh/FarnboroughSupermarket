@@ -4,8 +4,8 @@
   "private": true,
   "description": "Showcase website for Farnborough Supermarket.",
   "scripts": {
-    "start": "npm run css && node src/server.js",
-    "dev": "npm run css && node src/server.js",
+    "start": "npm run css && node scripts/dev-server.js",
+    "dev": "npm run css && node scripts/dev-server.js",
     "css": "node src/build.js --css-only",
     "build": "node src/build.js",
     "test": "node --test"

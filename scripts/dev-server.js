@@ -1,9 +1,9 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const { resolveSiteConfig, applySiteTemplate, TEMPLATED_EXTENSIONS } = require('./site-config');
-const { renderPage } = require('./render');
-const { sitemapXml } = require('./pages');
+const { resolveSiteConfig, applySiteTemplate, TEMPLATED_EXTENSIONS } = require('../src/site-config');
+const { renderPage } = require('../src/render');
+const { sitemapXml } = require('../src/pages');
 
 const port = process.env.PORT || 3000;
 const publicDir = path.resolve(__dirname, '..', 'public');
