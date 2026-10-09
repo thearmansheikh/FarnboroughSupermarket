@@ -70,11 +70,6 @@
       </details>
     `;
 
-    const settingsButton = document.createElement('button');
-    settingsButton.type = 'button';
-    settingsButton.className = 'cookie-settings-trigger';
-    settingsButton.textContent = 'Cookie settings';
-    settingsButton.hidden = !consent;
     function openCookieSettings() {
       consent = readCookieConsent() || consent;
       notice.querySelector('[data-cookie-analytics]').checked = Boolean(consent && consent.analytics);
@@ -82,11 +77,9 @@
       notice.querySelector('[data-cookie-maps]').checked = Boolean(consent && consent.maps);
       notice.querySelector('.cookie-preferences').open = false;
       notice.hidden = false;
-      settingsButton.hidden = true;
       notice.querySelector('[data-cookie-accept-all]').focus();
     }
 
-    settingsButton.addEventListener('click', openCookieSettings);
     document.querySelectorAll('[data-cookie-settings]').forEach((button) => {
       button.addEventListener('click', openCookieSettings);
     });
@@ -100,7 +93,6 @@
       }
       window.dispatchEvent(new CustomEvent('farnborough-cookie-consent-updated', { detail: consent }));
       notice.hidden = true;
-      settingsButton.hidden = false;
     }
 
     notice.querySelector('[data-cookie-accept-all]').addEventListener('click', () => saveConsent(true, true, true));
@@ -113,6 +105,6 @@
       );
     });
 
-    document.body.append(notice, settingsButton);
+    document.body.append(notice);
   });
 })();
