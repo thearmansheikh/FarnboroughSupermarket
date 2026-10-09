@@ -1,0 +1,176 @@
+[
+  {
+    "name": "shopfront-54738f59",
+    "alt": "The Farnborough Supermarket shopfront at night, with its green illuminated sign and window displays of fresh meat and groceries",
+    "slots": [
+      "hero",
+      "og"
+    ],
+    "gallery": true,
+    "caption": "Our shopfront",
+    "width": 4032,
+    "height": 3024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600
+    ]
+  },
+  {
+    "name": "meat-counter-62347e3a",
+    "alt": "The fresh meat counter, with lamb and other cuts laid out in a long glass display",
+    "slots": [
+      "cat-meat",
+      "inside-a"
+    ],
+    "gallery": true,
+    "caption": "Fresh meat counter",
+    "width": 4032,
+    "height": 3024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600
+    ]
+  },
+  {
+    "name": "fresh-produce-cca0e5af",
+    "alt": "A wall of fresh fruit and vegetables including herbs, tomatoes, peppers, bananas, apples, oranges, ginger and avocados",
+    "slots": [
+      "cat-produce",
+      "tile-greens"
+    ],
+    "gallery": true,
+    "caption": "Fresh fruit and vegetables",
+    "width": 5712,
+    "height": 4284,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600
+    ]
+  },
+  {
+    "name": "olives-pickles-a5e0db99",
+    "alt": "Shelves of jarred olives, pickles, roasted peppers and preserves along a shop aisle",
+    "slots": [
+      "cat-olives",
+      "tile-pantry"
+    ],
+    "gallery": true,
+    "caption": "Olives and pickles",
+    "width": 4032,
+    "height": 3024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600
+    ]
+  },
+  {
+    "name": "grains-beans-64c55a1d",
+    "alt": "Shelves of grains, dried beans, lentils, flours and semolina, with fufu flour and instant noodles above",
+    "slots": [
+      "cat-rice"
+    ],
+    "gallery": true,
+    "caption": "Grains, beans and flours",
+    "width": 4032,
+    "height": 3024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600
+    ]
+  },
+  {
+    "name": "tea-pantry-94518a81",
+    "alt": "Shelves of black, green and fruit teas, with eggs, semolina and jarred pickles below",
+    "slots": [
+      "cat-tea",
+      "tile-tea"
+    ],
+    "gallery": true,
+    "caption": "Tea and pantry staples",
+    "width": 4032,
+    "height": 3024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600
+    ]
+  },
+  {
+    "name": "shop-interior-05c5922e",
+    "alt": "Inside the shop, with fresh fruit and vegetables on the left, bright aisles of groceries and the till area ahead",
+    "slots": [
+      "about",
+      "inside-main"
+    ],
+    "gallery": true,
+    "caption": "Inside the shop",
+    "width": 4032,
+    "height": 3024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600
+    ]
+  },
+  {
+    "name": "shop-floor-e0ea5796",
+    "alt": "A wide view of the shop floor with aisles of snacks, sweets and groceries under bright lighting",
+    "slots": [],
+    "gallery": true,
+    "caption": "Aisles of groceries",
+    "width": 4032,
+    "height": 3024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600
+    ]
+  },
+  {
+    "name": "aisle-sweets-1a185220",
+    "alt": "A long aisle of biscuits, sweets, Turkish delight and coffee on grey shelving",
+    "slots": [
+      "cat-world"
+    ],
+    "gallery": true,
+    "caption": "Sweets, biscuits and coffee",
+    "width": 3024,
+    "height": 4032,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600
+    ]
+  },
+  {
+    "name": "drinks-snacks-9250602a",
+    "alt": "A shop floor with a chilled drinks fridge, snack aisles and confectionery",
+    "slots": [
+      "inside-b"
+    ],
+    "gallery": true,
+    "caption": "Drinks and snacks",
+    "width": 4032,
+    "height": 3024,
+    "widths": [
+      480,
+      800,
+      1200,
+      1600
+    ]
+  }
+]

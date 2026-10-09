@@ -11,7 +11,7 @@ Written 9 October 2026 after a full review of the site. It replaces the generic 
 | 0. Audit | Done. Found that the live inner pages were serving raw templates (Vercel "Node" preset); fixed and verified |
 | 1. Config and build | Done: `site.config.json`, one-file-per-page build, shared layout, canonical/og:url per page, build fails on any `{{placeholder}}` |
 | 2. Launch blockers | Done: offers rendered at build time from validated JSON (no customer-facing error), privacy wording, clean Facebook URL |
-| 3. Real photography | Pipeline done (EXIF-free AVIF/WebP at 480–1600, `<picture>`, hero preload, accessible lightbox, og-image script). **Needs the owner's photos** in `assets/photos-source/` ([assets/README.md](../assets/README.md)); illustrations show until then |
+| 3. Real photography | Pipeline done (EXIF-free AVIF/WebP at 480–1600, `<picture>`, hero preload, accessible lightbox, og-image script). 10 real photos added and placed (hero, "Step inside" mosaic, categories, gallery, About, share image) |
 | 4. Contact form | Done and live: plain POST to FormSubmit (works without JS), hidden honeypot, inline validation. Activated; a real test enquiry reached the shop inbox |
 | 5. Local SEO | Done: titles <= 60 and descriptions <= 155, GroceryStore + breadcrumbs + FAQPage JSON-LD, sitemap with lastmod, full icon set and manifest, branded 404. Needs owner-confirmed FAQ facts (parking, cards, certifier) and map coordinates |
 | 6. Security and caching | Done: strict CSP (no inline script/style), COOP and friends, content-hashed CSS/JS cached a year, HTML always revalidated. HSTS is sent by Vercel and is added with the custom domain |

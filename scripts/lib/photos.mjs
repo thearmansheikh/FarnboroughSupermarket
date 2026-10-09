@@ -57,12 +57,12 @@ function renderGallery(photos) {
           </li>`;
   });
 
-  return `<ul class="gallery-grid" aria-label="Photos of the shop">
+  return `<ul class="gallery-grid">
           ${figures.join('\n          ')}
         </ul>
         <dialog id="lightbox" class="lightbox" aria-label="Photo viewer">
           <figure class="lightbox__figure">
-            <img id="lightbox-image" class="lightbox__image" alt="" />
+            <img id="lightbox-image" class="lightbox__image" src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=" alt="Enlarged photo" />
             <figcaption id="lightbox-caption" class="lightbox__caption"></figcaption>
           </figure>
           <button type="button" class="lightbox__button lightbox__prev" data-lightbox-prev aria-label="Previous photo">&#8592;</button>

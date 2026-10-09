@@ -5,10 +5,10 @@ Mobile Lighthouse on the production build, served with the Vercel headers (gzip,
 | Page | Performance | Accessibility | Best Practices | SEO |
 |------|-------------|---------------|----------------|-----|
 | Home | 100 | 100 | 100 | 100 |
-| Products | 99 | 100 | 100 | 100 |
-| Gallery | 97 | 100 | 100 | 100 |
+| Products | 98 | 100 | 100 | 100 |
+| Gallery | 100 | 100 | 100 | 100 |
 | Contact | 100 | 100 | 100 | 100 |
 
 Budgets enforced in CI: Performance >= 95, all other categories 100.
 
-Open the `.report.html` files in a browser. These pages still use the illustration placeholders. Real photos are larger, so re-run after adding them; the responsive AVIF/WebP images and hero preload are built for that.
+Open the `.report.html` files in a browser. These runs are with the real shop photos (responsive AVIF/WebP, preloaded hero).

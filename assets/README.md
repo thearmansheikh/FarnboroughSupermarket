@@ -34,6 +34,8 @@ Suggested set: shopfront, aisle view, fresh produce, meat counter, rice and grai
 | `hero` | Large photo at the top of the home page (use the shopfront) |
 | `tile-greens`, `tile-tea`, `tile-pantry` | The three photo cards on the home page |
 | `cat-meat`, `cat-rice`, `cat-tea`, `cat-olives`, `cat-produce`, `cat-world` | The Products page categories |
+| `inside-main`, `inside-a`, `inside-b` | The "Step inside" photo mosaic on the home page (one large photo and two smaller ones) |
+| `about` | Photo on the About page |
 | `og` | The image shown when the site is shared (falls back to `hero`) |
 
 ## 3. Generate the web versions

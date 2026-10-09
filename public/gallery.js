@@ -7,6 +7,7 @@
   const image = document.getElementById('lightbox-image');
   const caption = document.getElementById('lightbox-caption');
   const status = document.getElementById('lightbox-status');
+  const placeholder = image.getAttribute('src');
   const triggers = Array.from(document.querySelectorAll('[data-gallery-open]'));
   let current = 0;
   let opener = null;
@@ -43,7 +44,7 @@
   });
 
   dialog.addEventListener('close', () => {
-    image.removeAttribute('src');
+    image.src = placeholder;
     if (opener) opener.focus();
   });
 })();

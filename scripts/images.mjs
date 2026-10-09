@@ -14,10 +14,14 @@ import { rootDir } from './lib/config.mjs';
 
 export const WIDTHS = [480, 800, 1200, 1600];
 const QUALITY = { avif: 50, webp: 72 };
+const MIN_QUALITY = { avif: 35, webp: 50 };
+// Largest file we accept at each width. Busy shelves compress badly, so quality steps down until a file fits.
+const MAX_BYTES = { 480: 60 * 1024, 800: 110 * 1024, 1200: 200 * 1024, 1600: 320 * 1024 };
 
 export const SLOTS = [
   'hero', 'tile-greens', 'tile-tea', 'tile-pantry',
   'cat-meat', 'cat-rice', 'cat-tea', 'cat-olives', 'cat-produce', 'cat-world',
+  'inside-main', 'inside-a', 'inside-b',
   'about', 'og',
 ];
 
@@ -60,7 +64,7 @@ export async function generatePhotos({ root = rootDir, quiet = false } = {}) {
       continue;
     }
 
-    const name = `${slugify(entry.file)}-${createHash('sha1').update(fs.readFileSync(source)).digest('hex').slice(0, 8)}`;
+    const name = `${slugify(entry.name || entry.file)}-${createHash('sha1').update(fs.readFileSync(source)).digest('hex').slice(0, 8)}`;
     // .rotate() applies the EXIF orientation; sharp drops all metadata (EXIF, GPS) from the outputs by default.
     const base = sharp(source).rotate();
     const meta = await sharp(source).metadata();
@@ -71,7 +75,15 @@ export async function generatePhotos({ root = rootDir, quiet = false } = {}) {
 
     for (const width of unique) {
       for (const format of ['avif', 'webp']) {
-        await base.clone().resize({ width, withoutEnlargement: true })[format]({ quality: QUALITY[format] }).toFile(path.join(outDir, `${name}-${width}.${format}`));
+        const resized = base.clone().resize({ width, withoutEnlargement: true });
+        const limit = MAX_BYTES[width] || MAX_BYTES[1600];
+        let quality = QUALITY[format];
+        let output = await resized.clone()[format]({ quality }).toBuffer();
+        while (output.length > limit && quality - 4 >= MIN_QUALITY[format]) {
+          quality -= 4;
+          output = await resized.clone()[format]({ quality }).toBuffer();
+        }
+        fs.writeFileSync(path.join(outDir, `${name}-${width}.${format}`), output);
       }
     }
 

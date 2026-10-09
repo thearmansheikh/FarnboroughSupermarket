@@ -1,1 +1,96 @@
-[]
+[
+  {
+    "file": "f3.jpg.jpeg",
+    "name": "shopfront",
+    "alt": "The Farnborough Supermarket shopfront at night, with its green illuminated sign and window displays of fresh meat and groceries",
+    "slots": [
+      "hero",
+      "og"
+    ],
+    "caption": "Our shopfront"
+  },
+  {
+    "file": "f1.jpg.jpeg",
+    "name": "meat-counter",
+    "alt": "The fresh meat counter, with lamb and other cuts laid out in a long glass display",
+    "slots": [
+      "cat-meat",
+      "inside-a"
+    ],
+    "caption": "Fresh meat counter"
+  },
+  {
+    "file": "f4.jpg.jpeg",
+    "name": "fresh-produce",
+    "alt": "A wall of fresh fruit and vegetables including herbs, tomatoes, peppers, bananas, apples, oranges, ginger and avocados",
+    "slots": [
+      "cat-produce",
+      "tile-greens"
+    ],
+    "caption": "Fresh fruit and vegetables"
+  },
+  {
+    "file": "f5.jpg.jpeg",
+    "name": "olives-pickles",
+    "alt": "Shelves of jarred olives, pickles, roasted peppers and preserves along a shop aisle",
+    "slots": [
+      "cat-olives",
+      "tile-pantry"
+    ],
+    "caption": "Olives and pickles"
+  },
+  {
+    "file": "f6.jpg.jpeg",
+    "name": "grains-beans",
+    "alt": "Shelves of grains, dried beans, lentils, flours and semolina, with fufu flour and instant noodles above",
+    "slots": [
+      "cat-rice"
+    ],
+    "caption": "Grains, beans and flours"
+  },
+  {
+    "file": "f7.jpg.jpeg",
+    "name": "tea-pantry",
+    "alt": "Shelves of black, green and fruit teas, with eggs, semolina and jarred pickles below",
+    "slots": [
+      "cat-tea",
+      "tile-tea"
+    ],
+    "caption": "Tea and pantry staples"
+  },
+  {
+    "file": "f2.jpg.jpeg",
+    "name": "shop-interior",
+    "alt": "Inside the shop, with fresh fruit and vegetables on the left, bright aisles of groceries and the till area ahead",
+    "slots": [
+      "about",
+      "inside-main"
+    ],
+    "caption": "Inside the shop"
+  },
+  {
+    "file": "f8.jpg.jpeg",
+    "name": "shop-floor",
+    "alt": "A wide view of the shop floor with aisles of snacks, sweets and groceries under bright lighting",
+    "slots": [],
+    "caption": "Aisles of groceries"
+  },
+  {
+    "file": "f9.jpg.jpeg",
+    "name": "aisle-sweets",
+    "alt": "A long aisle of biscuits, sweets, Turkish delight and coffee on grey shelving",
+    "slots": [
+      "cat-world"
+    ],
+    "caption": "Sweets, biscuits and coffee"
+  },
+  {
+    "file": "f10.jpg.jpeg",
+    "name": "drinks-snacks",
+    "alt": "A shop floor with a chilled drinks fridge, snack aisles and confectionery",
+    "slots": [
+      "inside-b"
+    ],
+    "caption": "Drinks and snacks"
+  }
+]

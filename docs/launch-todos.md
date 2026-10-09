@@ -17,7 +17,8 @@ Everything that can be done in code is done. What is left needs the shop owner. 
 - [ ] Whether a **halal certifier** should be named (`HALAL_CERTIFIER`); nothing is claimed today.
 
 ## 3. Content only the owner can supply
-- [ ] **Store photos** → [assets/README.md](../assets/README.md). Shopfront, aisles, produce, meat counter, rice, spices, tea, tills. Until then the site shows illustrations and says photographs are coming soon.
+- [x] **Store photos**: 10 real photos added on 9 October 2026 (shopfront, meat counter, produce, olives, grains, tea, shop floor). To add or swap photos see [assets/README.md](../assets/README.md).
+- [ ] Look at the photos on the Gallery page: the meat counter and shop-floor photos show shelf prices (for example lamb at a price per kg). The site says prices change, so decide whether to keep those photos or retake them without price labels.
 - [ ] **Our story**: 3–4 true sentences for the About page → `data/story.json`. The current text is generic starter copy.
 - [ ] **FAQ facts** to add to `data/faq.json` once confirmed: parking, which cards are accepted, who certifies the halal meat.
 - [ ] **Exact map coordinates** (from the Google listing) → `geo` in `site.config.json`, for better local search.

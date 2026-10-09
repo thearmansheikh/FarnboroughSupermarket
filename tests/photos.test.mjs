@@ -109,13 +109,47 @@ test('pages use real photos, a preloaded hero and the gallery when photos exist'
 });
 
 test('without photos the pages fall back to the illustrations and say photos are coming', () => {
-  const outDir = fs.mkdtempSync(path.join(os.tmpdir(), 'farnborough-nophotos-'));
+  // A project folder with the site's pages but no assets/photos, as the site was before real photos were added.
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'farnborough-nophotos-'));
+  const outDir = path.join(root, 'dist');
   try {
-    build({ outDir, config: loadConfig({ env: {} }), css: false });
+    for (const dir of ['src', 'public', 'data']) fs.cpSync(path.join(rootDir, dir), path.join(root, dir), { recursive: true });
+    build({ rootDir: root, outDir, config: loadConfig({ env: {} }), css: false });
 
     assert.match(fs.readFileSync(path.join(outDir, 'gallery.html'), 'utf8'), /Store photographs are coming soon/);
     assert.match(fs.readFileSync(path.join(outDir, 'products.html'), 'utf8'), /<img src="\/images\/meat\.svg" alt="Fresh halal meat"/);
-    assert.doesNotMatch(fs.readFileSync(path.join(outDir, 'index.html'), 'utf8'), /rel="preload"/);
+    const home = fs.readFileSync(path.join(outDir, 'index.html'), 'utf8');
+    assert.doesNotMatch(home, /rel="preload"/);
+    assert.doesNotMatch(home, /Step inside Farnborough Supermarket/);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('the real shop photos are all processed, described and used on the pages', () => {
+  const outDir = fs.mkdtempSync(path.join(os.tmpdir(), 'farnborough-realphotos-'));
+  try {
+    build({ outDir, config: loadConfig({ env: {} }), css: false });
+    const index = JSON.parse(fs.readFileSync(path.join(rootDir, 'assets', 'photos', 'index.json'), 'utf8'));
+    const read = (file) => fs.readFileSync(path.join(outDir, file), 'utf8');
+
+    assert.equal(index.length, 10);
+    for (const photo of index) {
+      assert.ok(photo.alt.length >= 40, `${photo.name} has a proper description`);
+      assert.deepEqual(photo.widths, [480, 800, 1200, 1600]);
+      for (const width of photo.widths) {
+        for (const format of ['avif', 'webp']) assert.ok(fs.existsSync(path.join(rootDir, 'assets', 'photos', `${photo.name}-${width}.${format}`)), `${photo.name} ${width} ${format}`);
+      }
+      assert.ok(fs.statSync(path.join(rootDir, 'assets', 'photos', `${photo.name}-1200.webp`)).size < 200 * 1024, `${photo.name} 1200w under 200 KB`);
+    }
+
+    const home = read('index.html');
+    assert.match(home, /<link rel="preload" as="image" type="image\/avif"[^>]*shopfront/);
+    assert.match(home, /fetchpriority="high"/);
+    assert.match(home, /Step inside Farnborough Supermarket/);
+    assert.doesNotMatch(read('gallery.html'), /coming soon/);
+    assert.equal((read('gallery.html').match(/data-gallery-open /g) || []).length, 10);
+    assert.doesNotMatch(read('products.html'), /<img src="\/images\/[a-z]+\.svg"/);
   } finally {
     fs.rmSync(outDir, { recursive: true, force: true });
   }
