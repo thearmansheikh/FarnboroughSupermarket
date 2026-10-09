@@ -10,3 +10,4 @@ coverage/
 npm-debug.log*
 .vercel
 .env*.local
+public/tailwind.css

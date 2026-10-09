@@ -2,20 +2,16 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const { resolveSiteConfig, applySiteTemplate, TEMPLATED_EXTENSIONS } = require('./site-config');
+const { renderPage } = require('./render');
+const { sitemapXml } = require('./pages');
 
 const port = process.env.PORT || 3000;
 const publicDir = path.resolve(__dirname, '..', 'public');
 const siteConfig = resolveSiteConfig();
 
 // Mirror the permanent redirects in vercel.json.
-const redirects = {
-  '/shop': '/products',
-  '/shop.html': '/products',
-  '/checkout': '/products',
-  '/checkout.html': '/products',
-  '/success': '/products',
-  '/success.html': '/products',
-};
+const vercelConfig = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'vercel.json'), 'utf8'));
+const redirects = Object.fromEntries(vercelConfig.redirects.map((redirect) => [redirect.source, redirect.destination]));
 
 const mimeTypes = {
   '.html': 'text/html; charset=utf-8',
@@ -49,7 +45,13 @@ function resolveFile(requestPath) {
 function sendFile(res, filePath, data, status = 200) {
   const ext = path.extname(filePath).toLowerCase();
   const contentType = mimeTypes[ext] || 'application/octet-stream';
-  const body = TEMPLATED_EXTENSIONS.includes(ext) ? applySiteTemplate(data.toString('utf8'), siteConfig) : data;
+  let body = data;
+
+  if (ext === '.html') {
+    body = renderPage(data.toString('utf8'), path.basename(filePath), siteConfig);
+  } else if (TEMPLATED_EXTENSIONS.includes(ext)) {
+    body = applySiteTemplate(data.toString('utf8'), siteConfig);
+  }
 
   res.writeHead(status, {
     'Content-Type': contentType,
@@ -72,6 +74,12 @@ const server = http.createServer((req, res) => {
   if (redirects[requestPath]) {
     res.writeHead(308, { Location: redirects[requestPath] });
     res.end();
+    return;
+  }
+
+  if (requestPath === '/sitemap.xml') {
+    res.writeHead(200, { 'Content-Type': mimeTypes['.xml'], 'Cache-Control': 'no-cache' });
+    res.end(sitemapXml(siteConfig.DOMAIN));
     return;
   }
 
