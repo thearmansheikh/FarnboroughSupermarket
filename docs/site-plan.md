@@ -4,7 +4,21 @@ Written 9 October 2026 after a full review of the site. It replaces the generic 
 
 **Goal:** a trustworthy, fast, showcase-only website for the shop at 99 Eastmead that is ready to go live on a custom domain.
 
-## Where we are
+## Status (9 October 2026)
+
+| Phase | State |
+|-------|-------|
+| 0. Land what exists | Done |
+| 1. Honest content | Code done: stock photos removed, unverified claims cut or softened. Real photos and owner sign-off still needed ([launch-todos.md](launch-todos.md)) |
+| 2. Engineering cleanup | Done: Tailwind compiled at build time (18 KB), shared header/footer/head, dead CSS removed, security headers, 15 tests |
+| 3. Local SEO | Done in code: structured data on all pages, breadcrumbs, generated sitemap with dates. Google Business Profile is an owner task ([local-seo.md](local-seo.md)) |
+| 4. Accessibility and QA | Done: skip link, focus styles, keyboard menu, heading order fixed. Lighthouse 98–100 in all four categories on every page (local run); browser check found no console, CSP or overflow problems and the form flow works |
+| 5. Go live | Owner tasks, with a step-by-step guide: [go-live-checklist.md](go-live-checklist.md) |
+| 6. After launch | Guides ready: [updating-offers.md](updating-offers.md). Analytics is still a decision for the owner |
+
+Known gap: `npm audit` reports issues in Tailwind's build-time dependencies. Nothing from them ships to visitors (`npm audit --omit=dev` is clean).
+
+## Where we were before this pass
 
 - 10 pages, all static, built from `public/` into `dist/` and served on Vercel. Launch placeholders such as `{{DOMAIN}}` are filled in at build time.
 - The cookie consent, consent-gated map, contact form (FormSubmit) and privacy policy are in place.

@@ -13,16 +13,18 @@ This project presents a modern grocery brand focused on:
 ## Tech stack
 
 - HTML5
-- Tailwind CSS via CDN
+- Tailwind CSS 3, compiled at build time (no CDN)
 - Vanilla JavaScript
-- Node.js static file server
+- Node.js local server and build script
 
 ## Project structure
 
-- `public/` — static pages, styling, scripts, offer data, and image assets
-- `src/server.js` — simple local HTTP server
-- `docs/` — planning and project notes
-- `package.json` — project scripts
+- `public/` — pages, scripts, styles, offer data and image assets
+- `src/partials/` — shared head tags, header and footer included in every page
+- `src/server.js` — local development server (clean URLs, redirects, 404 page)
+- `src/build.js` — builds the deployable site into `dist/`
+- `tests/` — automated checks
+- `docs/` — plan, launch checklists and guides
 
 ## Run locally
 
@@ -33,6 +35,8 @@ npm start
 Then open:
 
 - http://localhost:3000/
+
+Other commands: `npm test` runs the automated checks, and `npm run build` writes the deployable site to `dist/`. Guides: [updating offers](docs/updating-offers.md), [go-live checklist](docs/go-live-checklist.md), [local SEO](docs/local-seo.md).
 
 ## Launch configuration
 
