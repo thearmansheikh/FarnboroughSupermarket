@@ -2,10 +2,11 @@
 
 Everything that can be done in code is done. What is left needs the shop owner. Step-by-step guides: [go-live-checklist.md](go-live-checklist.md) and [domain-switch.md](domain-switch.md).
 
-## 1. To make the contact form work (highest priority)
-- [ ] Send one test enquiry through FormSubmit to supermarketfarnborough@gmail.com and click the activation link in the email FormSubmit sends. FormSubmit then gives a hashed address.
-- [ ] Set `FORMSUBMIT_ALIAS` to that value in Vercel (Settings → Environment Variables), redeploy, and send a second test. Until then the Contact page shows "Online enquiries are being set up" with call and email buttons instead of a form that cannot send.
-- [ ] Run the manual checks in [TESTING.md](../TESTING.md).
+## 1. Contact form: DONE (9 October 2026)
+- [x] FormSubmit is activated. A real test enquiry from the live site arrived at supermarketfarnborough@gmail.com as "New website enquiry". `FORMSUBMIT_ALIAS` in Vercel is currently the shop's email address.
+- [ ] Optional: switch `FORMSUBMIT_ALIAS` to a private random address from FormSubmit, so the shop email is not in the form's HTML (it is already public on the page, so this is only tidiness).
+- [ ] Optional: the free FormSubmit plan adds a small "Sponsor" advert to the emails the shop receives. Customers never see it.
+- [ ] Run the rest of the manual checks in [TESTING.md](../TESTING.md) (phone test, no-JavaScript test).
 
 ## 2. Business details to confirm
 - [ ] **Legal or trading name** for the privacy policy → `LEGAL_NAME`. Until set, the policy names "Farnborough Supermarket" as the data controller.
