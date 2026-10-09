@@ -1,8 +1,9 @@
 ---
-title: Contact, Opening Hours & Directions | Farnborough Supermarket
+title: Contact, Hours & Directions | Farnborough Supermarket
 description: Find Farnborough Supermarket at {{ADDRESS_ONE_LINE}}. Open daily {{HOURS_SHORT}}. Call {{PHONE_DISPLAY}}, send an enquiry or get directions.
 ogDescription: Contact Farnborough Supermarket or get directions to {{ADDRESS_LINE1}}, {{TOWN}}.
 breadcrumb: Contact
+faq: true
 scripts: contact.js
 ---
 <main id="main">
@@ -35,6 +36,12 @@ scripts: contact.js
                 <span class="text-slate-500">Opening hours</span>
                 <span class="font-bold text-slate-700">{{HOURS_DAYS}}, {{HOURS_DASH}}</span>
               </div>
+              <!-- @if config:googleReviewsUrl -->
+              <div class="flex items-center justify-between gap-4 border-b border-slate-200 pb-3">
+                <span class="text-slate-500">Reviews</span>
+                <a href="{{GOOGLE_REVIEWS_URL}}" target="_blank" rel="noopener noreferrer" class="font-bold text-brand-600">See our reviews on Google</a>
+              </div>
+              <!-- @endif -->
               <div class="flex items-center justify-between gap-4 border-b border-slate-200 pb-3">
                 <span class="text-slate-500">Directions</span>
                 <a href="{{MAPS_SEARCH_URL}}" target="_blank" rel="noopener noreferrer" class="font-bold text-brand-600">Open in Google Maps</a>
@@ -99,5 +106,7 @@ scripts: contact.js
           </div>
           <div data-map-frame data-map-src="{{MAPS_EMBED_URL}}" class="hidden"></div>
         </div>
+
+        {{@faq}}
       </section>
     </main>

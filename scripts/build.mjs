@@ -3,6 +3,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { loadConfig, missingOwnerValues, rootDir as projectRoot } from './lib/config.mjs';
+import { faqHtml, loadFaq } from './lib/faq.mjs';
 import { offerTokens } from './lib/offers.mjs';
 import { loadPhotos } from './lib/photos.mjs';
 import { loadPages, sitemapXml } from './lib/pages.mjs';
@@ -70,7 +71,8 @@ export function build({ rootDir = projectRoot, outDir = path.join(rootDir, 'dist
 
   const pages = loadPages(rootDir);
   const partialsDir = path.join(rootDir, 'src', 'partials');
-  const context = { tokens: offerTokens(rootDir), photos: loadPhotos(rootDir) };
+  const faq = loadFaq(rootDir, config);
+  const context = { tokens: { ...offerTokens(rootDir), '@faq': faqHtml(faq) }, photos: loadPhotos(rootDir), faq };
   for (const page of pages) {
     fs.writeFileSync(path.join(outDir, page.fileName), renderPage(page, config, partialsDir, context));
   }

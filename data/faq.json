@@ -1,0 +1,22 @@
+[
+  {
+    "question": "What are your opening hours?",
+    "answer": "We are open {{HOURS_DAYS}}, {{HOURS_SHORT}}. Hours can change on bank holidays, so please call {{PHONE_DISPLAY}} to check before you travel."
+  },
+  {
+    "question": "Where is the shop?",
+    "answer": "Farnborough Supermarket is at {{ADDRESS_ONE_LINE}}. Use the directions link on this page to open the route in Google Maps."
+  },
+  {
+    "question": "What do you sell?",
+    "answer": "Fresh halal meat, fruit and vegetables, rice and grains, tea and dry fruits, olives and pickles, spices and world food essentials. Availability and prices change, so please ask in store."
+  },
+  {
+    "question": "Is your meat halal?",
+    "answer": "We sell fresh halal meat. Please ask in store for current product and certification details."
+  },
+  {
+    "question": "Can I order online or get a delivery?",
+    "answer": "This website is for information only. We do not take online orders or payments, so please visit us in store or call {{PHONE_DISPLAY}}."
+  }
+]

@@ -89,8 +89,8 @@ test('titles and descriptions are present and a sensible length', () => {
     const title = html.match(/<title>([^<]+)<\/title>/)[1].replace(/&amp;/g, '&');
     const description = html.match(/<meta name="description" content="([^"]+)"/)[1];
 
-    assert.ok(title.length >= 10 && title.length <= 70, `${page} title length ${title.length}`);
-    assert.ok(description.length >= 50 && description.length <= 170, `${page} description length ${description.length}`);
+    assert.ok(title.length >= 10 && title.length <= 60, `${page} title length ${title.length}: ${title}`);
+    assert.ok(description.length >= 50 && description.length <= 155, `${page} description length ${description.length}: ${description}`);
   }
 });
 
@@ -147,6 +147,54 @@ test('structured data parses as JSON and uses the configured site', () => {
 
   const breadcrumbs = read('about.html').match(/BreadcrumbList[\s\S]*?<\/script>/)[0];
   assert.match(breadcrumbs, /https:\/\/www\.example\.com\/about/);
+});
+
+const jsonLd = (page) => [...read(page).matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
+
+test('the business record carries logo, price range, product catalogue and no coordinates unless confirmed', () => {
+  const [store] = jsonLd('index.html');
+
+  assert.equal(store.logo, 'https://www.example.com/icon-512.png');
+  assert.equal(store.priceRange, '£');
+  assert.equal(store.hasOfferCatalog.itemListElement.length, 6);
+  assert.equal(store.geo, undefined);
+  assert.equal(store.areaServed.name, 'Farnborough');
+});
+
+test('the contact page has an FAQ section and matching FAQPage structured data', () => {
+  const html = read('contact.html');
+  const faq = jsonLd('contact.html').find((block) => block['@type'] === 'FAQPage');
+
+  assert.ok(faq, 'FAQPage json-ld');
+  assert.ok(faq.mainEntity.length >= 4);
+  for (const { name, acceptedAnswer } of faq.mainEntity) {
+    assert.ok(html.includes(`<summary>${name.replace(/&/g, '&amp;')}</summary>`), `FAQ question on page: ${name}`);
+    assert.ok(acceptedAnswer.text.length > 20);
+  }
+
+  const hours = faq.mainEntity.find((item) => /opening hours/i.test(item.name));
+  assert.match(hours.acceptedAnswer.text, /Mon–Sun, 7am to 10pm/);
+  assert.match(hours.acceptedAnswer.text, /01252 940815/);
+  assert.equal(jsonLd('about.html').filter((block) => block['@type'] === 'FAQPage').length, 0);
+});
+
+test('the icon set and web manifest are complete', () => {
+  const manifest = JSON.parse(read('site.webmanifest'));
+
+  assert.equal(manifest.theme_color, '#165a35');
+  assert.deepEqual(manifest.icons.map((icon) => icon.sizes), ['192x192', '512x512', '512x512']);
+  for (const icon of manifest.icons) assert.ok(fs.existsSync(path.join(outDir, icon.src)), icon.src);
+  for (const file of ['favicon.ico', 'favicon.svg', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png']) {
+    assert.ok(fs.existsSync(path.join(outDir, file)), file);
+  }
+});
+
+test('the 404 page is branded with helpful links and a call button', () => {
+  const html = read('404.html');
+
+  for (const href of ['/', '/products', '/offers', '/contact']) assert.ok(html.includes(`href="${href}"`), href);
+  assert.match(html, /href="tel:01252940815"/);
+  assert.match(html, /<header[\s>]/);
 });
 
 test('sitemap lists only indexable pages on the configured domain', () => {

@@ -14,7 +14,22 @@ export function groceryStoreJsonLd(config) {
     telephone: `+44${digits.replace(/^0/, '')}`,
     email: config.email,
     image: `${config.siteUrl}/images/og-image.jpg`,
+    logo: `${config.siteUrl}/icon-512.png`,
+    priceRange: config.priceRange || '£',
     ...(sameAs.length ? { sameAs } : {}),
+    ...(config.geo ? { geo: { '@type': 'GeoCoordinates', latitude: config.geo.latitude, longitude: config.geo.longitude } } : {}),
+    ...(config.categories && config.categories.length
+      ? {
+          hasOfferCatalog: {
+            '@type': 'OfferCatalog',
+            name: `${config.name} product range`,
+            itemListElement: config.categories.map((category) => ({
+              '@type': 'OfferCatalog',
+              name: category,
+            })),
+          },
+        }
+      : {}),
     hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${address.street} ${address.town} ${address.postcode}`).replace(/%20/g, '+')}`,
     areaServed: { '@type': 'City', name: address.town },
     address: {
@@ -46,5 +61,6 @@ export function breadcrumbJsonLd(config, name, pagePath) {
 
 // JSON for an inline <script type="application/ld+json">; "<" is escaped so it cannot close the tag.
 export function jsonLdScript(data) {
-  return `<script type="application/ld+json">${JSON.stringify(data, null, 2).replace(/</g, '\u003c')}</script>`;
+  const escaped = JSON.stringify(data, null, 2).replace(/</g, `${String.fromCharCode(92)}u003c`);
+  return `<script type="application/ld+json">${escaped}</script>`;
 }

@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { tokensFor } from './config.mjs';
+import { faqJsonLd } from './faq.mjs';
 import { escapeHtml } from './html.mjs';
 import { applyPhotoDirectives, preloadTag } from './photos.mjs';
 import { breadcrumbJsonLd, groceryStoreJsonLd, jsonLdScript } from './structured-data.mjs';
@@ -64,13 +65,14 @@ function applyNavState(content, pagePath) {
     .replace(/\{\{AC:([^}]+)\}\}/g, (match, link) => (link === pagePath ? ' aria-current="page"' : ''));
 }
 
-function pageTokens(page, config, photos) {
+function pageTokens(page, config, photos, faq) {
   const { meta, fileName } = page;
   const pagePath = pagePathFor(fileName);
   const pageUrl = `${config.siteUrl}${pagePath}`;
   const noindex = isNoindex(meta);
   const jsonLd = [groceryStoreJsonLd(config)];
   if (meta.breadcrumb) jsonLd.push(breadcrumbJsonLd(config, meta.breadcrumb, pagePath));
+  if (meta.faq && faqJsonLd(faq)) jsonLd.push(faqJsonLd(faq));
 
   const scripts = (meta.scripts ? meta.scripts.split(',').map((name) => name.trim()).filter(Boolean) : [])
     .concat('theme.js')
@@ -92,12 +94,14 @@ function pageTokens(page, config, photos) {
 }
 
 // Renders one page (front matter + body) into a complete HTML document.
-// context: { tokens: extra {{@name}} values, photos: generated photo index }.
-export function renderPage(page, config, partialsDir, { tokens: extraTokens = {}, photos = [] } = {}) {
+// context: { tokens: extra {{@name}} values, photos: generated photo index, faq: question/answer list }.
+export function renderPage(page, config, partialsDir, { tokens: extraTokens = {}, photos = [], faq = [] } = {}) {
   const layout = fs.readFileSync(path.join(partialsDir, 'layout.html'), 'utf8').replace(/\r\n/g, '\n');
-  let html = applyIncludes(layout.replace('{{@content}}', () => applyPhotoDirectives(applyConfigConditionals(page.body.trim(), config), photos)), partialsDir);
+  const withContent = layout.replace('{{@content}}', () => applyPhotoDirectives(page.body.trim(), photos));
+  // Config conditionals run after includes so partials (header, footer) can use them too.
+  let html = applyConfigConditionals(applyIncludes(withContent, partialsDir), config);
 
-  const special = { ...pageTokens(page, config, photos), ...extraTokens };
+  const special = { ...pageTokens(page, config, photos, faq), ...extraTokens };
   html = html.replace(/\{\{(@\w+)\}\}/g, (match, key) => (key in special ? special[key] : match));
   html = applyNavState(html, pagePathFor(page.fileName));
 

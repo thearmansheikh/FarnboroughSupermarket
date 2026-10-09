@@ -715,3 +715,39 @@ header :focus-visible,
   height: 420px;
   border: 0;
 }
+
+.faq-item {
+  border: 1px solid #dfeee4;
+  border-radius: 1rem;
+  background: #fff;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  padding: 1rem 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: '+';
+  float: right;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--brand-green);
+}
+
+.faq-item[open] summary::after {
+  content: '\2212';
+}
+
+.faq-item p {
+  margin: 0;
+  padding: 0 1.25rem 1.1rem;
+  color: #475569;
+}

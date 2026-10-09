@@ -104,6 +104,7 @@ export function tokensFor(config) {
     HOURS_DASH: `${formatTime(hours.opens)} – ${formatTime(hours.closes)}`,
     HOURS_LONG: `${formatTime(hours.opens, true)} – ${formatTime(hours.closes, true)}`,
     FACEBOOK_URL: config.facebookUrl,
+    GOOGLE_REVIEWS_URL: config.googleReviewsUrl,
     FORMSUBMIT_ALIAS: config.formsubmitAlias,
     PRIVACY_UPDATED: new Date(`${config.privacyUpdated}T12:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }),
   };

@@ -70,3 +70,13 @@ test('the thank-you page has hours, a call button, a link home, and is noindex',
   assert.match(thanks, /href="tel:01252940815"[^>]*>Call 01252 940815/);
   assert.match(thanks, /href="\/"[^>]*>Back to homepage/);
 });
+
+test('a Google reviews link appears in the footer, contact page and structured data only when configured', () => {
+  const none = render({});
+  const some = render({ GOOGLE_REVIEWS_URL: 'https://g.page/r/example/review?utm_source=x' });
+
+  assert.doesNotMatch(none.contact, /Google reviews|See our reviews on Google/);
+  assert.match(some.contact, /href="https:\/\/g\.page\/r\/example\/review"[^>]*>See our reviews on Google/);
+  assert.match(some.contact, /href="https:\/\/g\.page\/r\/example\/review"[^>]*>Google reviews/);
+  assert.match(some.contact, /"sameAs": \[\s*"https:\/\/www\.facebook\.com\/share\/1JGNKZoFTJ\/",\s*"https:\/\/g\.page\/r\/example\/review"/);
+});
