@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { escapeHtml } from './render.mjs';
+import { escapeHtml } from './html.mjs';
 
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 

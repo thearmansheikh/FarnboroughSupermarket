@@ -10,3 +10,5 @@ coverage/
 npm-debug.log*
 .vercel
 .env*.local
+assets/photos-source/*
+!assets/photos-source/.gitkeep

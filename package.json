@@ -10,6 +10,7 @@
     "test": "node --test"
   },
   "devDependencies": {
+    "sharp": "^0.35.5",
     "tailwindcss": "^3.4.17"
   },
   "type": "module",

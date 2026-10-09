@@ -1,5 +1,6 @@
 ---
 title: Farnborough Supermarket | Halal Meat, Fresh Produce & World Foods
+preload: hero
 description: Local supermarket at {{ADDRESS_ONE_LINE}}. Fresh halal meat, fruit and veg, rice, tea, spices and world food essentials. Open daily {{HOURS_SHORT}}.
 ogDescription: Halal meat, fresh produce, rice, tea and world foods at {{ADDRESS_LINE1}}, {{TOWN}}.
 ---
@@ -29,6 +30,11 @@ ogDescription: Halal meat, fresh produce, rice, tea and world foods at {{ADDRESS
 
           <div class="hero-visual relative">
             <div class="hero-glow absolute -inset-4 rounded-[2.5rem] bg-brand-50/10 blur-3xl"></div>
+            <!-- @if photo:hero -->
+            <div class="hero-photo">
+              <!-- @photo slot=hero priority sizes="(min-width: 1024px) 50vw, 100vw" class="h-full w-full object-cover" -->
+            </div>
+            <!-- @else -->
             <div class="photo-stack">
               <div class="photo-main photo-one">
                 <div class="hero-photo-tag top-5 left-5">Fresh produce</div>
@@ -41,6 +47,7 @@ ogDescription: Halal meat, fresh produce, rice, tea and world foods at {{ADDRESS
                 <div class="photo-label">World foods</div>
               </div>
             </div>
+            <!-- @endif -->
           </div>
         </div>
       </section>
@@ -73,24 +80,54 @@ ogDescription: Halal meat, fresh produce, rice, tea and world foods at {{ADDRESS
 
       <section class="mx-auto max-w-7xl px-4 pb-4 sm:px-6 lg:px-8">
         <div class="photo-showcase grid gap-4 md:grid-cols-3">
+<!-- @if photo:tile-greens -->
+          <article class="photo-card-stand">
+            <!-- @photo slot=tile-greens sizes="(min-width: 768px) 33vw, 100vw" class="absolute inset-0 h-full w-full object-cover" -->
+            <div class="photo-card-overlay">
+              <span>Greens</span>
+              <strong>Fresh vegetables</strong>
+            </div>
+          </article>
+          <!-- @else -->
           <article class="photo-card-stand photo-card-1">
             <div class="photo-card-overlay">
               <span>Greens</span>
               <strong>Fresh vegetables</strong>
             </div>
           </article>
+          <!-- @endif -->
+<!-- @if photo:tile-tea -->
+          <article class="photo-card-stand">
+            <!-- @photo slot=tile-tea sizes="(min-width: 768px) 33vw, 100vw" class="absolute inset-0 h-full w-full object-cover" -->
+            <div class="photo-card-overlay">
+              <span>Tea</span>
+              <strong>Tea and dry fruits</strong>
+            </div>
+          </article>
+          <!-- @else -->
           <article class="photo-card-stand photo-card-2">
             <div class="photo-card-overlay">
               <span>Tea</span>
               <strong>Tea and dry fruits</strong>
             </div>
           </article>
+          <!-- @endif -->
+<!-- @if photo:tile-pantry -->
+          <article class="photo-card-stand">
+            <!-- @photo slot=tile-pantry sizes="(min-width: 768px) 33vw, 100vw" class="absolute inset-0 h-full w-full object-cover" -->
+            <div class="photo-card-overlay">
+              <span>Pantry</span>
+              <strong>Olives and pickles</strong>
+            </div>
+          </article>
+          <!-- @else -->
           <article class="photo-card-stand photo-card-3">
             <div class="photo-card-overlay">
               <span>Pantry</span>
               <strong>Olives and pickles</strong>
             </div>
           </article>
+          <!-- @endif -->
         </div>
       </section>
 

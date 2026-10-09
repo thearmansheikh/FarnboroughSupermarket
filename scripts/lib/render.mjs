@@ -1,19 +1,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { tokensFor } from './config.mjs';
+import { escapeHtml } from './html.mjs';
+import { applyPhotoDirectives, preloadTag } from './photos.mjs';
 import { breadcrumbJsonLd, groceryStoreJsonLd, jsonLdScript } from './structured-data.mjs';
 
 const ACTIVE_LINK = ' class="text-brand-600" aria-current="page"';
 const IDLE_LINK = ' class="hover:text-brand-500"';
 
-export function escapeHtml(value) {
-  return String(value)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
+export { escapeHtml };
 
 // Splits "---\nkey: value\n---\nbody" into { meta, body }.
 export function parseFrontMatter(source, label = 'page') {
@@ -63,7 +58,7 @@ function applyNavState(content, pagePath) {
     .replace(/\{\{AC:([^}]+)\}\}/g, (match, link) => (link === pagePath ? ' aria-current="page"' : ''));
 }
 
-function pageTokens(page, config) {
+function pageTokens(page, config, photos) {
   const { meta, fileName } = page;
   const pagePath = pagePathFor(fileName);
   const pageUrl = `${config.siteUrl}${pagePath}`;
@@ -86,15 +81,17 @@ function pageTokens(page, config) {
     '@canonical': noindex ? '' : `<link rel="canonical" href="${escapeHtml(pageUrl)}" />`,
     '@jsonld': jsonLd.map(jsonLdScript).join('\n'),
     '@scripts': scripts,
+    '@preload': preloadTag(photos, meta.preload),
   };
 }
 
 // Renders one page (front matter + body) into a complete HTML document.
-export function renderPage(page, config, partialsDir, extraTokens = {}) {
+// context: { tokens: extra {{@name}} values, photos: generated photo index }.
+export function renderPage(page, config, partialsDir, { tokens: extraTokens = {}, photos = [] } = {}) {
   const layout = fs.readFileSync(path.join(partialsDir, 'layout.html'), 'utf8').replace(/\r\n/g, '\n');
-  let html = applyIncludes(layout.replace('{{@content}}', () => page.body.trim()), partialsDir);
+  let html = applyIncludes(layout.replace('{{@content}}', () => applyPhotoDirectives(page.body.trim(), photos)), partialsDir);
 
-  const special = { ...pageTokens(page, config), ...extraTokens };
+  const special = { ...pageTokens(page, config, photos), ...extraTokens };
   html = html.replace(/\{\{(@\w+)\}\}/g, (match, key) => (key in special ? special[key] : match));
   html = applyNavState(html, pagePathFor(page.fileName));
 

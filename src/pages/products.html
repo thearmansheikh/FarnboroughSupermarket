@@ -15,10 +15,10 @@ breadcrumb: Products
             <a href="/contact" class="mt-7 inline-flex items-center rounded-xl bg-gold px-5 py-3 font-extrabold text-slate-900 transition hover:opacity-95">Visit or contact us</a>
           </div>
           <div class="grid grid-cols-2 gap-3 sm:gap-4" aria-label="A selection of our product categories">
-            <img src="/images/fruit.svg" alt="Fresh fruit selection" class="h-36 w-full rounded-2xl object-cover shadow-lg sm:h-48" />
-            <img src="/images/spices.svg" alt="Spices and world food ingredients" class="mt-8 h-36 w-full rounded-2xl object-cover shadow-lg sm:h-48" />
-            <img src="/images/meat.svg" alt="Fresh halal meat selection" class="-mt-8 h-36 w-full rounded-2xl object-cover shadow-lg sm:h-48" />
-            <img src="/images/rice.svg" alt="Rice and grains" class="h-36 w-full rounded-2xl object-cover shadow-lg sm:h-48" />
+            <!-- @photo slot=cat-produce class="h-36 w-full rounded-2xl object-cover shadow-lg sm:h-48" sizes="(min-width: 1024px) 20vw, 45vw" fallback="/images/fruit.svg" fallback-alt="Fresh fruit selection" -->
+            <!-- @photo slot=cat-world class="mt-8 h-36 w-full rounded-2xl object-cover shadow-lg sm:h-48" sizes="(min-width: 1024px) 20vw, 45vw" fallback="/images/spices.svg" fallback-alt="Spices and world food ingredients" -->
+            <!-- @photo slot=cat-meat class="-mt-8 h-36 w-full rounded-2xl object-cover shadow-lg sm:h-48" sizes="(min-width: 1024px) 20vw, 45vw" fallback="/images/meat.svg" fallback-alt="Fresh halal meat selection" -->
+            <!-- @photo slot=cat-rice class="h-36 w-full rounded-2xl object-cover shadow-lg sm:h-48" sizes="(min-width: 1024px) 20vw, 45vw" fallback="/images/rice.svg" fallback-alt="Rice and grains" -->
           </div>
         </div>
       </section>
@@ -34,7 +34,7 @@ breadcrumb: Products
         </div>
         <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           <article id="fresh-meat" class="card-hover overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft">
-            <img src="/images/meat.svg" alt="Fresh halal meat" class="h-56 w-full object-cover" loading="lazy" />
+            <!-- @photo slot=cat-meat class="h-56 w-full object-cover" sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw" fallback="/images/meat.svg" fallback-alt="Fresh halal meat" -->
             <div class="p-6">
               <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-3xl">🥩</div>
               <h2 class="text-2xl font-black text-slate-900">Fresh halal meat</h2>
@@ -43,7 +43,7 @@ breadcrumb: Products
             </div>
           </article>
           <article id="rice-grains" class="card-hover overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft">
-            <img src="/images/rice.svg" alt="Rice and grains" class="h-56 w-full object-cover" loading="lazy" />
+            <!-- @photo slot=cat-rice class="h-56 w-full object-cover" sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw" fallback="/images/rice.svg" fallback-alt="Rice and grains" -->
             <div class="p-6">
               <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-3xl">🍚</div>
               <h2 class="text-2xl font-black text-slate-900">Rice & grains</h2>
@@ -51,7 +51,7 @@ breadcrumb: Products
             </div>
           </article>
           <article id="tea-dry-fruits" class="card-hover overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft">
-            <img src="/images/tea.svg" alt="Tea and dry fruits" class="h-56 w-full object-cover" loading="lazy" />
+            <!-- @photo slot=cat-tea class="h-56 w-full object-cover" sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw" fallback="/images/tea.svg" fallback-alt="Tea and dry fruits" -->
             <div class="p-6">
               <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-3xl">🫖</div>
               <h2 class="text-2xl font-black text-slate-900">Tea & dry fruits</h2>
@@ -59,7 +59,7 @@ breadcrumb: Products
             </div>
           </article>
           <article id="olives-pickles" class="card-hover overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft">
-            <img src="/images/olives.svg" alt="Olives and pickles" class="h-56 w-full object-cover" loading="lazy" />
+            <!-- @photo slot=cat-olives class="h-56 w-full object-cover" sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw" fallback="/images/olives.svg" fallback-alt="Olives and pickles" -->
             <div class="p-6">
               <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-3xl">🫒</div>
               <h2 class="text-2xl font-black text-slate-900">Olives & pickles</h2>
@@ -67,7 +67,7 @@ breadcrumb: Products
             </div>
           </article>
           <article id="fresh-produce" class="card-hover overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft">
-            <img src="/images/fruit.svg" alt="Fresh produce" class="h-56 w-full object-cover" loading="lazy" />
+            <!-- @photo slot=cat-produce class="h-56 w-full object-cover" sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw" fallback="/images/fruit.svg" fallback-alt="Fresh produce" -->
             <div class="p-6">
               <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-3xl">🥭</div>
               <h2 class="text-2xl font-black text-slate-900">Fresh produce</h2>
@@ -75,7 +75,7 @@ breadcrumb: Products
             </div>
           </article>
           <article id="world-foods" class="card-hover overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-soft">
-            <img src="/images/spices.svg" alt="World foods" class="h-56 w-full object-cover" loading="lazy" />
+            <!-- @photo slot=cat-world class="h-56 w-full object-cover" sizes="(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw" fallback="/images/spices.svg" fallback-alt="World foods" -->
             <div class="p-6">
               <div class="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-50 text-3xl">🌶️</div>
               <h2 class="text-2xl font-black text-slate-900">World foods</h2>
