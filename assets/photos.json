@@ -72,7 +72,9 @@
     "file": "f8.jpg.jpeg",
     "name": "shop-floor",
     "alt": "A wide view of the shop floor with aisles of snacks, sweets and groceries under bright lighting",
-    "slots": [],
+    "slots": [
+      "about-story"
+    ],
     "caption": "Aisles of groceries"
   },
   {

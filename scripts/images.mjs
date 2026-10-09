@@ -21,7 +21,7 @@ const MAX_BYTES = { 480: 60 * 1024, 800: 110 * 1024, 1200: 200 * 1024, 1600: 320
 export const SLOTS = [
   'hero', 'tile-greens', 'tile-tea', 'tile-pantry',
   'cat-meat', 'cat-rice', 'cat-tea', 'cat-olives', 'cat-produce', 'cat-world',
-  'inside-main', 'inside-a', 'inside-b',
+  'inside-main', 'inside-a', 'inside-b', 'about-story',
   'about', 'og',
 ];
 

@@ -127,7 +127,9 @@
   {
     "name": "shop-floor-e0ea5796",
     "alt": "A wide view of the shop floor with aisles of snacks, sweets and groceries under bright lighting",
-    "slots": [],
+    "slots": [
+      "about-story"
+    ],
     "gallery": true,
     "caption": "Aisles of groceries",
     "width": 4032,

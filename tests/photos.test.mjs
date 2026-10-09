@@ -154,3 +154,20 @@ test('the real shop photos are all processed, described and used on the pages', 
     fs.rmSync(outDir, { recursive: true, force: true });
   }
 });
+
+test('the About page leads with a photo, and the offers empty state has call and directions buttons', () => {
+  const outDir = fs.mkdtempSync(path.join(os.tmpdir(), 'farnborough-polish-'));
+  try {
+    build({ outDir, config: loadConfig({ env: {} }), css: false });
+    const about = fs.readFileSync(path.join(outDir, 'about.html'), 'utf8');
+    const offers = fs.readFileSync(path.join(outDir, 'offers.html'), 'utf8');
+
+    assert.match(about, /<link rel="preload" as="image" type="image\/avif"[^>]*shop-interior/);
+    assert.match(about, /class="hero-photo"><picture>/);
+    assert.match(about, /shop-floor-[0-9a-f]{8}-800\.webp/);
+    assert.doesNotMatch(about, /Fresh produce<\/p><p class="mt-2 text-sm text-white\/75">/);
+    assert.match(offers, /id="offers-empty"[\s\S]*href="tel:01252940815"[\s\S]*Get directions/);
+  } finally {
+    fs.rmSync(outDir, { recursive: true, force: true });
+  }
+});
