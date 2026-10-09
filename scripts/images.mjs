@@ -5,6 +5,7 @@
 //   assets/photos/          generated AVIF + WebP files and index.json (committed, safe to publish)
 //
 // Run: npm run photos
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -59,7 +60,7 @@ export async function generatePhotos({ root = rootDir, quiet = false } = {}) {
       continue;
     }
 
-    const name = slugify(entry.file);
+    const name = `${slugify(entry.file)}-${createHash('sha1').update(fs.readFileSync(source)).digest('hex').slice(0, 8)}`;
     // .rotate() applies the EXIF orientation; sharp drops all metadata (EXIF, GPS) from the outputs by default.
     const base = sharp(source).rotate();
     const meta = await sharp(source).metadata();

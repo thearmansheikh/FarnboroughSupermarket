@@ -38,7 +38,7 @@ test('photos are resized, converted, rotated and stripped of metadata', async ()
     const out = path.join(root, 'assets', 'photos');
 
     assert.equal(index.length, 1);
-    assert.equal(index[0].name, 'shop-front');
+    assert.match(index[0].name, /^shop-front-[0-9a-f]{8}$/);
     assert.deepEqual(index[0].widths, [480, 800, 1200, 1600]);
     // Orientation 6 means the stored landscape pixels display as portrait.
     assert.equal(index[0].width, 1600);
@@ -46,7 +46,7 @@ test('photos are resized, converted, rotated and stripped of metadata', async ()
 
     for (const width of index[0].widths) {
       for (const format of ['avif', 'webp']) {
-        const file = path.join(out, `shop-front-${width}.${format}`);
+        const file = path.join(out, `${index[0].name}-${width}.${format}`);
         assert.ok(fs.existsSync(file), `${width}.${format}`);
         const meta = await sharp(file).metadata();
         assert.equal(meta.exif, undefined, `${width}.${format} has EXIF`);
@@ -55,7 +55,7 @@ test('photos are resized, converted, rotated and stripped of metadata', async ()
       }
     }
 
-    assert.ok(fs.statSync(path.join(out, 'shop-front-1200.webp')).size < 200 * 1024, '1200w under 200 KB');
+    assert.ok(fs.statSync(path.join(out, `${index[0].name}-1200.webp`)).size < 200 * 1024, '1200w under 200 KB');
   } finally {
     fs.rmSync(root, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 });
   }
@@ -83,16 +83,16 @@ test('pages use real photos, a preloaded hero and the gallery when photos exist'
   const root = await makeProject(manifest);
   const outDir = path.join(root, 'dist');
   try {
-    await generatePhotos({ root, quiet: true });
+    const [photo] = await generatePhotos({ root, quiet: true });
     build({ rootDir: root, outDir, config: loadConfig({ env: {} }), css: false });
     const read = (file) => fs.readFileSync(path.join(outDir, file), 'utf8');
     const home = read('index.html');
 
-    assert.match(home, /<picture><source type="image\/avif" srcset="[^"]*shop-front-480\.avif 480w/);
-    assert.match(home, /<img src="\/images\/photos\/shop-front-800\.webp" width="800" height="1200" alt="The Farnborough Supermarket shopfront on Eastmead"[^>]*fetchpriority="high"/);
-    assert.match(home, /<link rel="preload" as="image" type="image\/avif" imagesrcset="[^"]*shop-front-1600\.avif 1600w/);
+    assert.match(home, /<picture><source type="image\/avif" srcset="[^"]*shop-front-[0-9a-f]{8}-480\.avif 480w/);
+    assert.match(home, /<img src="\/images\/photos\/shop-front-[0-9a-f]{8}-800\.webp" width="800" height="1200" alt="The Farnborough Supermarket shopfront on Eastmead"[^>]*fetchpriority="high"/);
+    assert.match(home, /<link rel="preload" as="image" type="image\/avif" imagesrcset="[^"]*shop-front-[0-9a-f]{8}-1600\.avif 1600w/);
     assert.doesNotMatch(home, /photo-stack/);
-    assert.ok(fs.existsSync(path.join(outDir, 'images', 'photos', 'shop-front-1200.avif')));
+    assert.ok(fs.existsSync(path.join(outDir, 'images', 'photos', photo.name + '-1200.avif')));
     assert.ok(!fs.existsSync(path.join(outDir, 'images', 'photos', 'index.json')));
 
     assert.match(read('products.html'), /<picture>[\s\S]*alt="The Farnborough Supermarket shopfront on Eastmead"/);

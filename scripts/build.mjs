@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
@@ -60,6 +61,39 @@ export function assertNoPlaceholders(outDir) {
   if (problems.length) throw new Error(`Unresolved placeholders in build output:\n  ${problems.join('\n  ')}`);
 }
 
+const FINGERPRINTED = ['tailwind.css', 'styles.css', 'theme.js', 'contact.js', 'offers.js', 'gallery.js'];
+
+// Renames CSS/JS to /assets/<name>.<content hash>.<ext> and updates every page, so the files can be cached
+// for a year: a changed file gets a new name and visitors never see a stale copy.
+export function fingerprintAssets(outDir) {
+  const renames = new Map();
+  const assetsDir = path.join(outDir, 'assets');
+
+  for (const file of FINGERPRINTED) {
+    const source = path.join(outDir, file);
+    if (!fs.existsSync(source)) continue;
+
+    const content = fs.readFileSync(source);
+    const hash = createHash('sha256').update(content).digest('hex').slice(0, 10);
+    const ext = path.extname(file);
+    const renamed = `/assets/${path.basename(file, ext)}.${hash}${ext}`;
+
+    fs.mkdirSync(assetsDir, { recursive: true });
+    fs.writeFileSync(path.join(outDir, renamed), content);
+    fs.rmSync(source);
+    renames.set(`/${file}`, renamed);
+  }
+
+  for (const page of fs.readdirSync(outDir).filter((name) => name.endsWith('.html'))) {
+    const pagePath = path.join(outDir, page);
+    let html = fs.readFileSync(pagePath, 'utf8');
+    for (const [from, to] of renames) html = html.split(`"${from}"`).join(`"${to}"`);
+    fs.writeFileSync(pagePath, html);
+  }
+
+  return renames;
+}
+
 // Builds the deployable site: public/ assets + rendered pages + sitemap + CSS, written to outDir.
 export function build({ rootDir = projectRoot, outDir = path.join(rootDir, 'dist'), config = loadConfig(), css = true } = {}) {
   fs.rmSync(outDir, { recursive: true, force: true });
@@ -80,6 +114,7 @@ export function build({ rootDir = projectRoot, outDir = path.join(rootDir, 'dist
   fs.writeFileSync(path.join(outDir, 'sitemap.xml'), sitemapXml(pages, config, rootDir));
   if (css) compileCss(rootDir, path.join(outDir, 'tailwind.css'));
 
+  fingerprintAssets(outDir);
   assertNoPlaceholders(outDir);
   return { config, pages };
 }

@@ -21,6 +21,9 @@ test.after(() => fs.rmSync(outDir, { recursive: true, force: true }));
 
 const pages = fs.readdirSync(outDir).filter((file) => file.endsWith('.html'));
 const read = (file) => fs.readFileSync(path.join(outDir, file), 'utf8');
+// Reads a fingerprinted file such as assets/styles.<hash>.css.
+const assetFiles = () => fs.readdirSync(path.join(outDir, 'assets'));
+const readAsset = (name, ext) => fs.readFileSync(path.join(outDir, 'assets', assetFiles().find((file) => file.startsWith(`${name}.`) && file.endsWith(ext))), 'utf8');
 const isIndexable = (file) => !/<meta name="robots" content="[^"]*noindex/.test(read(file));
 const vercel = JSON.parse(fs.readFileSync(path.join(rootDir, 'vercel.json'), 'utf8'));
 
@@ -225,7 +228,7 @@ test('no page loads third-party scripts, fonts or images, and every image has al
     for (const [tag] of html.matchAll(/<img\b[^>]*>/g)) assert.match(tag, /\balt="[^"]+"/, `${page}: ${tag.slice(0, 60)}`);
   }
 
-  assert.doesNotMatch(read('styles.css'), /unsplash|https?:\/\//);
+  assert.doesNotMatch(readAsset('styles', '.css'), /unsplash|https?:\/\//);
 });
 
 test('the products page keeps its category chips out of the nav landmark', () => {
@@ -249,6 +252,73 @@ test('the CSP lets the contact form post to FormSubmit and be redirected back to
   // Chrome applies form-action to the redirect FormSubmit sends back to /thank-you, so 'self' is required.
   assert.match(formAction, /'self'/);
   assert.ok(formAction.includes('https://formsubmit.co'));
+});
+
+const headerMap = (rule) => Object.fromEntries(rule.headers.map((header) => [header.key, header.value]));
+const rule = (source) => vercel.headers.find((entry) => entry.source === source);
+
+test('the CSP is strict: no inline or eval scripts, no inline styles, no third-party origins except Maps and FormSubmit', () => {
+  const csp = headerMap(vercel.headers[0])['Content-Security-Policy'];
+  const directive = (name) => (csp.match(new RegExp(`(?:^|; )${name} ([^;]+)`)) || [])[1];
+
+  assert.equal(directive('default-src'), "'self'");
+  assert.equal(directive('script-src'), "'self'");
+  assert.equal(directive('style-src'), "'self'");
+  assert.equal(directive('connect-src'), "'self'");
+  assert.equal(directive('frame-src'), 'https://www.google.com');
+  assert.equal(directive('frame-ancestors'), "'none'");
+  assert.equal(directive('base-uri'), "'self'");
+  assert.equal(directive('object-src'), "'none'");
+  assert.ok(csp.includes('upgrade-insecure-requests'));
+  assert.doesNotMatch(csp, /unsafe-inline|unsafe-eval/);
+});
+
+test('all the security headers are set on every route', () => {
+  const headers = headerMap(vercel.headers[0]);
+
+  assert.equal(vercel.headers[0].source, '/(.*)');
+  assert.equal(headers['X-Content-Type-Options'], 'nosniff');
+  assert.equal(headers['Referrer-Policy'], 'strict-origin-when-cross-origin');
+  assert.equal(headers['Permissions-Policy'], 'camera=(), microphone=(), geolocation=(), payment=(), usb=()');
+  assert.equal(headers['X-Frame-Options'], 'DENY');
+  assert.equal(headers['Cross-Origin-Opener-Policy'], 'same-origin');
+});
+
+test('HTML is always revalidated while fingerprinted assets and photos cache for a year', () => {
+  assert.equal(headerMap(vercel.headers[0])['Cache-Control'], 'public, max-age=0, must-revalidate');
+  assert.equal(headerMap(rule('/assets/(.*)'))['Cache-Control'], 'public, max-age=31536000, immutable');
+  assert.equal(headerMap(rule('/images/photos/(.*)'))['Cache-Control'], 'public, max-age=31536000, immutable');
+  assert.match(headerMap(rule('/images/(.*)'))['Cache-Control'], /max-age=86400/);
+});
+
+test('CSS and JS are content-fingerprinted and every page points at the hashed file', () => {
+  const names = assetFiles();
+
+  for (const base of ['tailwind.css', 'styles.css', 'theme.js', 'contact.js', 'offers.js', 'gallery.js']) {
+    const [name, ext] = [base.replace(/\.[^.]+$/, ''), path.extname(base)];
+    assert.ok(names.some((file) => new RegExp(`^${name}\\.[0-9a-f]{10}\\${ext}$`).test(file)), `${base} fingerprinted`);
+    assert.ok(!fs.existsSync(path.join(outDir, base)), `${base} left unhashed`);
+  }
+
+  for (const page of pages) {
+    const html = read(page);
+    assert.doesNotMatch(html, /"\/(tailwind|styles)\.css"|"\/(theme|contact|offers|gallery)\.js"/, `${page} references an unhashed asset`);
+    for (const [, href] of html.matchAll(/(?:href|src)="(\/assets\/[^"]+)"/g)) assert.ok(fs.existsSync(path.join(outDir, href)), `${page}: ${href}`);
+  }
+});
+
+test('pages have no inline scripts, inline styles or inline event handlers', () => {
+  for (const page of pages) {
+    const html = read(page);
+    const scripts = [...html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/g)];
+
+    for (const [, attributes, body] of scripts) {
+      assert.ok(/type="application\/ld\+json"/.test(attributes) || (/\bsrc="/.test(attributes) && body.trim() === ''), `${page} has an inline script`);
+    }
+    assert.doesNotMatch(html, /<style\b/, `${page} <style>`);
+    assert.doesNotMatch(html, /\sstyle="/, `${page} style attribute`);
+    assert.doesNotMatch(html, /\son[a-z]+="/i, `${page} inline event handler`);
+  }
 });
 
 test('no file named like a server entry point exists where Vercel would pick it up', () => {
