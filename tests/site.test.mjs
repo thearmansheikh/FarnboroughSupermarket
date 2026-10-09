@@ -194,6 +194,15 @@ test('vercel config builds dist with no framework preset and sends security head
   assert.match(headers['Content-Security-Policy'], /script-src 'self'(;|$)/);
 });
 
+test('the CSP lets the contact form post to FormSubmit and be redirected back to this site', () => {
+  const csp = vercel.headers[0].headers.find((header) => header.key === 'Content-Security-Policy').value;
+  const formAction = csp.match(/form-action ([^;]+)/)[1];
+
+  // Chrome applies form-action to the redirect FormSubmit sends back to /thank-you, so 'self' is required.
+  assert.match(formAction, /'self'/);
+  assert.match(formAction, /https://formsubmit.co/);
+});
+
 test('no file named like a server entry point exists where Vercel would pick it up', () => {
   for (const name of ['src/server.js', 'src/app.js', 'src/index.js', 'server.js', 'app.js', 'index.js']) {
     assert.ok(!fs.existsSync(path.join(rootDir, name)), `${name} would be detected as a Node app`);

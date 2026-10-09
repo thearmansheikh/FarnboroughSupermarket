@@ -1,50 +1,72 @@
-const contactForm = document.getElementById('contact-form');
+// Contact form: the form is a normal HTML form that posts to FormSubmit and works without JavaScript.
+// This script only adds friendly inline validation and a "Sending..." state.
+(function () {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
 
-if (contactForm) {
   const status = document.getElementById('contact-form-status');
-  const submitButton = contactForm.querySelector('[type="submit"]');
+  const button = form.querySelector('[type="submit"]');
+  const idleLabel = button.textContent;
+  const fields = Array.from(form.querySelectorAll('input[name="name"], input[name="email"], textarea[name="message"]'));
 
-  contactForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    if (!contactForm.reportValidity()) return;
+  // Replace the browser's pop-up bubbles with messages we can announce to screen readers.
+  form.setAttribute('novalidate', '');
 
-    status.classList.remove('hidden');
-    status.textContent = 'Sending your enquiry...';
-    submitButton.disabled = true;
-    submitButton.textContent = 'Sending...';
+  function message(field) {
+    const v = field.validity;
+    const label = field.name === 'name' ? 'your name' : field.name === 'email' ? 'your email address' : 'your message';
+    if (v.valueMissing) return 'Please enter ' + label + '.';
+    if (v.typeMismatch) return 'Please enter a valid email address, like name@example.com.';
+    if (v.tooShort) return 'Please write a little more (at least ' + field.minLength + ' characters).';
+    if (v.tooLong) return 'Please keep this under ' + field.maxLength + ' characters.';
+    return '';
+  }
 
-    try {
-      const action = contactForm.getAttribute('action');
-      const endpointPrefix = 'https://formsubmit.co/';
-      if (!action || !action.startsWith(endpointPrefix) || action === endpointPrefix || /[{}]/.test(action)) {
-        throw new Error('The FormSubmit alias has not been configured.');
-      }
+  function showError(field, text) {
+    const error = document.getElementById(field.id + '-error');
+    field.setAttribute('aria-invalid', text ? 'true' : 'false');
+    if (!error) return;
+    error.textContent = text;
+    error.hidden = !text;
+  }
 
-      const endpoint = action.replace(endpointPrefix, `${endpointPrefix}ajax/`);
-      const formValues = Object.fromEntries(new FormData(contactForm).entries());
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        },
-        body: JSON.stringify(formValues)
-      });
-      const result = await response.json();
-
-      if (!response.ok || result.success === false || result.success === 'false') {
-        throw new Error(result.message || 'The enquiry could not be sent.');
-      }
-
-      window.location.assign('/thank-you');
-    } catch (error) {
-      status.textContent = `We could not send your enquiry just now. ${contactForm.dataset.fallback || ''}`.trim();
-      submitButton.disabled = false;
-      submitButton.textContent = 'Send enquiry';
-    }
+  fields.forEach((field) => {
+    field.addEventListener('blur', () => field.value && showError(field, message(field)));
+    field.addEventListener('input', () => field.getAttribute('aria-invalid') === 'true' && showError(field, message(field)));
   });
-}
 
+  function setStatus(text) {
+    status.textContent = text;
+    status.classList.toggle('hidden', !text);
+  }
+
+  form.addEventListener('submit', (event) => {
+    const problems = fields.filter((field) => message(field));
+    fields.forEach((field) => showError(field, message(field)));
+
+    if (problems.length) {
+      event.preventDefault();
+      setStatus(problems.length === 1 ? 'Please fix the highlighted field.' : 'Please fix the ' + problems.length + ' highlighted fields.');
+      problems[0].focus();
+      return;
+    }
+
+    // Valid: let the browser post the form. Disable the button so it cannot be sent twice.
+    setStatus('Sending your enquiry...');
+    button.disabled = true;
+    button.textContent = 'Sending...';
+  });
+
+  // Coming back with the Back button should not leave the form stuck on "Sending...".
+  window.addEventListener('pageshow', (event) => {
+    if (!event.persisted) return;
+    button.disabled = false;
+    button.textContent = idleLabel;
+    setStatus('');
+  });
+})();
+
+// Google Maps loads only after the visitor clicks "Load map" or allows the Maps category.
 (function () {
   const mapPlaceholder = document.querySelector('[data-map-placeholder]');
   const mapFrameContainer = document.querySelector('[data-map-frame]');
@@ -68,10 +90,7 @@ if (contactForm) {
     const iframe = document.createElement('iframe');
     iframe.title = 'Map to Farnborough Supermarket';
     iframe.src = mapUrl;
-    iframe.width = '100%';
-    iframe.height = '420';
-    iframe.style.border = '0';
-    iframe.style.display = 'block';
+    iframe.className = 'map-frame';
     iframe.setAttribute('allowfullscreen', '');
     iframe.loading = 'lazy';
     iframe.referrerPolicy = 'no-referrer-when-downgrade';

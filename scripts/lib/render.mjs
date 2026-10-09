@@ -51,6 +51,12 @@ function applyIncludes(content, partialsDir) {
   return output;
 }
 
+// <!-- @if config:formsubmitAlias --> ... <!-- @else --> ... <!-- @endif --> keyed on a (non-empty) config value.
+function applyConfigConditionals(content, config) {
+  const pattern = /<!--\s*@if\s+config:(\w+)\s*-->([\s\S]*?)(?:<!--\s*@else\s*-->([\s\S]*?))?<!--\s*@endif\s*-->/g;
+  return content.replace(pattern, (match, key, whenTrue, whenFalse = '') => (config[key] ? whenTrue : whenFalse));
+}
+
 function applyNavState(content, pagePath) {
   return content
     .replace(/ ?\{\{NAV:([^}]+)\}\}/g, (match, link) => (link === pagePath ? ACTIVE_LINK : IDLE_LINK))
@@ -89,7 +95,7 @@ function pageTokens(page, config, photos) {
 // context: { tokens: extra {{@name}} values, photos: generated photo index }.
 export function renderPage(page, config, partialsDir, { tokens: extraTokens = {}, photos = [] } = {}) {
   const layout = fs.readFileSync(path.join(partialsDir, 'layout.html'), 'utf8').replace(/\r\n/g, '\n');
-  let html = applyIncludes(layout.replace('{{@content}}', () => applyPhotoDirectives(page.body.trim(), photos)), partialsDir);
+  let html = applyIncludes(layout.replace('{{@content}}', () => applyPhotoDirectives(applyConfigConditionals(page.body.trim(), config), photos)), partialsDir);
 
   const special = { ...pageTokens(page, config, photos), ...extraTokens };
   html = html.replace(/\{\{(@\w+)\}\}/g, (match, key) => (key in special ? special[key] : match));

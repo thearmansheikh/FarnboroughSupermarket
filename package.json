@@ -7,6 +7,8 @@
     "dev": "node scripts/dev-server.mjs",
     "start": "node scripts/dev-server.mjs",
     "build": "node scripts/build.mjs",
+    "photos": "node scripts/images.mjs",
+    "og": "node scripts/make-og-image.mjs",
     "test": "node --test"
   },
   "devDependencies": {
