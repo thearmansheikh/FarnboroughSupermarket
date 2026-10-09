@@ -24,7 +24,7 @@ Work through this in order. Owner-only values are listed in [launch-todos.md](la
 - [ ] Check the test arrives, including in spam.
 
 ## 4. Content sign-off by the owner
-- [ ] Opening hours: 6am to 10pm every day.
+- [ ] Opening hours: 7am to 10pm every day.
 - [ ] Phone 01252 940815 and email supermarketfarnborough@gmail.com.
 - [ ] Every statement in the privacy policy, including the 12-month retention of enquiry emails.
 - [ ] Product category wording on Home and Products.

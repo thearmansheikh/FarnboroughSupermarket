@@ -40,7 +40,7 @@ Known gap: `npm audit` reports issues in Tailwind's build-time dependencies. Not
 
 Claims to confirm or remove:
 
-- Opening hours of 6am–10pm every day
+- Opening hours of 7am–10pm every day
 - "Nearby parking"
 - "Friendly service"
 - "Fruit, veg and herbs selected daily"

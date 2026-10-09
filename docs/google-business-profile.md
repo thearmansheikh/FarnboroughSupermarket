@@ -12,12 +12,12 @@ Everything below uses only details already on the website. **The owner must conf
 | Address | 99 Eastmead, Farnborough, GU14 7SA |
 | Phone | 01252 940815 |
 | Website | the live site address (the final custom domain once set up) |
-| Hours | Monday to Sunday, 6:00am to 10:00pm. Add special hours for bank holidays when known |
+| Hours | Monday to Sunday, 7:00am to 10:00pm. Add special hours for bank holidays when known |
 | Service area | none (customers come to the shop) |
 
 ## 2. Business description (about 380 characters; Google allows 750)
 
-> Farnborough Supermarket is a local shop at 99 Eastmead, Farnborough, open every day from 6am to 10pm. We stock fresh halal meat, fruit and vegetables, rice and grains, tea and dry fruits, olives and pickles, spices and world food essentials for everyday family cooking. Call us on 01252 940815 or pop in.
+> Farnborough Supermarket is a local shop at 99 Eastmead, Farnborough, open every day from 7am to 10pm. We stock fresh halal meat, fruit and vegetables, rice and grains, tea and dry fruits, olives and pickles, spices and world food essentials for everyday family cooking. Call us on 01252 940815 or pop in.
 
 ## 3. Products to list (no prices, as the site gives none)
 
@@ -38,7 +38,7 @@ Shopfront (from the street, so people can find it), entrance, aisles, fresh prod
 ## 5. Questions and answers to seed
 
 Post these from the owner account, then answer them as the business:
-- **What are your opening hours?** We are open every day, 6am to 10pm.
+- **What are your opening hours?** We are open every day, 7am to 10pm.
 - **Do you sell halal meat?** Yes, fresh halal meat. Please ask in store for current product details.
 - **Where are you?** 99 Eastmead, Farnborough GU14 7SA.
 - **Can I order online?** We do not take online orders. Visit us in store or call 01252 940815.
@@ -46,7 +46,7 @@ Post these from the owner account, then answer them as the business:
 ## 6. Post ideas (one a week, with a real photo)
 
 - "Fresh in this week": a photo of the produce display.
-- "Open every day, 6am to 10pm": a shopfront photo.
+- "Open every day, 7am to 10pm": a shopfront photo.
 - A dated offer, only when the owner has a genuine one (also add it to the website; see [updating-offers.md](updating-offers.md)).
 - A seasonal item or festival greeting, with a photo from the shop.
 
@@ -77,5 +77,5 @@ Use these naturally in profile posts and any new page copy. Do not stuff them in
 - halal meat Farnborough, halal butcher near me (only if the owner confirms a butcher counter)
 - Asian / world food shop Farnborough
 - rice, spices, tea and dry fruits Farnborough
-- supermarket open late Farnborough, open 6am to 10pm
+- supermarket open late Farnborough, open 7am to 10pm
 - Eastmead, GU14 7SA

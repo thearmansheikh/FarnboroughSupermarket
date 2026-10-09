@@ -10,7 +10,7 @@ Step-by-step instructions are in [go-live-checklist.md](go-live-checklist.md).
 - TODO: Confirm the proposed 12-month enquiry email retention period.
 
 ## Content to confirm (the site currently states these)
-- Opening hours: Monday to Sunday, 6am to 10pm.
+- Opening hours: Monday to Sunday, 7am to 10pm.
 - Phone 01252 940815 and email supermarketfarnborough@gmail.com.
 - The shop sells fresh halal meat, fresh produce, rice and grains (including sella and jasmine), tea, nuts and dry fruits, olives and pickles, spices, sauces and world foods.
 - Whether a halal certifier should be named (nothing is claimed today).
