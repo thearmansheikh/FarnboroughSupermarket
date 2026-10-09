@@ -7,6 +7,8 @@
 - Pages in English (UK), with clean addresses such as `/products`.
 
 ## Google Business Profile (owner task)
+
+A copy-ready pack with all the text, categories, questions and answers is in [google-business-profile.md](google-business-profile.md). The summary:
 1. Search for the shop on Google Maps. Claim the listing, or create one at business.google.com.
 2. Use exactly the same details as the website: **Farnborough Supermarket**, 99 Eastmead, Farnborough GU14 7SA, 01252 940815, hours 6am to 10pm daily.
 3. Set the category to "Supermarket" or "Grocery store", and add "Halal grocery store" if it applies.

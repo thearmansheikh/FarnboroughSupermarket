@@ -41,4 +41,4 @@ Work through this in order. Owner-only values are listed in [launch-todos.md](la
 
 ## 6. Search
 - [ ] Add the domain in Google Search Console and submit `/sitemap.xml`.
-- [ ] Claim or update the Google Business Profile (see [local-seo.md](local-seo.md)).
+- [ ] Claim or update the Google Business Profile (see [google-business-profile.md](google-business-profile.md)).

@@ -18,4 +18,4 @@ Step-by-step instructions are in [go-live-checklist.md](go-live-checklist.md).
 ## Content to provide
 - Real store photographs (see `public/images/photos/README.md`). Until then the site shows category illustrations and says photographs are coming soon.
 - Genuine, dated offers if wanted (see [updating-offers.md](updating-offers.md)).
-- Google Business Profile details (see [local-seo.md](local-seo.md)).
+- Google Business Profile details (see [google-business-profile.md](google-business-profile.md)).
