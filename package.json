@@ -2,9 +2,11 @@
   "name": "farnborough-project",
   "version": "1.0.0",
   "private": true,
-  "description": "Starter project workspace for collaborative product development.",
+  "description": "Showcase website for Farnborough Supermarket.",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "node src/server.js"
+    "dev": "node src/server.js",
+    "build": "node src/build.js",
+    "test": "node --test"
   }
 }

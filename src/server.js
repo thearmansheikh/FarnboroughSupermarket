@@ -1,15 +1,30 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const { resolveSiteConfig, applySiteTemplate, TEMPLATED_EXTENSIONS } = require('./site-config');
 
 const port = process.env.PORT || 3000;
 const publicDir = path.resolve(__dirname, '..', 'public');
+const siteConfig = resolveSiteConfig();
+
+// Mirror the permanent redirects in vercel.json.
+const redirects = {
+  '/shop': '/products',
+  '/shop.html': '/products',
+  '/checkout': '/products',
+  '/checkout.html': '/products',
+  '/success': '/products',
+  '/success.html': '/products',
+};
 
 const mimeTypes = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
   '.js': 'application/javascript; charset=utf-8',
   '.json': 'application/json; charset=utf-8',
+  '.xml': 'application/xml; charset=utf-8',
+  '.txt': 'text/plain; charset=utf-8',
+  '.webmanifest': 'application/manifest+json; charset=utf-8',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
@@ -18,10 +33,49 @@ const mimeTypes = {
   '.webp': 'image/webp',
 };
 
+// Mirror Vercel's cleanUrls: /about serves about.html.
+function resolveFile(requestPath) {
+  const trimmed = requestPath.length > 1 ? requestPath.replace(/\/$/, '') : requestPath;
+  const candidate = trimmed === '/' ? '/index.html' : trimmed;
+  const filePath = path.resolve(publicDir, `.${candidate}`);
+
+  if (!path.extname(filePath) && fs.existsSync(`${filePath}.html`)) {
+    return `${filePath}.html`;
+  }
+
+  return filePath;
+}
+
+function sendFile(res, filePath, data, status = 200) {
+  const ext = path.extname(filePath).toLowerCase();
+  const contentType = mimeTypes[ext] || 'application/octet-stream';
+  const body = TEMPLATED_EXTENSIONS.includes(ext) ? applySiteTemplate(data.toString('utf8'), siteConfig) : data;
+
+  res.writeHead(status, {
+    'Content-Type': contentType,
+    'Cache-Control': 'no-cache',
+  });
+
+  res.end(body);
+}
+
 const server = http.createServer((req, res) => {
-  const requestPath = req.url.split('?')[0];
-  const safePath = requestPath === '/' ? '/index.html' : requestPath;
-  const filePath = path.resolve(publicDir, `.${safePath}`);
+  let requestPath;
+  try {
+    requestPath = decodeURIComponent(req.url.split('?')[0]);
+  } catch {
+    res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' });
+    res.end('Bad request');
+    return;
+  }
+
+  if (redirects[requestPath]) {
+    res.writeHead(308, { Location: redirects[requestPath] });
+    res.end();
+    return;
+  }
+
+  const filePath = resolveFile(requestPath);
 
   if (!filePath.startsWith(publicDir)) {
     res.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8' });
@@ -30,19 +84,21 @@ const server = http.createServer((req, res) => {
   }
 
   fs.readFile(filePath, (err, data) => {
-    if (err) {
-      res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
-      res.end('Not found');
+    if (!err) {
+      sendFile(res, filePath, data);
       return;
     }
 
-    const ext = path.extname(filePath).toLowerCase();
-    res.writeHead(200, {
-      'Content-Type': mimeTypes[ext] || 'application/octet-stream',
-      'Cache-Control': 'no-cache',
-    });
+    const notFoundPath = path.join(publicDir, '404.html');
+    fs.readFile(notFoundPath, (notFoundErr, notFoundData) => {
+      if (notFoundErr) {
+        res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+        res.end('Not found');
+        return;
+      }
 
-    res.end(data);
+      sendFile(res, notFoundPath, notFoundData, 404);
+    });
   });
 });
 

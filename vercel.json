@@ -1,6 +1,7 @@
 {
   "version": 2,
-  "outputDirectory": "public",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
@@ -11,6 +12,26 @@
     },
     {
       "source": "/shop.html",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/checkout",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/checkout.html",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/success",
+      "destination": "/products",
+      "permanent": true
+    },
+    {
+      "source": "/success.html",
       "destination": "/products",
       "permanent": true
     }
