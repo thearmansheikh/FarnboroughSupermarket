@@ -330,6 +330,18 @@ test('pages are minified: no comments and no whitespace runs between tags', () =
   }
 });
 
+test('decorative emoji are hidden from screen readers', () => {
+  for (const page of pages) {
+    const withoutHidden = read(page)
+      .replace(/<script[\s\S]*?<\/script>/g, '')
+      .replace(/<span aria-hidden="true">[^<]*<\/span>/g, '');
+    const bare = [...withoutHidden.matchAll(/>([^<>]*\p{Extended_Pictographic}[^<>]*)</gu)].map((match) => match[1]).filter((text) => !/^[©®™☰\s]+$/.test(text) && /\p{Extended_Pictographic}/u.test(text.replace(/[©®™☰]/g, '')));
+
+    assert.deepEqual(bare, [], `${page} has emoji exposed to assistive technology`);
+  }
+  assert.match(read('index.html'), /<span aria-hidden="true">🥩<\/span>/);
+});
+
 test('pages have no inline scripts, inline styles or inline event handlers', () => {
   for (const page of pages) {
     const html = read(page);

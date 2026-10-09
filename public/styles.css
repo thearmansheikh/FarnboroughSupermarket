@@ -751,3 +751,38 @@ header :focus-visible,
   padding: 0 1.25rem 1.1rem;
   color: #475569;
 }
+
+/* Touch targets: at least 44px on interactive controls. */
+.nav-toggle {
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+.mobile-menu a {
+  display: flex;
+  align-items: center;
+  min-height: 2.75rem;
+}
+
+header a[href],
+header button,
+.cookie-notice__button,
+.cookie-preferences summary,
+footer a[href],
+footer button,
+main a.rounded-xl,
+main button.rounded-xl,
+main a.rounded-full {
+  min-height: 2.75rem;
+}
+
+footer a[href],
+footer button,
+.cookie-preferences summary {
+  display: inline-flex;
+  align-items: center;
+}
+
+.cookie-notice__button {
+  min-width: 2.75rem;
+}

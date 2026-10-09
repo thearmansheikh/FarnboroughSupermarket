@@ -12,3 +12,4 @@ npm-debug.log*
 .env*.local
 assets/photos-source/*
 !assets/photos-source/.gitkeep
+dist-check/

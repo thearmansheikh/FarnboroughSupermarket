@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { tokensFor } from './config.mjs';
+import { hideDecorativeEmoji } from './a11y.mjs';
 import { faqJsonLd } from './faq.mjs';
 import { escapeHtml } from './html.mjs';
 import { applyPhotoDirectives, preloadTag } from './photos.mjs';
@@ -106,7 +107,7 @@ export function renderPage(page, config, partialsDir, { tokens: extraTokens = {}
   html = applyNavState(html, pagePathFor(page.fileName));
 
   const tokens = tokensFor(config);
-  return html.replace(/\{\{([A-Z_0-9]+)\}\}/g, (match, key) => (key in tokens ? escapeHtml(tokens[key]) : match));
+  return hideDecorativeEmoji(html.replace(/\{\{([A-Z_0-9]+)\}\}/g, (match, key) => (key in tokens ? escapeHtml(tokens[key]) : match)));
 }
 
 // Replaces {{TOKEN}} values in non-page text files (robots.txt, site.webmanifest, ...).
