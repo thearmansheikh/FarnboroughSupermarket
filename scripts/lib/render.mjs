@@ -76,7 +76,7 @@ function pageTokens(page, config, photos, faq) {
   if (meta.faq && faqJsonLd(faq)) jsonLd.push(faqJsonLd(faq));
 
   const scripts = (meta.scripts ? meta.scripts.split(',').map((name) => name.trim()).filter(Boolean) : [])
-    .concat('theme.js')
+    .concat('status.js', 'theme.js')
     .map((name) => `<script src="/${name}" defer></script>`)
     .join('\n    ');
 

@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { loadConfig, missingOwnerValues, rootDir as projectRoot } from './lib/config.mjs';
 import { faqHtml, loadFaq } from './lib/faq.mjs';
 import { offerTokens } from './lib/offers.mjs';
+import { specialHoursHtml, storyHtml } from './lib/extras.mjs';
 import { optimizeOutput } from './lib/optimize.mjs';
 import { loadPhotos } from './lib/photos.mjs';
 import { loadPages, sitemapXml } from './lib/pages.mjs';
@@ -62,7 +63,7 @@ export function assertNoPlaceholders(outDir) {
   if (problems.length) throw new Error(`Unresolved placeholders in build output:\n  ${problems.join('\n  ')}`);
 }
 
-const FINGERPRINTED = ['site.css', 'theme.js', 'contact.js', 'offers.js', 'gallery.js'];
+const FINGERPRINTED = ['site.css', 'status.js', 'theme.js', 'contact.js', 'offers.js', 'gallery.js'];
 
 // Renames CSS/JS to /assets/<name>.<content hash>.<ext> and updates every page, so the files can be cached
 // for a year: a changed file gets a new name and visitors never see a stale copy.
@@ -107,7 +108,7 @@ export function build({ rootDir = projectRoot, outDir = path.join(rootDir, 'dist
   const pages = loadPages(rootDir);
   const partialsDir = path.join(rootDir, 'src', 'partials');
   const faq = loadFaq(rootDir, config);
-  const context = { tokens: { ...offerTokens(rootDir), '@faq': faqHtml(faq) }, photos: loadPhotos(rootDir), faq };
+  const context = { tokens: { ...offerTokens(rootDir), '@faq': faqHtml(faq), '@story': storyHtml(rootDir), '@specialHours': specialHoursHtml(config.specialHours || []) }, photos: loadPhotos(rootDir), faq };
   for (const page of pages) {
     fs.writeFileSync(path.join(outDir, page.fileName), renderPage(page, config, partialsDir, context));
   }

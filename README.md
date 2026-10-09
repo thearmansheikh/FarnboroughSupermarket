@@ -39,7 +39,7 @@ Then open:
 
 - http://localhost:3000/
 
-Other commands: `npm test` runs the automated checks, and `npm run build` writes the deployable site to `dist/`. Guides: [updating offers](OFFERS_GUIDE.md), [go-live checklist](docs/go-live-checklist.md), [local SEO](docs/local-seo.md).
+Other commands: `npm test` runs the automated checks, and `npm run build` writes the deployable site to `dist/`. Guides: [updating offers](OFFERS_GUIDE.md), [content guide](docs/content-guide.md), [go-live checklist](docs/go-live-checklist.md), [local SEO](docs/local-seo.md).
 
 ## Changing business details
 

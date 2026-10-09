@@ -43,6 +43,7 @@ for (const viewport of VIEWPORTS) {
     if (viewport.name === 'phone') {
       await page.click('[data-nav-toggle]');
       await scan(page, `${viewport.name} ${route} (menu open)`);
+      await page.keyboard.press('Escape');
     }
 
     if (route === '/contact') {

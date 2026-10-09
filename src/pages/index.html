@@ -9,9 +9,9 @@ preload: hero
       <section class="hero-shell bg-gradient-to-br from-brand-700 via-brand-600 to-brand-500 text-white">
         <div class="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-20">
           <div class="flex flex-col justify-center">
-            <div class="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-sm font-semibold text-white/90">
-              <span class="h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
-              Open daily, {{HOURS_SHORT}}
+            <div class="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-sm font-semibold text-white/90" data-open-wrapper>
+              <span class="status-dot" aria-hidden="true"></span>
+              <span data-open-status>Open daily, {{HOURS_SHORT}}</span>
             </div>
             <h1 class="text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl">Fresh food for everyday life in Farnborough.</h1>
             <p class="mt-5 max-w-xl text-lg leading-relaxed text-white/80">

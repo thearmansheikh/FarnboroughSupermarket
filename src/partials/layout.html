@@ -3,10 +3,12 @@
   <head>
     <!-- @include head -->
   </head>
-  <body class="min-h-screen bg-[#f7f5f1] text-slate-800 antialiased">
+  <body class="has-action-bar min-h-screen bg-[#f7f5f1] text-slate-800 antialiased" data-opens="{{OPENS_24}}" data-closes="{{CLOSES_24}}">
     <!-- @include header -->
+    {{@specialHours}}
     {{@content}}
     <!-- @include footer -->
+    <!-- @include action-bar -->
     {{@scripts}}
   </body>
 </html>

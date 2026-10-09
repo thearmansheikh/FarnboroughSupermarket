@@ -786,3 +786,180 @@ footer button,
 .cookie-notice__button {
   min-width: 2.75rem;
 }
+
+/* Live open/closed status */
+.status-dot {
+  display: inline-block;
+  width: 0.65rem;
+  height: 0.65rem;
+  flex: none;
+  border-radius: 9999px;
+  background: #34d399;
+}
+
+[data-state='closed'] .status-dot {
+  background: #fbbf24;
+}
+
+.open-line {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  margin-top: 0.15rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #166534;
+}
+
+.open-line[data-state='closed'] {
+  color: #92400e;
+}
+
+.open-line[hidden] {
+  display: none;
+}
+
+/* Special opening hours banner (bank holidays and so on) */
+.special-hours {
+  background: #fff7e0;
+  border-bottom: 1px solid #f4c767;
+  padding: 0.7rem 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #5b3a00;
+}
+
+.special-hours[hidden] {
+  display: none;
+}
+
+/* Sticky Call / Directions / WhatsApp bar on phones */
+.action-bar {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .has-action-bar {
+    padding-bottom: 4.25rem;
+  }
+
+  .action-bar {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 55;
+    display: flex;
+    border-top: 1px solid #dfeee4;
+    background: #fff;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    box-shadow: 0 -8px 24px rgba(11, 31, 22, 0.12);
+  }
+
+  .action-bar__item {
+    display: flex;
+    flex: 1;
+    min-height: 3.5rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15rem;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #0d3b22;
+  }
+
+  .action-bar__item + .action-bar__item {
+    border-left: 1px solid #dfeee4;
+  }
+
+  .action-bar__icon {
+    width: 1.35rem;
+    height: 1.35rem;
+    fill: currentColor;
+  }
+
+  .cookie-notice {
+    bottom: 4.75rem;
+  }
+}
+
+/* Products: category chips stay in view while scrolling, and anchors land below them */
+.category-chips {
+  position: sticky;
+  top: 4.35rem;
+  z-index: 40;
+  margin-right: -1rem;
+  margin-left: -1rem;
+  padding: 0.6rem 1rem;
+  background: rgba(247, 245, 241, 0.94);
+  backdrop-filter: blur(6px);
+}
+
+[id] {
+  scroll-margin-top: 9rem;
+}
+
+/* Print: the contact page prints as a clean address, hours and phone sheet */
+@media print {
+  header,
+  footer,
+  .skip-link,
+  .cookie-notice,
+  .action-bar,
+  .special-hours,
+  .category-chips,
+  #store-map,
+  #contact-form,
+  [data-map-load],
+  main > section:first-child p:not(:first-of-type) {
+    display: none !important;
+  }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    padding-bottom: 0 !important;
+  }
+
+  main a {
+    color: #000 !important;
+    text-decoration: none;
+  }
+
+  main a[href^='tel:']::after,
+  main a[href^='mailto:']::after {
+    content: '';
+  }
+
+  .rounded-3xl,
+  .rounded-\[2rem\] {
+    border: 1px solid #999 !important;
+    box-shadow: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .category-chips {
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .category-chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .category-chips a {
+    flex: none;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 767px) {
+  html {
+    scroll-padding-bottom: 5rem;
+  }
+}
