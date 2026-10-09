@@ -78,6 +78,22 @@ scripts: contact.js
 
 The site uses local SVG product artwork as a temporary fallback. Replace it with owner-approved store photographs when available. Product availability and pricing are confirmed in store. The enquiry form uses FormSubmit; its hashed alias and the final custom domain are owner configuration TODOs.
 
+## Quality checks
+
+`npm run check` runs everything below in order and prints a summary (add `-- --fast` to skip Lighthouse). GitHub runs it on every push and pull request (see `.github/workflows/check.yml`).
+
+| Check | Command | What it catches |
+|-------|---------|-----------------|
+| Unit tests | `npm test` | wrong hours, missing metadata, broken sitemap, bad offers file, leftover placeholders |
+| Build | `npm run build` | any `{{placeholder}}` left in the output |
+| HTML validation | `npm run validate` | invalid markup |
+| Broken links | `npm run links` | dead internal and external links, missing images and scripts |
+| Accessibility | `npm run a11y` | axe-core, WCAG 2.2 AA, on every page at phone and desktop size, with banner, menu, form errors and map open |
+| Browser smoke tests | `npm run e2e` | navigation, 404 and redirects, offers, map consent, form validation, cookie banner, live open/closed badge, mobile menu |
+| Lighthouse | `npm run lighthouse` | Performance below 95, or any other score below 100 (mobile) |
+
+The browser checks use your installed Chrome. On a fresh machine or CI, run `npx playwright install chromium` first.
+
 ## Owner launch tasks
 
 See [docs/launch-todos.md](docs/launch-todos.md) for custom-domain, FormSubmit and legal/business values that must be confirmed before launch.
