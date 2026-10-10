@@ -27,7 +27,10 @@ Everything that can be done in code is done. What is left needs the shop owner. 
 - [ ] Bank holiday hours → `specialHours` in `site.config.json` ([content-guide.md](content-guide.md)).
 
 ## 4. Domain and Google
-- [ ] Buy the domain and follow [domain-switch.md](domain-switch.md).
-- [ ] Claim the Google Business Profile → [google-business-profile.md](google-business-profile.md).
-- [ ] Add the site to Google Search Console and submit the sitemap.
-- [ ] Optional: connect the GitHub repository to Vercel (Settings → Git) so every push deploys automatically. Today deployments are started from the command line.
+- [x] **Domain bought and live (10 October 2026):** https://farnboroughsupermarket.co.uk, registered at Namecheap (auto-renew should stay ON). DNS: `A @ 76.76.21.21` and `CNAME www cname.vercel-dns.com`. `www` and the old vercel.app address redirect permanently to the main address. HSTS is on.
+- [ ] Send one more test enquiry from https://farnboroughsupermarket.co.uk/contact and check it arrives.
+- [ ] Add the site to **Google Search Console** (Domain property, verify with the DNS record at Namecheap) and submit `https://farnboroughsupermarket.co.uk/sitemap.xml` ([google-business-profile.md](google-business-profile.md), section 9).
+- [ ] Claim or update the **Google Business Profile** and put the website address in; check name, address, phone and hours (7am to 10pm) match exactly.
+- [ ] Add the website link to the Facebook page.
+- [ ] Optional: professional email on the domain, and cookieless analytics. If analytics is added, update the cookie panel and privacy policy at the same time.
+- [ ] Optional: connect the GitHub repository to Vercel so every push deploys automatically (it already deploys from the command line; Vercel shows the repo as connected).

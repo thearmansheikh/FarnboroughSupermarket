@@ -1,5 +1,7 @@
 # Switching to the custom domain
 
+> **Done on 10 October 2026** for `farnboroughsupermarket.co.uk` (Namecheap). The steps below are kept as a record and for any future domain change. HSTS was added without the `preload` flag, as recommended.
+
 Do this when the shop has chosen and bought its domain. Everything on the site that mentions the web address (canonical links, social previews, structured data, the sitemap, `robots.txt`, the form redirect) updates from one value, so the switch is small.
 
 Below, `www.example.co.uk` stands for the real domain.

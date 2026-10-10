@@ -19,7 +19,7 @@ Written 9 October 2026 after a full review of the site. It replaces the generic 
 | 8. Accessibility | Done: axe-core WCAG 2.2 AA, 0 violations in 44 scans; focus-trapped menu, equal Accept/Reject, emoji hidden from screen readers |
 | 9. Delight features | Done: live open/closed badge, special-hours banner, phone action bar, sticky category chips, About story data, print styles. Needs owner content: story text, optional WhatsApp number, brands list |
 | 10. Automated QA | Done: `npm run check` (66 unit tests, html-validate, links, axe, 12 browser tests, Lighthouse budgets) and a GitHub Action |
-| 11. Domain launch | Owner task. Everything is prepared: [domain-switch.md](domain-switch.md) |
+| 11. Domain launch | Done: farnboroughsupermarket.co.uk is live with HTTPS, www and old-address redirects and HSTS. Owner tasks left: Search Console, Google Business Profile, Facebook link ([launch-todos.md](launch-todos.md)) |
 
 Known gap: `npm audit` reports issues in build-time tools (Lighthouse, Tailwind, linkinator). Nothing from them ships to visitors (`npm audit --omit=dev` is clean).
 
