@@ -356,6 +356,33 @@ test('pages have no inline scripts, inline styles or inline event handlers', () 
   }
 });
 
+test('www and the old vercel.app address redirect permanently to the main domain, keeping the path', () => {
+  const hostRules = vercel.redirects.filter((entry) => entry.has);
+  const hosts = Object.fromEntries(hostRules.map((entry) => [entry.has[0].value, entry]));
+
+  for (const host of ['www.farnboroughsupermarket.co.uk', 'farnborough-supermarket.vercel.app']) {
+    assert.equal(hosts[host].source, '/(.*)');
+    assert.equal(hosts[host].destination, 'https://farnboroughsupermarket.co.uk/$1');
+    assert.equal(hosts[host].permanent, true);
+  }
+  // Host rules must come before the path rules so they match first.
+  assert.ok(vercel.redirects.findIndex((entry) => !entry.has) > vercel.redirects.findLastIndex((entry) => entry.has));
+});
+
+test('HSTS is sent for a long time with subdomains, without the hard-to-undo preload flag', () => {
+  const hsts = headerMap(vercel.headers[0])['Strict-Transport-Security'];
+
+  assert.match(hsts, /max-age=63072000/);
+  assert.match(hsts, /includeSubDomains/);
+  assert.doesNotMatch(hsts, /preload/);
+});
+
+test('the shipped site address is the real domain', () => {
+  const shipped = JSON.parse(fs.readFileSync(path.join(rootDir, 'site.config.json'), 'utf8'));
+
+  assert.equal(shipped.siteUrl, 'https://farnboroughsupermarket.co.uk');
+});
+
 test('no file named like a server entry point exists where Vercel would pick it up', () => {
   for (const name of ['src/server.js', 'src/app.js', 'src/index.js', 'server.js', 'app.js', 'index.js']) {
     assert.ok(!fs.existsSync(path.join(rootDir, name)), `${name} would be detected as a Node app`);
